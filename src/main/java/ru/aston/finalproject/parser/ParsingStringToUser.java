@@ -6,14 +6,14 @@ import ru.aston.finalproject.entity.User;
 import static ru.aston.finalproject.constants.ConstantFields.LENGTH_PARAMETER;
 import static ru.aston.finalproject.constants.ConstantMethods.checkedStringOnEmpty;
 
-public class ParsingStringToEntity implements Parsing<User> {
+public class ParsingStringToUser implements Parsing<User> {
 
     private final BuildConcreteUser buildUser;
     private String name;
     private String email;
     private int age;
 
-    public ParsingStringToEntity() {
+    public ParsingStringToUser() {
         buildUser = new BuildConcreteUser();
     }
 
@@ -21,17 +21,19 @@ public class ParsingStringToEntity implements Parsing<User> {
     public User parse(String data, String delimiter) {
 
         checkedStringOnEmpty(data);
-
         String[] dataArray = data.split(delimiter);
-        if (dataArray.length != LENGTH_PARAMETER) {
-            throw new IllegalArgumentException(String.format("Invalid data %s", data));
-        }
         int zero = 0;
         int one = 1;
         int two = 2;
+
+        if (dataArray.length != LENGTH_PARAMETER) {
+            throw new IllegalArgumentException(String.format("Invalid data %s", data));
+        }
+
         creatName(dataArray[zero]);
         creatEmail(dataArray[one]);
         createdAgeFromFirstInteger(dataArray[two]);
+
         return buildUser.buildConcreteUser(name, email, age);
     }
 
