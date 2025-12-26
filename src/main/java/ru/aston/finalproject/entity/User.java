@@ -6,7 +6,6 @@ import lombok.Getter;
 import java.util.Objects;
 
 import static ru.aston.finalproject.constants.ConstantMethods.validateAge;
-import static ru.aston.finalproject.constants.ConstantMethods.validateUser;
 
 @Getter
 @EqualsAndHashCode
@@ -22,17 +21,35 @@ public class User implements Comparable<User> {
         this.age = builder.age;
     }
 
+    @Override
+    public String toString() {
+        return "User\n{" + "name = " + name + ",\nemail = " + email + ",\nage   = " + age + '}';
+    }
+
+    @Override
+    public int compareTo(User o) {
+        if (!this.name.equals(o.name)) {
+            return this.name.compareTo(o.name);
+        } else if (!this.email.equals(o.email)) {
+            return this.email.compareTo(o.email);
+        } else  {
+            return Integer.compare(this.age, o.age);
+        }
+    }
+
     public static Builder builder() {
         return new Builder();
     }
 
     public static class Builder {
 
+        private final UserValidator validator;
         private String name;
         private String email;
         private int age;
 
         public Builder() {
+            validator = new UserValidator();
         }
 
         public Builder name(String name) {
@@ -52,24 +69,8 @@ public class User implements Comparable<User> {
         }
 
         public User build() {
-            validateUser(name, email, age);
+            validator.validateUser(name, email, age);
             return new User(this);
-        }
-    }
-
-    @Override
-    public String toString() {
-        return "User\n{" + "name = " + name + ",\nemail = " + email + ",\nage   = " + age + '}';
-    }
-
-    @Override
-    public int compareTo(User o) {
-        if (!this.name.equals(o.name)) {
-            return this.name.compareTo(o.name);
-        } else if (!this.email.equals(o.email)) {
-            return this.email.compareTo(o.email);
-        } else  {
-            return Integer.compare(this.age, o.age);
         }
     }
 }

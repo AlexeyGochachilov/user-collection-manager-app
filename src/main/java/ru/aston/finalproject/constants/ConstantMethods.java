@@ -5,13 +5,6 @@ import static ru.aston.finalproject.constants.ConstantFields.MIN_AGE;
 
 public class ConstantMethods {
 
-    public static void validateUser (String username, String email, int age){
-        checkedStringOnEmpty(username);
-        checkedStringOnEmpty(email);
-        checkedEmail(email);
-        validateAge(age);
-    }
-
     public static void checkedStringOnEmpty(String string){
         if (string == null || string.trim().isEmpty()) {
             throw new IllegalArgumentException(String.format("%s cannot be empty", string));
