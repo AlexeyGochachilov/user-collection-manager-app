@@ -3,8 +3,8 @@ package ru.aston.finalproject.parser;
 import ru.aston.finalproject.entity.BuildConcreteUser;
 import ru.aston.finalproject.entity.User;
 
-import static ru.aston.finalproject.constants.ConstantFields.EMAIL_FORM;
 import static ru.aston.finalproject.constants.ConstantFields.LENGTH_PARAMETER;
+import static ru.aston.finalproject.constants.ConstantMethods.checkedEmail;
 import static ru.aston.finalproject.constants.ConstantMethods.checkedStringOnEmpty;
 
 public class UserParser implements Parsing<User> {
@@ -47,12 +47,6 @@ public class UserParser implements Parsing<User> {
         checkedStringOnEmpty(email);
         checkedEmail(email);
         this.email = email.trim();
-    }
-
-    private void checkedEmail(String email) {
-        if (!email.matches(EMAIL_FORM)) {
-            throw new IllegalArgumentException(String.format("Invalid email %s", email));
-        }
     }
 
     private void createdAgeFromFirstInteger(String string) {

@@ -5,8 +5,8 @@ import lombok.Getter;
 
 import java.util.Objects;
 
-import static ru.aston.finalproject.constants.ConstantFields.MIN_AGE;
-import static ru.aston.finalproject.constants.ConstantMethods.checkedStringOnEmpty;
+import static ru.aston.finalproject.constants.ConstantMethods.validateAge;
+import static ru.aston.finalproject.constants.ConstantMethods.validateUser;
 
 @Getter
 @EqualsAndHashCode
@@ -51,20 +51,9 @@ public class User implements Comparable<User> {
             return this;
         }
 
-        private void validateAge(int age) {
-            if (age <= MIN_AGE) {
-                throw new IllegalArgumentException(String.format("Age cannot be below %d", MIN_AGE));
-            }
-        }
-
         public User build() {
-            validateUser();
+            validateUser(name, email, age);
             return new User(this);
-        }
-
-        private void validateUser() {
-            checkedStringOnEmpty(name);
-            checkedStringOnEmpty(email);
         }
     }
 
