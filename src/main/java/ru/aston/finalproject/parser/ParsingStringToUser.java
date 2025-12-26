@@ -30,19 +30,19 @@ public class ParsingStringToUser implements Parsing<User> {
             throw new IllegalArgumentException(String.format("Invalid data %s", data));
         }
 
-        creatName(dataArray[zero]);
-        creatEmail(dataArray[one]);
+        createdName(dataArray[zero]);
+        createdEmail(dataArray[one]);
         createdAgeFromFirstInteger(dataArray[two]);
 
         return buildUser.buildConcreteUser(name, email, age);
     }
 
-    private void creatName(String name) {
+    private void createdName(String name) {
         checkedStringOnEmpty(name);
         this.name = name.trim();
     }
 
-    private void creatEmail(String email) {
+    private void createdEmail(String email) {
         checkedEmail(email);
         this.email = email.trim();
     }
