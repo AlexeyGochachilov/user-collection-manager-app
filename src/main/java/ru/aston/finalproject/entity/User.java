@@ -10,7 +10,7 @@ import static ru.aston.finalproject.constants.ConstantMethods.checkedStringOnEmp
 
 @Getter
 @EqualsAndHashCode
-public class User {
+public class User implements Comparable<User> {
 
     private final String name;
     private final String email;
@@ -71,5 +71,16 @@ public class User {
     @Override
     public String toString() {
         return "User\n{" + "name = " + name + ",\nemail = " + email + ",\nage   = " + age + '}';
+    }
+
+    @Override
+    public int compareTo(User o) {
+        if (!this.name.equals(o.name)) {
+            return this.name.compareTo(o.name);
+        } else if (!this.email.equals(o.email)) {
+            return this.email.compareTo(o.email);
+        } else  {
+            return Integer.compare(this.age, o.age);
+        }
     }
 }

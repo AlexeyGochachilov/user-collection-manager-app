@@ -3,17 +3,18 @@ package ru.aston.finalproject.parser;
 import ru.aston.finalproject.entity.BuildConcreteUser;
 import ru.aston.finalproject.entity.User;
 
+import static ru.aston.finalproject.constants.ConstantFields.EMAIL_FORM;
 import static ru.aston.finalproject.constants.ConstantFields.LENGTH_PARAMETER;
 import static ru.aston.finalproject.constants.ConstantMethods.checkedStringOnEmpty;
 
-public class UserParse implements Parsing<User> {
+public class UserParser implements Parsing<User> {
 
     private final BuildConcreteUser buildUser;
     private String name;
     private String email;
     private int age;
 
-    public UserParse() {
+    public UserParser() {
         buildUser = new BuildConcreteUser();
     }
 
@@ -49,7 +50,7 @@ public class UserParse implements Parsing<User> {
     }
 
     private void checkedEmail(String email) {
-        if (!email.matches("^[\\w-\\.]+@[\\w-]+(\\.[\\w-]+)*\\.[a-z]{2,}$")) {
+        if (!email.matches(EMAIL_FORM)) {
             throw new IllegalArgumentException(String.format("Invalid email %s", email));
         }
     }
