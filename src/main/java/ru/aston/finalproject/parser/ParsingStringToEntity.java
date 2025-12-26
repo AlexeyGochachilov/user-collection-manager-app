@@ -8,10 +8,14 @@ import static ru.aston.finalproject.constants.ConstantMethods.checkedStringOnEmp
 
 public class ParsingStringToEntity implements Parsing<User> {
 
-    private BuildConcreteUser buildUser;
+    private final BuildConcreteUser buildUser;
     private String name;
     private String email;
     private int age;
+
+    public ParsingStringToEntity() {
+        buildUser = new BuildConcreteUser();
+    }
 
     @Override
     public User parse(String data, String delimiter) {
