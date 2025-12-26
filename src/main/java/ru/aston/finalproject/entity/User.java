@@ -4,6 +4,9 @@ import lombok.Getter;
 
 import java.util.Objects;
 
+import static ru.aston.finalproject.constants.ConstantFields.MIN_AGE;
+import static ru.aston.finalproject.constants.ConstantMethods.checkedStringOnEmpty;
+
 @Getter
 public class User {
 
@@ -26,7 +29,7 @@ public class User {
         private String name;
         private String email;
         private int age;
-        private static final int MIN_AGE = 1;
+
 
         public Builder() {
         }
@@ -59,12 +62,8 @@ public class User {
         }
 
         private void validateUser() {
-            if (name == null || name.trim().isEmpty()) {
-                throw new IllegalArgumentException("Name cannot be empty");
-            }
-            if (email == null || email.trim().isEmpty()) {
-                throw new IllegalArgumentException("Email cannot be empty");
-            }
+            checkedStringOnEmpty(name);
+            checkedStringOnEmpty(email);
         }
     }
 
