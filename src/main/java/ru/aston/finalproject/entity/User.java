@@ -1,5 +1,6 @@
 package ru.aston.finalproject.entity;
 
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 
 import java.util.Objects;
@@ -8,6 +9,7 @@ import static ru.aston.finalproject.constants.ConstantFields.MIN_AGE;
 import static ru.aston.finalproject.constants.ConstantMethods.checkedStringOnEmpty;
 
 @Getter
+@EqualsAndHashCode
 public class User {
 
     private final String name;

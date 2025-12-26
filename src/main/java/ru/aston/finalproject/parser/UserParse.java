@@ -6,14 +6,14 @@ import ru.aston.finalproject.entity.User;
 import static ru.aston.finalproject.constants.ConstantFields.LENGTH_PARAMETER;
 import static ru.aston.finalproject.constants.ConstantMethods.checkedStringOnEmpty;
 
-public class ParsingStringToUser implements Parsing<User> {
+public class UserParse implements Parsing<User> {
 
     private final BuildConcreteUser buildUser;
     private String name;
     private String email;
     private int age;
 
-    public ParsingStringToUser() {
+    public UserParse() {
         buildUser = new BuildConcreteUser();
     }
 
@@ -43,12 +43,13 @@ public class ParsingStringToUser implements Parsing<User> {
     }
 
     private void createdEmail(String email) {
+        checkedStringOnEmpty(email);
         checkedEmail(email);
         this.email = email.trim();
     }
 
     private void checkedEmail(String email) {
-        if (email.indexOf('@') != email.lastIndexOf('@')) {
+        if (!email.matches("^[\\w-\\.]+@[\\w-]+(\\.[\\w-]+)*\\.[a-z]{2,}$")) {
             throw new IllegalArgumentException(String.format("Invalid email %s", email));
         }
     }
