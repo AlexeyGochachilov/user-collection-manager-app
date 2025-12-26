@@ -48,7 +48,7 @@ public class User {
         }
 
         private void validateAge(int age) {
-            if (age < 0) {
+            if (age <= MIN_AGE) {
                 throw new IllegalArgumentException(String.format("Age cannot be below %d", MIN_AGE));
             }
         }
