@@ -1,7 +1,9 @@
 package ru.aston.finalproject.constants;
 
 import static ru.aston.finalproject.constants.ConstantFields.EMAIL_FORM;
+import static ru.aston.finalproject.constants.ConstantFields.MAX_AGE;
 import static ru.aston.finalproject.constants.ConstantFields.MIN_AGE;
+import static ru.aston.finalproject.constants.ConstantFields.ZERO;
 
 public class ConstantMethods {
 
@@ -14,6 +16,15 @@ public class ConstantMethods {
     public static void validateAge(int age) {
         if (age <= MIN_AGE) {
             throw new IllegalArgumentException(String.format("Age cannot be below %d", MIN_AGE));
+        }
+        if (age >= MAX_AGE) {
+            throw new IllegalArgumentException(String.format("Age cannot be above %d", MAX_AGE));
+        }
+    }
+
+    public static void validateInt(int intValue) {
+        if (intValue == ZERO) {
+            throw new IllegalArgumentException(String.format("%s cannot be zero", intValue));
         }
     }
 

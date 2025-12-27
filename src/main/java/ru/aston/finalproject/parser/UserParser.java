@@ -1,29 +1,29 @@
 package ru.aston.finalproject.parser;
 
-import ru.aston.finalproject.entity.BuildConcreteUser;
-import ru.aston.finalproject.entity.User;
+import ru.aston.finalproject.entity.BuildUser;
+import ru.aston.finalproject.entity.Entity;
 
 import static ru.aston.finalproject.constants.ConstantFields.LENGTH_PARAMETER;
+import static ru.aston.finalproject.constants.ConstantFields.ZERO;
 import static ru.aston.finalproject.constants.ConstantMethods.checkedEmail;
 import static ru.aston.finalproject.constants.ConstantMethods.checkedStringOnEmpty;
 
-public class UserParser implements Parsing<User> {
+public class UserParser implements Parsing<Entity> {
 
-    private final BuildConcreteUser buildUser;
+    private final BuildUser buildUser;
     private String name;
     private String email;
     private int age;
 
     public UserParser() {
-        buildUser = new BuildConcreteUser();
+        buildUser = new BuildUser();
     }
 
     @Override
-    public User parse(String data, String delimiter) {
+    public Entity parse(String data, String delimiter) {
 
         checkedStringOnEmpty(data);
         String[] dataArray = data.split(delimiter);
-        int zero = 0;
         int one = 1;
         int two = 2;
 
@@ -31,7 +31,7 @@ public class UserParser implements Parsing<User> {
             throw new IllegalArgumentException(String.format("Invalid data %s", data));
         }
 
-        createdName(dataArray[zero]);
+        createdName(dataArray[ZERO]);
         createdEmail(dataArray[one]);
         createdAgeFromFirstInteger(dataArray[two]);
 
