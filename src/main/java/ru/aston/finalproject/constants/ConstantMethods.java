@@ -14,6 +14,13 @@ public class ConstantMethods {
         }
     }
 
+    public static void checkedName(String name){
+        checkedStringOnEmpty(name);
+        if (!name.equals(createdStringWordsOnly(name))){
+            throw new IllegalArgumentException(String.format("%s is not a valid name", name));
+        }
+    }
+
     public static void checkedEmail(String email) {
         checkedStringOnEmpty(email);
         if (!email.matches(EMAIL_FORM)) {
@@ -38,20 +45,22 @@ public class ConstantMethods {
 
     public static void checkedMileageInKilometers(String mileageInKilometers){
         String km = createdStringWordsOnly(mileageInKilometers);
-        checkedStringOnEmpty(km);
         if (!km.equals(KM)) {
             throw new IllegalArgumentException(
                     String.format("Invalid args, mileageInKilometers need content %s", KM));
         }
         String digits = createdStringDigitsOnly(mileageInKilometers);
-        checkedStringOnEmpty(digits);
     }
 
     public static String createdStringDigitsOnly(String string) {
-        return string.replaceAll("\\D+", " ").trim();
+        string = string.replaceAll("\\D+", " ").trim();
+        checkedStringOnEmpty(string);
+        return string;
     }
 
     public static String createdStringWordsOnly(String string) {
-        return string.replaceAll("\\d+", " ").trim();
+        string = string.replaceAll("\\d+", " ").trim();
+        checkedStringOnEmpty(string);
+        return string;
     }
 }
