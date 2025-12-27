@@ -16,7 +16,7 @@ public class ConstantMethods {
 
     public static void checkedName(String name){
         checkedStringOnEmpty(name);
-        if (!name.equals(createdStringWordsOnly(name))){
+        if (!name.equals(cleanStringFromDigit(name))){
             throw new IllegalArgumentException(String.format("%s is not a valid name", name));
         }
     }
@@ -44,23 +44,32 @@ public class ConstantMethods {
     }
 
     public static void checkedMileageInKilometers(String mileageInKilometers){
-        String km = createdStringWordsOnly(mileageInKilometers);
+        String km = cleanStringFromDigit(mileageInKilometers);
         if (!km.equals(KM)) {
             throw new IllegalArgumentException(
                     String.format("Invalid args, mileageInKilometers need content %s", KM));
         }
-        String digits = createdStringDigitsOnly(mileageInKilometers);
+        createdStringOnlyDigits(mileageInKilometers);
     }
 
-    public static String createdStringDigitsOnly(String string) {
-        string = string.replaceAll("\\D+", " ").trim();
-        checkedStringOnEmpty(string);
+    public static String createdStringOnlyDigits(String string) {
+        checkedStringContainDigitsOnly(string);
         return string;
     }
 
-    public static String createdStringWordsOnly(String string) {
+    public static void checkedStringContainDigitsOnly(String string) {
+        string = string.replaceAll("\\D+", " ").trim();
+        checkedStringOnEmpty(string);
+    }
+
+    public static String cleanStringFromDigit(String string) {
         string = string.replaceAll("\\d+", " ").trim();
         checkedStringOnEmpty(string);
         return string;
+    }
+
+    public static int createdDigitFromFirstInteger(String string) {
+        String numbersOnly = createdStringOnlyDigits(string);
+        return Integer.parseInt(numbersOnly.split(" ")[ZERO]);
     }
 }
