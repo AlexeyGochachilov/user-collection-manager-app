@@ -5,7 +5,7 @@ import lombok.Getter;
 import ru.aston.finalproject.validators.Validator;
 
 import static ru.aston.finalproject.constants.ConstantMethods.checkedStringOnEmpty;
-import static ru.aston.finalproject.constants.ConstantMethods.validateInt;
+import static ru.aston.finalproject.constants.ConstantMethods.checkedZero;
 
 @Getter
 @EqualsAndHashCode
@@ -63,7 +63,7 @@ public class Entity implements Comparable<Entity> {
         }
 
         public Builder fieldInt(int intValue) {
-            validateInt(intValue);
+            checkedZero(intValue);
             this.fieldInt = intValue;
             return this;
         }

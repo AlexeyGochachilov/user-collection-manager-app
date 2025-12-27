@@ -1,6 +1,7 @@
 package ru.aston.finalproject.constants;
 
 import static ru.aston.finalproject.constants.ConstantFields.EMAIL_FORM;
+import static ru.aston.finalproject.constants.ConstantFields.KM;
 import static ru.aston.finalproject.constants.ConstantFields.MAX_AGE;
 import static ru.aston.finalproject.constants.ConstantFields.MIN_AGE;
 import static ru.aston.finalproject.constants.ConstantFields.ZERO;
@@ -13,7 +14,14 @@ public class ConstantMethods {
         }
     }
 
-    public static void validateAge(int age) {
+    public static void checkedEmail(String email) {
+        checkedStringOnEmpty(email);
+        if (!email.matches(EMAIL_FORM)) {
+            throw new IllegalArgumentException(String.format("Invalid email %s", email));
+        }
+    }
+
+    public static void checkedAge(int age) {
         if (age <= MIN_AGE) {
             throw new IllegalArgumentException(String.format("Age cannot be below %d", MIN_AGE));
         }
@@ -22,15 +30,28 @@ public class ConstantMethods {
         }
     }
 
-    public static void validateInt(int intValue) {
+    public static void checkedZero(int intValue) {
         if (intValue == ZERO) {
             throw new IllegalArgumentException(String.format("%s cannot be zero", intValue));
         }
     }
 
-    public static void checkedEmail(String email) {
-        if (!email.matches(EMAIL_FORM)) {
-            throw new IllegalArgumentException(String.format("Invalid email %s", email));
+    public static void checkedMileageInKilometers(String mileageInKilometers){
+        String km = createdStringWordsOnly(mileageInKilometers);
+        checkedStringOnEmpty(km);
+        if (!km.equals(KM)) {
+            throw new IllegalArgumentException(
+                    String.format("Invalid args, mileageInKilometers need content %s", KM));
         }
+        String digits = createdStringDigitsOnly(mileageInKilometers);
+        checkedStringOnEmpty(digits);
+    }
+
+    public static String createdStringDigitsOnly(String string) {
+        return string.replaceAll("\\D+", " ").trim();
+    }
+
+    public static String createdStringWordsOnly(String string) {
+        return string.replaceAll("\\d+", " ").trim();
     }
 }

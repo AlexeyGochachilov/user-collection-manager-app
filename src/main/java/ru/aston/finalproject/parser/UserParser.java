@@ -1,6 +1,6 @@
 package ru.aston.finalproject.parser;
 
-import ru.aston.finalproject.entity.BuildUser;
+import ru.aston.finalproject.BuildsEntitys.BuildUser;
 import ru.aston.finalproject.entity.Entity;
 
 import static ru.aston.finalproject.constants.ConstantFields.LENGTH_PARAMETER;
