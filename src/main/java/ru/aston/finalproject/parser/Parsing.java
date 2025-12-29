@@ -4,9 +4,10 @@ import ru.aston.finalproject.entity.Entity;
 
 public interface Parsing {
 
-    Entity parseStringToEntity(String data, String delimiter);
+    String parseEntityToString(Entity entity);
 
     Entity parseStringToEntity(String data);
 
-    String parseEntityToString(Entity entity);
+    Entity parseStringToEntity(String data, String delimiter);
+
 }

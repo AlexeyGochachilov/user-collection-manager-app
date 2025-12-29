@@ -9,7 +9,6 @@ import static ru.aston.finalproject.constants.ConstantFields.LENGTH_PARAMETER;
 import static ru.aston.finalproject.constants.ConstantFields.ONE;
 import static ru.aston.finalproject.constants.ConstantFields.TWO;
 import static ru.aston.finalproject.constants.ConstantFields.ZERO;
-import static ru.aston.finalproject.constants.ConstantMethods.checkedEmail;
 import static ru.aston.finalproject.constants.ConstantMethods.checkedStringOnEmpty;
 import static ru.aston.finalproject.constants.ConstantMethods.createdDigitFromFirstInteger;
 import static ru.aston.finalproject.constants.ConstantMethods.exampleEntity;
@@ -24,6 +23,11 @@ public class EntityParser implements Parsing {
 
     public EntityParser() {
         buildEntity = new BuildConcreteEntity();
+    }
+
+    @Override
+    public String parseEntityToString(Entity entity) {
+        return exampleEntity(fieldOne, fieldTwo, fieldInt);
     }
 
     @Override
@@ -60,24 +64,5 @@ public class EntityParser implements Parsing {
 
     private void createdIntFromFirstInteger(String string) {
         this.fieldInt = createdDigitFromFirstInteger(string);
-    }
-
-    private void createdName(String name) {
-        checkedStringOnEmpty(name);
-        this.fieldOne = name.trim();
-    }
-
-    private void createdEmail(String email) {
-        checkedEmail(email);
-        this.fieldTwo = email.trim();
-    }
-
-    private void createdAgeFromFirstInteger(String string) {
-        this.fieldInt = createdDigitFromFirstInteger(string);
-    }
-
-    @Override
-    public String parseEntityToString(Entity entity) {
-        return exampleEntity(fieldOne, fieldTwo, fieldInt);
     }
 }
