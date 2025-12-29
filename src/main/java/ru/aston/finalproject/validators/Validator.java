@@ -1,7 +1,7 @@
 package ru.aston.finalproject.validators;
 
 @FunctionalInterface
-public interface Validator {
+public interface Validator<T> {
 
-    void validateEntity(String fieldOne, String fieldTwo, int fieldInt);
+    void validate(String fieldOne, String fieldTwo, int fieldInt);
 }

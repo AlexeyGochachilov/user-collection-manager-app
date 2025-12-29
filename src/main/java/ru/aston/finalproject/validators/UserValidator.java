@@ -1,13 +1,15 @@
 package ru.aston.finalproject.validators;
 
+import ru.aston.finalproject.entity.User;
+
 import static ru.aston.finalproject.constants.ConstantMethods.checkedAge;
 import static ru.aston.finalproject.constants.ConstantMethods.checkedEmail;
 import static ru.aston.finalproject.constants.ConstantMethods.checkedName;
 
-public class UserValidator implements Validator {
+public class UserValidator implements Validator<User> {
 
-    public void validateEntity(String username, String email, int age) {
-        checkedName(username);
+    public void validate(String name, String email, int age) {
+        checkedName(name);
         checkedEmail(email);
         checkedAge(age);
     }

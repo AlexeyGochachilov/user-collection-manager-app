@@ -69,7 +69,7 @@ public class Entity implements Comparable<Entity> {
         }
 
         public Entity build(Validator validator) {
-            validator.validateEntity(fieldOne, fieldTwo, fieldInt);
+            validator.validate(fieldOne, fieldTwo, fieldInt);
             return new Entity(this);
         }
     }

@@ -3,6 +3,7 @@ package ru.aston.finalproject.constants;
 import static ru.aston.finalproject.constants.ConstantFields.DELIMITER;
 import static ru.aston.finalproject.constants.ConstantFields.EMAIL_FORM;
 import static ru.aston.finalproject.constants.ConstantFields.KM;
+import static ru.aston.finalproject.constants.ConstantFields.LENGTH_PARAMETER;
 import static ru.aston.finalproject.constants.ConstantFields.MAX_AGE;
 import static ru.aston.finalproject.constants.ConstantFields.MIN_AGE;
 import static ru.aston.finalproject.constants.ConstantFields.ZERO;
@@ -77,4 +78,16 @@ public class ConstantMethods {
     public static String exampleEntity (String fieldOne, String fieldTwo, int fieldInt) {
         return String.format(fieldOne + DELIMITER +  fieldTwo + DELIMITER + fieldInt);
     }
+
+    public static String[] preparingForParsing(String data, String delimiter) {
+        String[] dataArray = data.split(delimiter);
+        if (dataArray.length != LENGTH_PARAMETER) {
+            throw new IllegalArgumentException(String.format("Invalid data %s", data));
+        }
+        for (int i = 0; i < LENGTH_PARAMETER; i++) {
+            checkedStringOnEmpty(dataArray[i]);
+        }
+        return dataArray;
+    }
+
 }
