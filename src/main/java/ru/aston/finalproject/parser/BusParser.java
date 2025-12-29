@@ -1,7 +1,7 @@
 package ru.aston.finalproject.parser;
 
+import ru.aston.finalproject.entity.Bus;
 import ru.aston.finalproject.entity.Entity;
-import ru.aston.finalproject.entity.User;
 
 import static ru.aston.finalproject.constants.ConstantFields.DELIMITER;
 import static ru.aston.finalproject.constants.ConstantFields.ONE;
@@ -12,30 +12,30 @@ import static ru.aston.finalproject.constants.ConstantMethods.createdDigitFromFi
 import static ru.aston.finalproject.constants.ConstantMethods.exampleEntity;
 import static ru.aston.finalproject.constants.ConstantMethods.preparingForParsing;
 
-public class UserParser implements Parsing<User> {
+public class BusParser implements Parsing<Bus> {
 
-    private String name;
-    private String email;
-    private int age;
+    private String model;
+    private String mileageInKilometers;
+    private int number;
 
     @Override
     public String parseToString(Entity entity) {
-        return exampleEntity(name, email, age);
+        return exampleEntity(model, mileageInKilometers, number);
     }
 
     @Override
-    public User parse(String data) {
+    public Bus parse(String data) {
         return parse(data, DELIMITER);
     }
 
     @Override
-    public User parse(String data, String delimiter) {
+    public Bus parse(String data, String delimiter) {
 
         checkedStringOnEmpty(data);
         String[] dataArray = preparingForParsing(data, delimiter);
-        name = dataArray[ZERO];
-        email = dataArray[ONE];
-        age = createdDigitFromFirstInteger(dataArray[TWO]);
-        return User.build(name, email, age);
+        model = dataArray[ZERO];
+        mileageInKilometers = dataArray[ONE];
+        number = createdDigitFromFirstInteger(dataArray[TWO]);
+        return Bus.build(model, mileageInKilometers, number);
     }
 }

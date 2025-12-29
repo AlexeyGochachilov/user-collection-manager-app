@@ -2,10 +2,8 @@ package ru.aston.finalproject.entity;
 
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
-
-import java.util.Objects;
-
-import static ru.aston.finalproject.constants.ConstantMethods.validateAge;
+import ru.aston.finalproject.validators.UserValidator;
+import ru.aston.finalproject.validators.Validator;
 
 @Getter
 @EqualsAndHashCode
@@ -15,15 +13,17 @@ public class User implements Comparable<User> {
     private final String email;
     private final int age;
 
-    private User(Builder builder) {
-        this.name = builder.name;
-        this.email = builder.email;
-        this.age = builder.age;
+    private User(Entity entity) {
+        this.name = entity.getFieldOne();
+        this.email = entity.getFieldTwo();
+        this.age = entity.getFieldInt();
     }
 
-    @Override
-    public String toString() {
-        return "User\n{" + "name = " + name + ",\nemail = " + email + ",\nage   = " + age + '}';
+    public static User build(String name, String email, int age) {
+        BuildConcreteEntity buildConcreteEntity = new BuildConcreteEntity();
+        Validator<User> userValidator = new UserValidator();
+        Entity userEntity = buildConcreteEntity.buildCustomEntity(name, email, age, userValidator);
+        return new User(userEntity);
     }
 
     @Override
@@ -32,45 +32,13 @@ public class User implements Comparable<User> {
             return this.name.compareTo(o.name);
         } else if (!this.email.equals(o.email)) {
             return this.email.compareTo(o.email);
-        } else  {
+        } else {
             return Integer.compare(this.age, o.age);
         }
     }
 
-    public static Builder builder() {
-        return new Builder();
-    }
-
-    public static class Builder {
-
-        private final UserValidator validator;
-        private String name;
-        private String email;
-        private int age;
-
-        public Builder() {
-            validator = new UserValidator();
-        }
-
-        public Builder name(String name) {
-            this.name = Objects.requireNonNull(name, "Name cannot be null");
-            return this;
-        }
-
-        public Builder email(String email) {
-            this.email = Objects.requireNonNull(email, "Email cannot be null");
-            return this;
-        }
-
-        public Builder age(int age) {
-            validateAge(age);
-            this.age = age;
-            return this;
-        }
-
-        public User build() {
-            validator.validateUser(name, email, age);
-            return new User(this);
-        }
+    @Override
+    public String toString() {
+        return String.format("User{name: %s, email: %s, age: %d}", this.name, this.email, this.age);
     }
 }
