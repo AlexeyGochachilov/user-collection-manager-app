@@ -1,55 +1,19 @@
 package ru.aston.finalproject.parser;
 
-import ru.aston.finalproject.entity.BuildConcreteEntity;
 import ru.aston.finalproject.entity.Entity;
+import ru.aston.finalproject.validators.UserValidator;
 
-import static ru.aston.finalproject.constants.ConstantFields.LENGTH_PARAMETER;
-import static ru.aston.finalproject.constants.ConstantFields.ONE;
-import static ru.aston.finalproject.constants.ConstantFields.TWO;
-import static ru.aston.finalproject.constants.ConstantFields.ZERO;
-import static ru.aston.finalproject.constants.ConstantMethods.checkedEmail;
-import static ru.aston.finalproject.constants.ConstantMethods.checkedStringOnEmpty;
-import static ru.aston.finalproject.constants.ConstantMethods.createdDigitFromFirstInteger;
-
-public class UserParser implements Parsing<Entity> {
-
-    private final BuildConcreteEntity buildUser;
-    private String name;
-    private String email;
-    private int age;
+public class UserParser extends EntityParser {
 
     public UserParser() {
-        buildUser = new BuildConcreteEntity();
+        super.validator = new UserValidator();
     }
 
-    @Override
-    public Entity parse(String data, String delimiter) {
-
-        checkedStringOnEmpty(data);
-        String[] dataArray = data.split(delimiter);
-
-        if (dataArray.length != LENGTH_PARAMETER) {
-            throw new IllegalArgumentException(String.format("Invalid data %s", data));
-        }
-
-        createdName(dataArray[ZERO]);
-        createdEmail(dataArray[ONE]);
-        createdAgeFromFirstInteger(dataArray[TWO]);
-
-        return buildUser.buildCustomEntity(name, email, age);
+    public Entity parsingStringToUser(String data, String delimiter) {
+        return parseStringToEntity(data, delimiter);
     }
 
-    private void createdName(String name) {
-        checkedStringOnEmpty(name);
-        this.name = name.trim();
-    }
-
-    private void createdEmail(String email) {
-        checkedEmail(email);
-        this.email = email.trim();
-    }
-
-    private void createdAgeFromFirstInteger(String string) {
-        this.age = createdDigitFromFirstInteger(string);
+    public Entity parsingStringToEntity(String data) {
+        return parseStringToEntity(data);
     }
 }

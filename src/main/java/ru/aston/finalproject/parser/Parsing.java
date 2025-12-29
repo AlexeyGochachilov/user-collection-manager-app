@@ -1,6 +1,12 @@
 package ru.aston.finalproject.parser;
 
-public interface Parsing<T> {
+import ru.aston.finalproject.entity.Entity;
 
-    T parse(String data, String delimiter);
+public interface Parsing {
+
+    Entity parseStringToEntity(String data, String delimiter);
+
+    Entity parseStringToEntity(String data);
+
+    String parseEntityToString(Entity entity);
 }

@@ -1,5 +1,6 @@
 package ru.aston.finalproject.constants;
 
+import static ru.aston.finalproject.constants.ConstantFields.DELIMITER;
 import static ru.aston.finalproject.constants.ConstantFields.EMAIL_FORM;
 import static ru.aston.finalproject.constants.ConstantFields.KM;
 import static ru.aston.finalproject.constants.ConstantFields.MAX_AGE;
@@ -71,5 +72,9 @@ public class ConstantMethods {
     public static int createdDigitFromFirstInteger(String string) {
         String numbersOnly = createdStringOnlyDigits(string);
         return Integer.parseInt(numbersOnly.split(" ")[ZERO]);
+    }
+
+    public static String exampleEntity (String fieldOne, String fieldTwo, int fieldInt) {
+        return String.format(fieldOne + DELIMITER +  fieldTwo + DELIMITER + fieldInt);
     }
 }
