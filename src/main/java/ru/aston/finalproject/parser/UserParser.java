@@ -1,6 +1,6 @@
 package ru.aston.finalproject.parser;
 
-import ru.aston.finalproject.BuildsEntitys.BuildUser;
+import ru.aston.finalproject.entity.BuildConcreteEntity;
 import ru.aston.finalproject.entity.Entity;
 
 import static ru.aston.finalproject.constants.ConstantFields.LENGTH_PARAMETER;
@@ -13,13 +13,13 @@ import static ru.aston.finalproject.constants.ConstantMethods.createdDigitFromFi
 
 public class UserParser implements Parsing<Entity> {
 
-    private final BuildUser buildUser;
+    private final BuildConcreteEntity buildUser;
     private String name;
     private String email;
     private int age;
 
     public UserParser() {
-        buildUser = new BuildUser();
+        buildUser = new BuildConcreteEntity();
     }
 
     @Override
@@ -36,7 +36,7 @@ public class UserParser implements Parsing<Entity> {
         createdEmail(dataArray[ONE]);
         createdAgeFromFirstInteger(dataArray[TWO]);
 
-        return buildUser.buildConcreteUser(name, email, age);
+        return buildUser.buildCustomEntity(name, email, age);
     }
 
     private void createdName(String name) {
