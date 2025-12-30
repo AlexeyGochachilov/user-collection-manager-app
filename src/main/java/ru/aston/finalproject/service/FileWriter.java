@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.nio.charset.StandardCharsets;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static ru.aston.finalproject.constants.ConstantMethods.checkedStringOnEmpty;
 
@@ -27,18 +28,13 @@ public class FileWriter<T> {
 
     private String buildContent(@NonNull List<T> list) {
 
-        StringBuilder content = new StringBuilder();
         int totalLines = list.size();
         int digitCount = String.valueOf(totalLines).length();
+        String format = "%0" + digitCount + "d. ";
 
-        for (int i = 0; i < list.size(); i++) {
-            String lineNumber = formatLineNumber(i + 1, digitCount);
-            content.append(lineNumber)
-                    .append(") ")
-                    .append(parser.parseToString(list.get(i)))
-                    .append("\n");
-        }
-        return content.toString();
+        return list.stream()
+                .map(item -> String.format(format, list.indexOf(item) + 1) + parser.parseToString(item))
+                .collect(Collectors.joining("\n")) + "\n";
     }
 
     private String formatLineNumber(int currentLine, int digitCount) {
