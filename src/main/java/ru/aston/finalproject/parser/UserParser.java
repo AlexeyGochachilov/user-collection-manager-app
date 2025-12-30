@@ -1,6 +1,5 @@
 package ru.aston.finalproject.parser;
 
-import ru.aston.finalproject.entity.Entity;
 import ru.aston.finalproject.entity.User;
 
 import static ru.aston.finalproject.constants.ConstantFields.DELIMITER;
@@ -14,13 +13,10 @@ import static ru.aston.finalproject.constants.ConstantMethods.preparingForParsin
 
 public class UserParser implements Parsing<User> {
 
-    private String name;
-    private String email;
-    private int age;
 
     @Override
-    public String parseToString(Entity entity) {
-        return exampleEntity(name, email, age);
+    public String parseToString(User user) {
+        return exampleEntity(user.getName(), user.getEmail(), user.getAge());
     }
 
     @Override
@@ -30,12 +26,11 @@ public class UserParser implements Parsing<User> {
 
     @Override
     public User parse(String data, String delimiter) {
-
         checkedStringOnEmpty(data);
         String[] dataArray = preparingForParsing(data, delimiter);
-        name = dataArray[ZERO];
-        email = dataArray[ONE];
-        age = createdDigitFromFirstInteger(dataArray[TWO]);
+        String name = dataArray[ZERO];
+        String email = dataArray[ONE];
+        int age = createdDigitFromFirstInteger(dataArray[TWO]);
         return User.build(name, email, age);
     }
 }
