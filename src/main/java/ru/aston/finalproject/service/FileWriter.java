@@ -25,12 +25,24 @@ public class FileWriter<T> {
         writeToFile(content, filePath);
     }
 
-    private String buildContent(List<T> list) {
+    private String buildContent(@NonNull List<T> list) {
+
         StringBuilder content = new StringBuilder();
-        for (T item : list) {
-            content.append(parser.parseToString(item)).append("\n");
+        int totalLines = list.size();
+        int digitCount = String.valueOf(totalLines).length();
+
+        for (int i = 0; i < list.size(); i++) {
+            String lineNumber = formatLineNumber(i + 1, digitCount);
+            content.append(lineNumber)
+                    .append(") ")
+                    .append(parser.parseToString(list.get(i)))
+                    .append("\n");
         }
         return content.toString();
+    }
+
+    private String formatLineNumber(int currentLine, int digitCount) {
+        return String.format("%0" + digitCount + "d", currentLine);
     }
 
     private void writeToFile(String content, String filePath) {
