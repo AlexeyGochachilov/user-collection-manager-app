@@ -1,8 +1,6 @@
 package ru.aston.finalproject.app;
 
 import ru.aston.finalproject.app.actions.AppAction;
-import ru.aston.finalproject.app.actions.ReadUser;
-import ru.aston.finalproject.app.actions.ShowUsers;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -18,45 +16,49 @@ public class App {
             "^Z"
     );
     private static final Map<String, AppAction> actionMap = Map.of(
-        "readuser", new ReadUser(),
-            "show", new ShowUsers()
     );
 
-    public static void main(String[] args) throws IOException {
-        BufferedReader inReader = new BufferedReader(new InputStreamReader(System.in));
-        AppData appData = new AppData();
+    public static void main(String[] args) {
+        try (BufferedReader inReader = new BufferedReader(new InputStreamReader(System.in))){
+            AppData appData = new AppData();
 
-        while (true) {
-            String rawInput = inReader.readLine();
-            String[] splitInput = rawInput.split("\s+");
+            while (true) {
+                String rawInput = inReader.readLine();
+                String[] splitInput = rawInput.split("\s+");
 
-            if (splitInput.length == 0) {
-                continue;
-            }
-
-            String command = splitInput[0];
-            String[] arguments = Arrays.stream(splitInput).skip(1).toArray(String[]::new);
-
-            if (exitWords.contains(command)) {
-                break;
-            }
-
-            if (actionMap.containsKey(command)) {
-                AppAction action = actionMap.get(command);
-                try {
-                    String consoleResult = action.action(appData, arguments);
-                    System.out.println(consoleResult);
+                if (splitInput.length == 0) {
+                    continue;
                 }
-                catch (AppException exception) {
-                    System.out.println(exception.getMessage());
-                }
-                continue;
-            }
 
+                String command = splitInput[0];
+                String[] arguments = Arrays.stream(splitInput).skip(1).toArray(String[]::new);
+
+                if (exitWords.contains(command)) {
+                    break;
+                }
+
+                if (actionMap.containsKey(command)) {
+                    AppAction action = actionMap.get(command);
+                    try {
+                        String consoleResult = action.action(appData, arguments);
+                        System.out.println(consoleResult);
+                    } catch (AppException exception) {
+                        System.out.println(exception.getMessage());
+                    }
+                    continue;
+                }
+
+                System.out.println(String.format(
+                        "Неверный синтаксис команды - \"%s\".",
+                        command
+                ));
+            }
+        } catch (IOException exception) {
             System.out.println(String.format(
-                    "Неверный синтаксис команды - \"%s\".",
-                    command
+                    "Ошибка ввода: %s", exception.getMessage()
             ));
         }
+
+
     }
 }
