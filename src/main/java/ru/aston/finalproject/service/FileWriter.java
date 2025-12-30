@@ -40,17 +40,11 @@ public class FileWriter<T> {
                         StandardCharsets.UTF_8))) {
             writer.write(content);
         } catch (IOException e) {
-            throw new FileWriteException(
+            throw new RuntimeException(
                     String.format("Failed to write %d items to file '%s'",
                             content.lines().count(), filePath),
                     e
             );
         }
-    }
-}
-
-class FileWriteException extends RuntimeException {
-    public FileWriteException(String message, Throwable cause) {
-        super(message, cause);
     }
 }
