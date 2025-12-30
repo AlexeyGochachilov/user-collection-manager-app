@@ -17,9 +17,6 @@ public class EntityParser implements Parsing<Entity> {
 
     private final BuildConcreteEntity buildEntity;
     private final Validator validator;
-    private String fieldOne;
-    private String fieldTwo;
-    private int fieldInt;
 
     public EntityParser(Validator validator) {
         this.validator = validator;
@@ -28,7 +25,7 @@ public class EntityParser implements Parsing<Entity> {
 
     @Override
     public String parseToString(Entity entity) {
-        return exampleEntity(fieldOne, fieldTwo, fieldInt);
+        return exampleEntity(entity.getFieldOne(), entity.getFieldTwo(), entity.getFieldInt());
     }
 
     @Override
@@ -40,9 +37,9 @@ public class EntityParser implements Parsing<Entity> {
     public Entity parse(String data, String delimiter) {
         checkedStringOnEmpty(data);
         String[] dataArray = preparingForParsing(data, delimiter);
-        fieldOne = dataArray[ZERO];
-        fieldTwo = dataArray[ONE];
-        fieldInt = createdDigitFromFirstInteger(dataArray[TWO]);
+        String fieldOne = dataArray[ZERO];
+        String fieldTwo = dataArray[ONE];
+        int fieldInt = createdDigitFromFirstInteger(dataArray[TWO]);
         return buildEntity.buildCustomEntity(fieldOne, fieldTwo, fieldInt, validator);
     }
 }
