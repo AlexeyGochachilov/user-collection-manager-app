@@ -1,6 +1,10 @@
 package ru.aston.finalproject.app;
 
 import ru.aston.finalproject.app.actions.AppAction;
+import ru.aston.finalproject.app.actions.HelpAction;
+import ru.aston.finalproject.app.actions.LoadAction;
+import ru.aston.finalproject.app.actions.PrintAction;
+import ru.aston.finalproject.util.Command;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -16,6 +20,9 @@ public class App {
             "^Z"
     );
     private static final Map<String, AppAction> actionMap = Map.of(
+            Command.HELP, new HelpAction(),
+            Command.LOAD_USERS, new LoadAction(),
+            Command.PRINT_USERS, new PrintAction()
     );
 
     public static void main(String[] args) {
