@@ -9,15 +9,18 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
 import java.util.Objects;
 
 import static ru.aston.finalproject.constants.ConstantMethods.checkedStringOnEmpty;
 
 public class FileWriter<T> {
+
     private static final int FLUSH_THRESHOLD = 1000;
-    private static final String LINE_SEPARATOR = "\n";
-    private static final String NUMBER_SEPARATOR = ") ";
+    private static final String LINE_SEPARATOR = System.lineSeparator();
 
     @NonNull
     private final Parsing<T> parser;
@@ -30,7 +33,7 @@ public class FileWriter<T> {
         validateInput(items, filePath);
 
         if (items.isEmpty()) {
-            createEmptyFile(filePath);
+            ensureDirectoryExists(filePath);
             return;
         }
 
@@ -49,15 +52,24 @@ public class FileWriter<T> {
         checkedStringOnEmpty(filePath);
     }
 
-    private void createEmptyFile(String filePath) {
-        new File(filePath).getParentFile().mkdirs();
+    private void ensureDirectoryExists(String filePath) {
+        Path path = Paths.get(filePath);
+        Path parent = path.getParent();
+        if (parent != null) {
+            try {
+                Files.createDirectories(parent);
+            } catch (IOException e) {
+                throw new RuntimeException(
+                        String.format("Failed to create directory for file '%s'", filePath),
+                        e
+                );
+            }
+        }
     }
 
     private void writeItemsToFile(List<T> items, String filePath) throws IOException {
-        int digitCount = calculateDigitCount(items.size());
-
         try (BufferedWriter writer = createWriter(filePath)) {
-            writeFormattedItems(items, writer, digitCount);
+            writeFormattedItems(items, writer);
         }
     }
 
@@ -70,32 +82,22 @@ public class FileWriter<T> {
         );
     }
 
-    private void writeFormattedItems(List<T> items, BufferedWriter writer, int digitCount)
-            throws IOException {
+    private void writeFormattedItems(List<T> items, BufferedWriter writer) throws IOException {
         for (int i = 0; i < items.size(); i++) {
-            writeFormattedLine(writer, items.get(i), i + 1, digitCount);
+            writeFormattedLine(writer, items.get(i));
             flushIfNeeded(writer, i + 1);
         }
         writer.flush();
     }
 
-    private void writeFormattedLine(BufferedWriter writer, T item, int lineNumber, int digitCount)
+    private void writeFormattedLine(BufferedWriter writer, T item)
             throws IOException {
-        String formattedLine = formatLine(item, lineNumber, digitCount);
+        String formattedLine = formatLine(item);
         writer.write(formattedLine);
     }
 
-    private String formatLine(T item, int lineNumber, int digitCount) {
-        String number = formatLineNumber(lineNumber, digitCount);
-        return number + NUMBER_SEPARATOR + parser.parseToString(item) + LINE_SEPARATOR;
-    }
-
-    private String formatLineNumber(int currentLine, int digitCount) {
-        return String.format("%0" + digitCount + "d", currentLine);
-    }
-
-    private int calculateDigitCount(int totalLines) {
-        return String.valueOf(totalLines).length();
+    private String formatLine(T item) {
+        return parser.parseToString(item) + LINE_SEPARATOR;
     }
 
     private void flushIfNeeded(BufferedWriter writer, int currentLine) throws IOException {
