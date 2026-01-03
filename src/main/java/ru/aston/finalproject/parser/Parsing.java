@@ -4,7 +4,7 @@ import ru.aston.finalproject.entity.Entity;
 
 public interface Parsing<T> {
 
-    String parseToString(Entity entity);
+    String parseToString(T t);
 
     T parse(String data);
 
