@@ -13,7 +13,6 @@ import static ru.aston.finalproject.constants.ConstantMethods.preparingForParsin
 
 public class UserParser implements Parsing<User> {
 
-
     @Override
     public String parseToString(User user) {
         return exampleEntity(user.getName(), user.getEmail(), user.getAge());

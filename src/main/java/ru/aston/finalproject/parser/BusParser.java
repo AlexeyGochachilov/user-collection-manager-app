@@ -13,7 +13,6 @@ import static ru.aston.finalproject.constants.ConstantMethods.preparingForParsin
 
 public class BusParser implements Parsing<Bus> {
 
-
     @Override
     public String parseToString(Bus bus) {
         return exampleEntity(bus.getModel(),
