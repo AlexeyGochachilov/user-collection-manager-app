@@ -2,8 +2,6 @@ package ru.aston.finalproject.entity;
 
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
-import ru.aston.finalproject.validators.BusValidator;
-import ru.aston.finalproject.validators.Validator;
 
 @Getter
 @EqualsAndHashCode
@@ -20,9 +18,8 @@ public class Bus implements Comparable<Bus> {
     }
 
     public static Bus build(String model, String mileageInKilometers, int number) {
-        BuildConcreteEntity buildBus = new BuildConcreteEntity();
-        Validator<Bus> busValidator = new BusValidator();
-        Entity busEntity = buildBus.buildCustomEntity(model, mileageInKilometers, number, busValidator);
+        BuildConcreteEntity buildBusEntity = new BuildConcreteEntity();
+        Entity busEntity = buildBusEntity.buildBus(model, mileageInKilometers, number);
         return new Bus(busEntity);
     }
 
