@@ -4,7 +4,6 @@ import ru.aston.finalproject.app.actions.AppAction;
 import ru.aston.finalproject.app.actions.HelpAction;
 import ru.aston.finalproject.app.actions.LoadAction;
 import ru.aston.finalproject.app.actions.PrintAction;
-import ru.aston.finalproject.util.Command;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -14,15 +13,18 @@ import java.util.Map;
 import java.util.Set;
 
 public class App {
+    public final static String HELP = "help";
+    public final static String LOAD_USERS = "load";
+    public final static String PRINT_USERS = "print";
 
     private static final Set<String> exitWords = Set.of(
             "exit",
             "^Z"
     );
     private static final Map<String, AppAction> actionMap = Map.of(
-            Command.HELP, new HelpAction(),
-            Command.LOAD_USERS, new LoadAction(),
-            Command.PRINT_USERS, new PrintAction()
+            HELP, new HelpAction(),
+            LOAD_USERS, new LoadAction(),
+            PRINT_USERS, new PrintAction()
     );
 
     public static void main(String[] args) {

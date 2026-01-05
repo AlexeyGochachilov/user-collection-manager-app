@@ -1,4 +1,4 @@
-package ru.aston.finalproject.service;
+package ru.aston.finalproject.service.loader;
 
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package ru.aston.finalproject.service;
+package ru.aston.finalproject.service.loader;
 
 import ru.aston.finalproject.entity.User;
 import ru.aston.finalproject.parser.UserParser;
