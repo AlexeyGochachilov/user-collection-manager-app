@@ -1,6 +1,6 @@
 package ru.aston.finalproject.parser;
 
-import ru.aston.finalproject.workwithentity.BuildConcreteEntity;
+import ru.aston.finalproject.workwithentity.BuildUser;
 import ru.aston.finalproject.workwithentity.User;
 
 import static ru.aston.finalproject.constants.ConstantFields.DELIMITER;
@@ -14,7 +14,7 @@ import static ru.aston.finalproject.constants.ConstantMethods.preparingForParsin
 
 public class UserParser implements Parsing<User> {
 
-    BuildConcreteEntity buildConcreteEntity = new BuildConcreteEntity();
+    BuildUser buildConcreteEntity = new BuildUser();
 
     @Override
     public String parseToString(User user) {

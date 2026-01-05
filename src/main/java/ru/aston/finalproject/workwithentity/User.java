@@ -3,6 +3,10 @@ package ru.aston.finalproject.workwithentity;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 
+import static ru.aston.finalproject.constants.ConstantMethods.checkedAge;
+import static ru.aston.finalproject.constants.ConstantMethods.checkedEmail;
+import static ru.aston.finalproject.constants.ConstantMethods.checkedName;
+
 @Getter
 @EqualsAndHashCode
 public class User implements Comparable<User> {
@@ -11,14 +15,10 @@ public class User implements Comparable<User> {
     private final String email;
     private final int age;
 
-    User(BuilderIMPL<User> builder) {
-        this.name = builder.getFieldOne();
-        this.email = builder.getFieldTwo();
-        this.age = builder.getFieldInt();
-    }
-
-    public static Builder<User> builder() {
-        return new BuilderForUser();
+    User(Builder builder) {
+        this.name = builder.name;
+        this.email = builder.email;
+        this.age = builder.age;
     }
 
     @Override
@@ -35,5 +35,41 @@ public class User implements Comparable<User> {
     @Override
     public String toString() {
         return String.format("User{name: %s, email: %s, age: %d}", this.name, this.email, this.age);
+    }
+
+    public static Builder builder() {
+        return new Builder();
+    }
+
+    public static class Builder {
+
+        private String name;
+        private String email;
+        private int age;
+
+        private Builder() {
+        }
+
+        public Builder setName(String name) {
+            checkedName(name);
+            this.name = name;
+            return this;
+        }
+
+        public Builder setEmail(String email) {
+            checkedEmail(email);
+            this.email = email;
+            return this;
+        }
+
+        public Builder setAge(int age) {
+            checkedAge(age);
+            this.age = age;
+            return this;
+        }
+
+        public User build() {
+            return new User(this);
+        }
     }
 }
