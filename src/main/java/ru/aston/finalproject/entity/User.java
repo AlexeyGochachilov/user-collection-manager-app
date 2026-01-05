@@ -2,10 +2,10 @@ package ru.aston.finalproject.entity;
 
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
-import ru.aston.finalproject.validators.Validator;
 
-import static ru.aston.finalproject.constants.ConstantMethods.checkedStringOnEmpty;
-import static ru.aston.finalproject.constants.ConstantMethods.checkedZero;
+import static ru.aston.finalproject.constants.ConstantMethods.checkedAge;
+import static ru.aston.finalproject.constants.ConstantMethods.checkedEmail;
+import static ru.aston.finalproject.constants.ConstantMethods.checkedName;
 
 @Getter
 @EqualsAndHashCode
@@ -15,22 +15,10 @@ public class User implements Comparable<User> {
     private final String email;
     private final int age;
 
-    private User(Entity entity) {
-        this.name = entity.getFieldOne();
-        this.email = entity.getFieldTwo();
-        this.age = entity.getFieldInt();
-    }
-
     private User(Builder builder) {
         this.name = builder.name;
         this.email = builder.email;
         this.age = builder.age;
-    }
-
-    public static User build(String name, String email, int age) {
-        BuildConcreteEntity buildUserEntity = new BuildConcreteEntity();
-        Entity userEntity = buildUserEntity.buildUser(name, email, age);
-        return new User(userEntity);
     }
 
     @Override
@@ -50,7 +38,7 @@ public class User implements Comparable<User> {
     }
 
     public static Builder builder() {
-        return new User.Builder();
+        return new Builder();
     }
 
     public static class Builder {
@@ -59,29 +47,28 @@ public class User implements Comparable<User> {
         private String email;
         private int age;
 
-        public Builder() {
+        private Builder() {
         }
 
-        public Builder name(String name) {
-            checkedStringOnEmpty(name);
+        public Builder setName(String name) {
+            checkedName(name);
             this.name = name;
             return this;
         }
 
-        public Builder email(String email) {
-            checkedStringOnEmpty(email);
+        public Builder setEmail(String email) {
+            checkedEmail(email);
             this.email = email;
             return this;
         }
 
-        public Builder age(int age) {
-            checkedZero(age);
+        public Builder setAge(int age) {
+            checkedAge(age);
             this.age = age;
             return this;
         }
 
-        public User build(Validator<User> validator) {
-            validator.validate(name, email, age);
+        public User build() {
             return new User(this);
         }
     }

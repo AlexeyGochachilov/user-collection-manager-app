@@ -48,7 +48,7 @@ public class FileWriter<T> {
 
     private void validateInput(List<T> items, String filePath) {
         Objects.requireNonNull(items, "Items list cannot be null");
-        checkedStringOnEmpty(filePath);
+        checkedStringOnEmpty(filePath, "filePath");
     }
 
     private void ensureDirectoryExists(String filePath) {
