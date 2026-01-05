@@ -2,7 +2,6 @@ package ru.aston.finalproject.constants;
 
 import static ru.aston.finalproject.constants.ConstantFields.DELIMITER;
 import static ru.aston.finalproject.constants.ConstantFields.EMAIL_FORM;
-import static ru.aston.finalproject.constants.ConstantFields.KM;
 import static ru.aston.finalproject.constants.ConstantFields.LENGTH_PARAMETER;
 import static ru.aston.finalproject.constants.ConstantFields.MAX_AGE;
 import static ru.aston.finalproject.constants.ConstantFields.MIN_AGE;
@@ -10,21 +9,21 @@ import static ru.aston.finalproject.constants.ConstantFields.ZERO;
 
 public class ConstantMethods {
 
-    public static void checkedStringOnEmpty(String string){
+    public static void checkedStringOnEmpty(String string, String field) {
         if (string == null || string.trim().isEmpty()) {
-            throw new IllegalArgumentException(String.format("%s cannot be empty", string));
+            throw new IllegalArgumentException(String.format("%s cannot be empty", field));
         }
     }
 
-    public static void checkedName(String name){
-        checkedStringOnEmpty(name);
-        if (!name.equals(cleanStringFromDigit(name))){
+    public static void checkedName(String name) {
+        checkedStringOnEmpty(name, "name");
+        if (!name.equals(cleanStringFromDigit(name))) {
             throw new IllegalArgumentException(String.format("%s is not a valid name", name));
         }
     }
 
     public static void checkedEmail(String email) {
-        checkedStringOnEmpty(email);
+        checkedStringOnEmpty(email, "email");
         if (!email.matches(EMAIL_FORM)) {
             throw new IllegalArgumentException(String.format("Invalid email %s", email));
         }
@@ -45,38 +44,30 @@ public class ConstantMethods {
         }
     }
 
-    public static void checkedMileageInKilometers(String mileageInKilometers){
-        String km = cleanStringFromDigit(mileageInKilometers);
-        if (!km.equals(KM)) {
-            throw new IllegalArgumentException(
-                    String.format("Invalid args, mileageInKilometers need content %s", KM));
-        }
-        createdStringOnlyDigits(mileageInKilometers);
-    }
-
-    public static String createdStringOnlyDigits(String string) {
+    private static String createdStringOnlyDigits(String string) {
         checkedStringContainDigitsOnly(string);
         return string;
     }
 
-    public static void checkedStringContainDigitsOnly(String string) {
+    private static void checkedStringContainDigitsOnly(String string) {
         string = string.replaceAll("\\D+", " ").trim();
-        checkedStringOnEmpty(string);
+        checkedStringOnEmpty(string, "digits");
     }
 
-    public static String cleanStringFromDigit(String string) {
+    private static String cleanStringFromDigit(String string) {
         string = string.replaceAll("\\d+", " ").trim();
-        checkedStringOnEmpty(string);
+        checkedStringOnEmpty(string, "digits");
         return string;
     }
 
     public static int createdDigitFromFirstInteger(String string) {
         String numbersOnly = createdStringOnlyDigits(string);
+        checkedStringOnEmpty(numbersOnly, "numbers");
         return Integer.parseInt(numbersOnly.split(" ")[ZERO]);
     }
 
-    public static String exampleEntity (String fieldOne, String fieldTwo, int fieldInt) {
-        return String.format(fieldOne + DELIMITER +  fieldTwo + DELIMITER + fieldInt);
+    public static String exampleEntity(String fieldOne, String fieldTwo, int fieldInt) {
+        return String.format(fieldOne + DELIMITER + fieldTwo + DELIMITER + fieldInt);
     }
 
     public static String[] preparingForParsing(String data, String delimiter) {
@@ -85,7 +76,7 @@ public class ConstantMethods {
             throw new IllegalArgumentException(String.format("Invalid data %s", data));
         }
         for (int i = 0; i < LENGTH_PARAMETER; i++) {
-            checkedStringOnEmpty(dataArray[i]);
+            checkedStringOnEmpty(dataArray[i], String.format("data at index %d", i));
         }
         return dataArray;
     }

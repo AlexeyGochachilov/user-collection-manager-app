@@ -13,12 +13,10 @@ public class ConstantFields {
     public static final int LENGTH_PARAMETER = 3;
 
     public static final String EMAIL_FORM = "^[\\w-\\.]+@[\\w-]+(\\.[\\w-]+)*\\.[a-z]{2,}$";
-    public static final String KM = "km.";
-    public static final String DELIMITER = ":";
+
+    public static final String DELIMITER = " : ";
     public static final String USER_FORMAT =
             String.format("name%semail%sage", DELIMITER, DELIMITER);
-    public static final String BUS_FORMAT =
-            String.format("model%smileageInKilometers%snumber", DELIMITER, DELIMITER);
 
     public static List<Exception> EXCEPTION = new LinkedList<>();
 

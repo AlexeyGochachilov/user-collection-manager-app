@@ -1,10 +1,10 @@
 package ru.aston.finalproject.service;
 
-import ru.aston.finalproject.entity.Entity;
+import ru.aston.finalproject.entity.User;
 
 import java.util.Collection;
 
 public interface UserCollectionLoader {
 
-    Collection<Entity> loadUserCollection(Integer size);
+    Collection<User> loadUserCollection(Integer size);
 }
