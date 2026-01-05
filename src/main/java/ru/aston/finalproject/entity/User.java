@@ -15,7 +15,7 @@ public class User implements Comparable<User> {
     private final String email;
     private final int age;
 
-    User(Builder builder) {
+    private User(Builder builder) {
         this.name = builder.name;
         this.email = builder.email;
         this.age = builder.age;
