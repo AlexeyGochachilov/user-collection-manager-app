@@ -30,7 +30,7 @@ public class BusParser implements Parsing<Bus> {
 
     @Override
     public Bus parse(String data, String delimiter) {
-        checkedStringOnEmpty(data);
+        checkedStringOnEmpty(data, "data in parser");
         String[] dataArray = preparingForParsing(data, delimiter);
         String model = dataArray[ZERO];
         String mileageInKilometers = dataArray[ONE];

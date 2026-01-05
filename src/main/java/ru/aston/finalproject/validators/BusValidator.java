@@ -10,7 +10,7 @@ public class BusValidator implements Validator<Bus> {
 
     @Override
     public void validate(String model, String mileageInKilometers, int number) {
-        checkedStringOnEmpty(model);
+        checkedStringOnEmpty(model, "model");
         checkedMileageInKilometers(mileageInKilometers);
         checkedZero(number);
     }

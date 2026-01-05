@@ -28,7 +28,7 @@ public class UserParser implements Parsing<User> {
 
     @Override
     public User parse(String data, String delimiter) {
-        checkedStringOnEmpty(data);
+        checkedStringOnEmpty(data, "data in parser");
         String[] dataArray = preparingForParsing(data, delimiter);
         String name = dataArray[ZERO];
         String email = dataArray[ONE];

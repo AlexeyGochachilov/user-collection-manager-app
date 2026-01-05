@@ -17,19 +17,19 @@ public abstract class BuilderIMPL<T> implements Builder<T> {
     }
 
     public BuilderIMPL<T> fieldOne(String fieldOne) {
-        checkedStringOnEmpty(fieldOne);
+//        checkedStringOnEmpty(fieldOne);
         this.fieldOne = fieldOne;
         return this;
     }
 
     public BuilderIMPL<T> fieldTwo(String fieldTwo) {
-        checkedStringOnEmpty(fieldTwo);
+//        checkedStringOnEmpty(fieldTwo);
         this.fieldTwo = fieldTwo;
         return this;
     }
 
     public BuilderIMPL<T> fieldInt(int intValue) {
-        checkedZero(intValue);
+//        checkedZero(intValue);
         this.fieldInt = intValue;
         return this;
     }
