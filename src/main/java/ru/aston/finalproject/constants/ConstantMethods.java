@@ -10,12 +10,6 @@ import static ru.aston.finalproject.constants.ConstantFields.ZERO;
 
 public class ConstantMethods {
 
-    public static void checkedStringOnEmpty(String string){
-        if (string == null || string.trim().isEmpty()) {
-            throw new IllegalArgumentException(String.format("%s cannot be empty", string));
-        }
-    }
-
     public static void checkedStringOnEmpty(String string, String field){
         if (string == null || string.trim().isEmpty()) {
             throw new IllegalArgumentException(String.format("%s cannot be empty", field));
@@ -68,12 +62,12 @@ public class ConstantMethods {
 
     private static void checkedStringContainDigitsOnly(String string) {
         string = string.replaceAll("\\D+", " ").trim();
-        checkedStringOnEmpty(string);
+        checkedStringOnEmpty(string, "digits");
     }
 
     private static String cleanStringFromDigit(String string) {
         string = string.replaceAll("\\d+", " ").trim();
-        checkedStringOnEmpty(string);
+        checkedStringOnEmpty(string, "digits");
         return string;
     }
 
