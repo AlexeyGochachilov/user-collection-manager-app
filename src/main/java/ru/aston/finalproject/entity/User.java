@@ -2,8 +2,6 @@ package ru.aston.finalproject.entity;
 
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
-import ru.aston.finalproject.validators.UserValidator;
-import ru.aston.finalproject.validators.Validator;
 
 @Getter
 @EqualsAndHashCode
@@ -20,9 +18,8 @@ public class User implements Comparable<User> {
     }
 
     public static User build(String name, String email, int age) {
-        BuildConcreteEntity buildConcreteEntity = new BuildConcreteEntity();
-        Validator<User> userValidator = new UserValidator();
-        Entity userEntity = buildConcreteEntity.buildCustomEntity(name, email, age, userValidator);
+        BuildConcreteEntity buildUserEntity = new BuildConcreteEntity();
+        Entity userEntity = buildUserEntity.buildUser(name, email, age);
         return new User(userEntity);
     }
 
