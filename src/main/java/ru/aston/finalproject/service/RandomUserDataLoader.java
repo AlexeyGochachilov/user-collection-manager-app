@@ -1,7 +1,7 @@
 package ru.aston.finalproject.service;
 
 import net.datafaker.Faker;
-import ru.aston.finalproject.workwithuser.User;
+import ru.aston.finalproject.user.User;
 
 import java.util.List;
 import java.util.stream.Collectors;

@@ -1,7 +1,7 @@
 package ru.aston.finalproject.parser;
 
-import ru.aston.finalproject.workwithuser.BuildUser;
-import ru.aston.finalproject.workwithuser.User;
+import ru.aston.finalproject.user.BuildUser;
+import ru.aston.finalproject.user.User;
 
 import static ru.aston.finalproject.constants.ConstantFields.DELIMITER;
 import static ru.aston.finalproject.constants.ConstantFields.ONE;
