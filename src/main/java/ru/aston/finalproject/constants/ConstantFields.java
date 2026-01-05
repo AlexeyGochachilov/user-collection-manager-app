@@ -14,7 +14,7 @@ public class ConstantFields {
 
     public static final String EMAIL_FORM = "^[\\w-\\.]+@[\\w-]+(\\.[\\w-]+)*\\.[a-z]{2,}$";
 
-    public static final String DELIMITER = ":";
+    public static final String DELIMITER = " : ";
     public static final String USER_FORMAT =
             String.format("name%semail%sage", DELIMITER, DELIMITER);
 
