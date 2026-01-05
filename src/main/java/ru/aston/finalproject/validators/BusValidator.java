@@ -1,6 +1,6 @@
 package ru.aston.finalproject.validators;
 
-import ru.aston.finalproject.entity.Bus;
+import ru.aston.finalproject.workwithentity.Bus;
 
 import static ru.aston.finalproject.constants.ConstantMethods.checkedMileageInKilometers;
 import static ru.aston.finalproject.constants.ConstantMethods.checkedStringOnEmpty;

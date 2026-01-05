@@ -1,4 +1,4 @@
-package ru.aston.finalproject.entity;
+package ru.aston.finalproject.workwithentity;
 
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -11,16 +11,14 @@ public class User implements Comparable<User> {
     private final String email;
     private final int age;
 
-    private User(Entity entity) {
-        this.name = entity.getFieldOne();
-        this.email = entity.getFieldTwo();
-        this.age = entity.getFieldInt();
+    User(BuilderIMPL<User> builder) {
+        this.name = builder.getFieldOne();
+        this.email = builder.getFieldTwo();
+        this.age = builder.getFieldInt();
     }
 
-    public static User build(String name, String email, int age) {
-        BuildConcreteEntity buildUserEntity = new BuildConcreteEntity();
-        Entity userEntity = buildUserEntity.buildUser(name, email, age);
-        return new User(userEntity);
+    public static Builder<User> builder() {
+        return new BuilderForUser();
     }
 
     @Override

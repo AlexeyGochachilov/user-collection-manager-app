@@ -1,6 +1,6 @@
 package ru.aston.finalproject.validators;
 
-import ru.aston.finalproject.entity.User;
+import ru.aston.finalproject.workwithentity.User;
 
 import static ru.aston.finalproject.constants.ConstantMethods.checkedAge;
 import static ru.aston.finalproject.constants.ConstantMethods.checkedEmail;

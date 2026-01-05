@@ -1,4 +1,4 @@
-package ru.aston.finalproject.entity;
+package ru.aston.finalproject.workwithentity;
 
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -11,16 +11,14 @@ public class Bus implements Comparable<Bus> {
     private final String mileageInKilometers;
     private final int number;
 
-    private Bus(Entity entity){
-        this.model = entity.getFieldOne();
-        this.mileageInKilometers = entity.getFieldTwo();
-        this.number = entity.getFieldInt();
+    Bus(BuilderIMPL<Bus> builder){
+        this.model = builder.getFieldOne();
+        this.mileageInKilometers = builder.getFieldTwo();
+        this.number = builder.getFieldInt();
     }
 
-    public static Bus build(String model, String mileageInKilometers, int number) {
-        BuildConcreteEntity buildBusEntity = new BuildConcreteEntity();
-        Entity busEntity = buildBusEntity.buildBus(model, mileageInKilometers, number);
-        return new Bus(busEntity);
+    public static Builder<Bus> builder() {
+        return new BuilderForBus();
     }
 
     @Override

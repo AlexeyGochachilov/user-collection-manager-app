@@ -1,6 +1,7 @@
 package ru.aston.finalproject.parser;
 
-import ru.aston.finalproject.entity.User;
+import ru.aston.finalproject.workwithentity.BuildConcreteEntity;
+import ru.aston.finalproject.workwithentity.User;
 
 import static ru.aston.finalproject.constants.ConstantFields.DELIMITER;
 import static ru.aston.finalproject.constants.ConstantFields.ONE;
@@ -12,6 +13,8 @@ import static ru.aston.finalproject.constants.ConstantMethods.exampleEntity;
 import static ru.aston.finalproject.constants.ConstantMethods.preparingForParsing;
 
 public class UserParser implements Parsing<User> {
+
+    BuildConcreteEntity buildConcreteEntity = new BuildConcreteEntity();
 
     @Override
     public String parseToString(User user) {
@@ -30,6 +33,6 @@ public class UserParser implements Parsing<User> {
         String name = dataArray[ZERO];
         String email = dataArray[ONE];
         int age = createdDigitFromFirstInteger(dataArray[TWO]);
-        return User.build(name, email, age);
+        return buildConcreteEntity.buildUser(name, email, age);
     }
 }
