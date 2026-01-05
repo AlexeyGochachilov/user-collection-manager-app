@@ -1,5 +1,6 @@
 package ru.aston.finalproject.app;
 
+import org.apache.commons.lang3.StringUtils;
 import ru.aston.finalproject.app.actions.AppAction;
 import ru.aston.finalproject.app.actions.HelpAction;
 import ru.aston.finalproject.app.actions.LoadAction;
@@ -8,19 +9,13 @@ import ru.aston.finalproject.app.actions.PrintAction;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.Arrays;
 import java.util.Map;
-import java.util.Set;
 
 public class App {
     public final static String HELP = "help";
     public final static String LOAD_USERS = "load";
     public final static String PRINT_USERS = "print";
 
-    private static final Set<String> exitWords = Set.of(
-            "exit",
-            "^Z"
-    );
     private static final Map<String, AppAction> actionMap = Map.of(
             HELP, new HelpAction(),
             LOAD_USERS, new LoadAction(),
@@ -33,23 +28,20 @@ public class App {
 
             while (true) {
                 String rawInput = inReader.readLine();
-                String[] splitInput = rawInput.split("\s+");
-
-                if (splitInput.length == 0) {
+                if (StringUtils.isBlank(rawInput)) {
                     continue;
                 }
 
-                String command = splitInput[0];
-                String[] arguments = Arrays.stream(splitInput).skip(1).toArray(String[]::new);
-
-                if (exitWords.contains(command)) {
+                AppRequest appRequest = AppRequest.createRequest(rawInput);
+                if (appRequest.isExitRequest()) {
                     break;
                 }
 
+                String command = appRequest.getCommandName();
                 if (actionMap.containsKey(command)) {
                     AppAction action = actionMap.get(command);
                     try {
-                        String consoleResult = action.action(appData, arguments);
+                        String consoleResult = action.action(appData, appRequest);
                         System.out.println(consoleResult);
                     } catch (AppException exception) {
                         System.out.println(exception.getMessage());

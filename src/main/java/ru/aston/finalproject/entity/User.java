@@ -2,6 +2,7 @@ package ru.aston.finalproject.entity;
 
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
+import ru.aston.finalproject.validators.Validator;
 
 import static ru.aston.finalproject.constants.ConstantMethods.checkedStringOnEmpty;
 import static ru.aston.finalproject.constants.ConstantMethods.checkedZero;

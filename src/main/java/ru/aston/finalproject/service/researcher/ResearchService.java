@@ -1,11 +1,11 @@
-package ru.aston.finalproject.parser;
+package ru.aston.finalproject.service.researcher;
 
 import lombok.NonNull;
 import ru.aston.finalproject.util.Message;
 
 import java.util.List;
 
-public class EntitySearcher<T> {
+public class ResearchService<T> {
 
     public void countEntityOccurrences(@NonNull List<T> entityList, @NonNull T entity) {
         // TODO сделать поиск многопоточным

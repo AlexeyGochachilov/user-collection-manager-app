@@ -1,41 +1,38 @@
 package ru.aston.finalproject.service.loader;
 
-import lombok.Getter;
-import lombok.Setter;
 import ru.aston.finalproject.app.AppException;
-import ru.aston.finalproject.constants.ConstantFields;
+import ru.aston.finalproject.app.AppRequest;
 import ru.aston.finalproject.parser.Parsing;
+import ru.aston.finalproject.util.Message;
 
 import java.io.BufferedReader;
-import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
+import java.io.UncheckedIOException;
 import java.util.List;
+import java.util.NoSuchElementException;
+import java.util.stream.Collectors;
 
-@Getter
-@Setter
-public abstract class ConsoleDataLoader<T> implements DataLoader<T> {
-    private Parsing<T> parser;
+import static ru.aston.finalproject.constants.ConstantFields.USER_FORMAT;
+
+public class ConsoleDataLoader<T> implements DataLoader<T> {
+    private final Parsing<T> parser;
 
     public ConsoleDataLoader(Parsing<T> parser) {
         this.parser = parser;
     }
 
     @Override
-    public List<T> loadEntityList(Integer size) {
-        List<T> resultList = new ArrayList<>();
+    public List<T> loadEntityList(Integer size, AppRequest request) {
         try {
             BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-            System.out.printf("Enter users, expected format - %s%n", ConstantFields.USER_FORMAT);
-            while (size > 0) {
-                String line = reader.readLine();
-                T entity = parser.parse(line);
-                resultList.add(entity);
-                size--;
-            }
-        } catch (IOException e) {
-            throw new AppException("Input stream exception in console loader");
+            System.out.printf(Message.ENTER_USERS_EXPECTED_FORMAT_X_N.formatted(USER_FORMAT));
+
+            return  reader.lines()
+                    .limit(size)
+                    .map(parser::parse)
+                    .collect(Collectors.toList());
+        } catch (UncheckedIOException | NoSuchElementException e) {
+            throw new AppException(Message.WRONG_CONSOLE_INPUT);
         }
-        return resultList;
     }
 }

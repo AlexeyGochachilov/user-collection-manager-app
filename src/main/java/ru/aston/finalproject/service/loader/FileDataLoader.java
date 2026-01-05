@@ -1,43 +1,36 @@
 package ru.aston.finalproject.service.loader;
 
-import lombok.Getter;
-import lombok.Setter;
 import ru.aston.finalproject.app.AppException;
+import ru.aston.finalproject.app.AppRequest;
 import ru.aston.finalproject.parser.Parsing;
+import ru.aston.finalproject.util.Message;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
-import java.util.ArrayList;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
-@Getter
-@Setter
-public abstract class FileDataLoader<T> implements DataLoader<T> {
+public class FileDataLoader<T> implements DataLoader<T> {
+    private static final String FILE_PATH_PARAMETER = "-path";
     private final Parsing<T> parser;
-    private String filePath;
 
     public FileDataLoader(Parsing<T> parser) {
         this.parser = parser;
     }
 
     @Override
-    public List<T> loadEntityList(Integer size) {
-        if (size <= 0) {
-            throw new AppException("Please enter a number of elements greater than zero.");
-        }
-        List<T> resultList = new ArrayList<>();
-        try (BufferedReader reader = new BufferedReader(new FileReader(filePath, StandardCharsets.UTF_8))) {
-            while (size > 0) {
-                String line = reader.readLine();
-                T entity = parser.parse(line);
-                resultList.add(entity);
-                size--;
-            }
+    public List<T> loadEntityList(Integer size, AppRequest request) {
+        String filePath = request.getStringParameter(FILE_PATH_PARAMETER);
+
+        try (Stream<String> fileLines = Files.lines(Paths.get(filePath), StandardCharsets.UTF_8)) {
+            return fileLines.limit(size)
+                    .map(parser::parse)
+                    .collect(Collectors.toList());
         } catch (IOException e) {
-            throw new AppException("File %s not found".formatted(filePath));
+            throw new AppException(Message.FILE_NOT_FOUND_X.formatted(filePath));
         }
-        return resultList;
     }
 }
