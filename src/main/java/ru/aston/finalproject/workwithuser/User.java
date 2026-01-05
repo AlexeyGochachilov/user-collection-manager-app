@@ -1,4 +1,4 @@
-package ru.aston.finalproject.workwithentity;
+package ru.aston.finalproject.workwithuser;
 
 import lombok.EqualsAndHashCode;
 import lombok.Getter;

@@ -1,6 +1,6 @@
 package ru.aston.finalproject.service;
 
-import ru.aston.finalproject.workwithentity.User;
+import ru.aston.finalproject.workwithuser.User;
 
 import java.util.Collection;
 

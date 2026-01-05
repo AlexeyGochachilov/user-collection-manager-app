@@ -1,4 +1,4 @@
-package ru.aston.finalproject.workwithentity;
+package ru.aston.finalproject.workwithuser;
 
 public class BuildUser {
 
