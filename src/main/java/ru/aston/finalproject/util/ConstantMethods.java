@@ -1,5 +1,7 @@
 package ru.aston.finalproject.util;
 
+import ru.aston.finalproject.app.AppException;
+
 import static ru.aston.finalproject.util.ConstantFields.DELIMITER;
 import static ru.aston.finalproject.util.ConstantFields.EMAIL_FORM;
 import static ru.aston.finalproject.util.ConstantFields.LENGTH_PARAMETER;
@@ -11,36 +13,36 @@ public class ConstantMethods {
 
     public static void checkedStringOnEmpty(String string, String field) {
         if (string == null || string.trim().isEmpty()) {
-            throw new IllegalArgumentException(String.format("%s cannot be empty", field));
+            throw new AppException(String.format("%s cannot be empty", field));
         }
     }
 
     public static void checkedName(String name) {
         checkedStringOnEmpty(name, "name");
         if (!name.equals(cleanStringFromDigit(name))) {
-            throw new IllegalArgumentException(String.format("%s is not a valid name", name));
+            throw new AppException(String.format("%s is not a valid name", name));
         }
     }
 
     public static void checkedEmail(String email) {
         checkedStringOnEmpty(email, "email");
         if (!email.matches(EMAIL_FORM)) {
-            throw new IllegalArgumentException(String.format("Invalid email %s", email));
+            throw new AppException(String.format("Invalid email %s", email));
         }
     }
 
     public static void checkedAge(int age) {
         if (age <= MIN_AGE) {
-            throw new IllegalArgumentException(String.format("Age cannot be below %d", MIN_AGE));
+            throw new AppException(String.format("Age cannot be below %d", MIN_AGE));
         }
         if (age >= MAX_AGE) {
-            throw new IllegalArgumentException(String.format("Age cannot be above %d", MAX_AGE));
+            throw new AppException(String.format("Age cannot be above %d", MAX_AGE));
         }
     }
 
     public static void checkedZero(int intValue) {
         if (intValue == ZERO) {
-            throw new IllegalArgumentException(String.format("%s cannot be zero", intValue));
+            throw new AppException(String.format("%s cannot be zero", intValue));
         }
     }
 
@@ -73,7 +75,7 @@ public class ConstantMethods {
     public static String[] preparingForParsing(String data, String delimiter) {
         String[] dataArray = data.split(delimiter);
         if (dataArray.length != LENGTH_PARAMETER) {
-            throw new IllegalArgumentException(String.format("Invalid data %s", data));
+            throw new AppException(String.format("Invalid data %s", data));
         }
         for (int i = 0; i < LENGTH_PARAMETER; i++) {
             checkedStringOnEmpty(dataArray[i], String.format("data at index %d", i));

@@ -1,6 +1,7 @@
 package ru.aston.finalproject.service;
 
 import lombok.NonNull;
+import ru.aston.finalproject.app.AppException;
 import ru.aston.finalproject.parser.Parsing;
 
 import java.io.BufferedWriter;
@@ -58,9 +59,8 @@ public class FileWriter<T> {
             try {
                 Files.createDirectories(parent);
             } catch (IOException e) {
-                throw new RuntimeException(
-                        String.format("Failed to create directory for file '%s'", filePath),
-                        e
+                throw new AppException(
+                        String.format("Failed to create directory for file '%s'", filePath)
                 );
             }
         }
