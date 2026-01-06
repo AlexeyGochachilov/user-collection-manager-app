@@ -75,7 +75,7 @@ public class CustomArrayList<E> extends AbstractList<E> implements List<E>, Clon
         if (elementData == EMPTY_ELEMENTDATA) {
             minCapacity = Math.max(DEFAULT_CAPACITY, minCapacity);
         }
-        if (size >= elementData.length * LOAD_FACTOR) {
+        if (minCapacity > elementData.length) {
             int newCapacity = calculateNewCapacity(elementData.length, minCapacity);
             grow(newCapacity);
         }
