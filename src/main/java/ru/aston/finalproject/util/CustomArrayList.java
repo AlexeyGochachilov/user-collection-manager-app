@@ -259,20 +259,10 @@ public class CustomArrayList<E> extends AbstractList<E> implements List<E>, Clon
 
     @Override
     public boolean remove(Object o) {
-
-        if (o == null) {
-            for (int i = 0; i < size; i++) {
-                if (elementData[i] == null) {
-                    fastRemove(i);
-                    return true;
-                }
-            }
-        } else {
-            for (int i = 0; i < size; i++) {
-                if (o.equals(elementData[i])) {
-                    fastRemove(i);
-                    return true;
-                }
+        for (int i = 0; i < size; i++) {
+            if (Objects.equals(o, elementData[i])) {
+                fastRemove(i);
+                return true;
             }
         }
         return false;
@@ -325,17 +315,9 @@ public class CustomArrayList<E> extends AbstractList<E> implements List<E>, Clon
 
     @Override
     public int indexOf(Object o) {
-        if (o == null) {
-            for (int i = 0; i < size; i++) {
-                if (elementData[i] == null) {
-                    return i;
-                }
-            }
-        } else {
-            for (int i = 0; i < size; i++) {
-                if (o.equals(elementData[i])) {
-                    return i;
-                }
+        for (int i = 0; i < size; i++) {
+            if (Objects.equals(o, elementData[i])) {
+                return i;
             }
         }
         return -1;
@@ -343,17 +325,9 @@ public class CustomArrayList<E> extends AbstractList<E> implements List<E>, Clon
 
     @Override
     public int lastIndexOf(Object o) {
-        if (o == null) {
-            for (int i = size - 1; i >= 0; i--) {
-                if (elementData[i] == null) {
-                    return i;
-                }
-            }
-        } else {
-            for (int i = size - 1; i >= 0; i--) {
-                if (o.equals(elementData[i])) {
-                    return i;
-                }
+        for (int i = size - 1; i >= 0; i--) {
+            if (Objects.equals(o, elementData[i])) {
+                return i;
             }
         }
         return -1;
