@@ -4,6 +4,7 @@ import lombok.Getter;
 import org.apache.commons.lang3.StringUtils;
 import ru.aston.finalproject.util.Message;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
@@ -31,13 +32,15 @@ public class AppRequest {
         if (StringUtils.isBlank(requestLine)) {
             throw new AppException(Message.EXCEPTION_EMPTY_REQUEST);
         }
-        String[] requestParts = requestLine.trim().split(REQUEST_PARTS_SPLITERATOR);
 
+        String[] requestParts = requestLine.trim().split(REQUEST_PARTS_SPLITERATOR);
         AppRequest request = new AppRequest();
         request.commandName = requestParts[COMMAND_NAME_INDEX];
 
         if (requestParts.length > REQUEST_NON_PARAMETER_PARTS_AMOUNT) {
-            setRequestParameters(requestParts, request);
+            String[] parameters = Arrays.copyOfRange(requestParts, REQUEST_NON_PARAMETER_PARTS_AMOUNT,
+                    requestParts.length);
+            setRequestParameters(parameters, request);
         }
         return request;
     }
@@ -50,7 +53,9 @@ public class AppRequest {
             }
 
             String parameterKey = parameterParts[PARAMETER_KEY_INDEX];
-            String parameterValue = (parameterParts.length == PARAMETER_PARTS_AMOUNT) ? parameterParts[PARAMETER_VALUE_INDEX] : null;
+            String parameterValue = (parameterParts.length == PARAMETER_PARTS_AMOUNT)
+                    ? parameterParts[PARAMETER_VALUE_INDEX]
+                    : null;
             request.parameters.put(parameterKey, parameterValue);
         }
     }
@@ -68,6 +73,7 @@ public class AppRequest {
         if (StringUtils.isBlank(parameterValue)) {
             throw new AppException(Message.EXCEPTION_ENTER_PARAMETER_VALUE_X.formatted(parameterKey));
         }
+
         return parameterValue;
     }
 
@@ -82,6 +88,10 @@ public class AppRequest {
 
     public boolean containsParameter(String parameterKey) {
         return parameters.containsKey(parameterKey);
+    }
+
+    public Integer getParametersAmount() {
+        return parameters.size();
     }
 
     public boolean isExitRequest() {

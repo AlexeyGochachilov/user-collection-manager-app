@@ -10,9 +10,14 @@ import ru.aston.finalproject.util.Message;
 import java.util.List;
 
 public class PrintAction extends AppAction {
+    private static final Integer EXPECTED_PARAMETERS_AMOUNT = 0;
 
     @Override
     public void action(AppData appData, AppRequest request) throws AppException {
+        if (!EXPECTED_PARAMETERS_AMOUNT.equals(request.getParametersAmount())){
+            throw new AppException(Message.EXCEPTION_WRONG_PARAMETERS_AMOUNT);
+        }
+
         List<User> userList = appData.getUserList();
         if (ObjectUtils.isEmpty(userList)) {
             System.out.println(Message.EXCEPTION_LIST_NOT_LOADED);

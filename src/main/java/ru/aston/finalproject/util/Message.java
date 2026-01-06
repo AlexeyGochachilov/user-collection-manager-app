@@ -3,6 +3,7 @@ package ru.aston.finalproject.util;
 public class Message {
     public final static String EXCEPTION_WRONG_REQUEST_PARAMETER_SYNTAXES_X = "Wrong request parameter syntaxes: %s";
     public final static String EXCEPTION_WRONG_CONSOLE_INPUT = "Wrong console input";
+    public final static String EXCEPTION_WRONG_PARAMETERS_AMOUNT = "Wrong parameters amount";
     public final static String EXCEPTION_WRONG_PARAMETER_VALUE_X = "Wrong parameter value: %s=%s";
     public final static String EXCEPTION_WRONG_LOADER_KEY_X = "Wrong loader key: %s";
     public final static String EXCEPTION_ENTER_PARAMETER_VALUE_X = "Enter parameter value: %s=?";
