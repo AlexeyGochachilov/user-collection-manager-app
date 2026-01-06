@@ -1,11 +1,11 @@
-package ru.aston.finalproject.constants;
+package ru.aston.finalproject.util;
 
-import static ru.aston.finalproject.constants.ConstantFields.DELIMITER;
-import static ru.aston.finalproject.constants.ConstantFields.EMAIL_FORM;
-import static ru.aston.finalproject.constants.ConstantFields.LENGTH_PARAMETER;
-import static ru.aston.finalproject.constants.ConstantFields.MAX_AGE;
-import static ru.aston.finalproject.constants.ConstantFields.MIN_AGE;
-import static ru.aston.finalproject.constants.ConstantFields.ZERO;
+import static ru.aston.finalproject.util.ConstantFields.DELIMITER;
+import static ru.aston.finalproject.util.ConstantFields.EMAIL_FORM;
+import static ru.aston.finalproject.util.ConstantFields.LENGTH_PARAMETER;
+import static ru.aston.finalproject.util.ConstantFields.MAX_AGE;
+import static ru.aston.finalproject.util.ConstantFields.MIN_AGE;
+import static ru.aston.finalproject.util.ConstantFields.ZERO;
 
 public class ConstantMethods {
 

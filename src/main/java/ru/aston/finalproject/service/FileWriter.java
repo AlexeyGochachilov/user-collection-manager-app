@@ -14,7 +14,7 @@ import java.nio.file.Paths;
 import java.util.List;
 import java.util.Objects;
 
-import static ru.aston.finalproject.constants.ConstantMethods.checkedStringOnEmpty;
+import static ru.aston.finalproject.util.ConstantMethods.checkedStringOnEmpty;
 
 public class FileWriter<T> {
 

@@ -1,4 +1,4 @@
-package ru.aston.finalproject.constants;
+package ru.aston.finalproject.util;
 
 import java.util.LinkedList;
 import java.util.List;

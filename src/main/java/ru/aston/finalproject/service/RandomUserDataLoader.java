@@ -7,9 +7,9 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import static ru.aston.finalproject.constants.ConstantFields.MAX_AGE;
-import static ru.aston.finalproject.constants.ConstantFields.MIN_AGE;
-import static ru.aston.finalproject.constants.ConstantFields.ONE;
+import static ru.aston.finalproject.util.ConstantFields.MAX_AGE;
+import static ru.aston.finalproject.util.ConstantFields.MIN_AGE;
+import static ru.aston.finalproject.util.ConstantFields.ONE;
 
 public class RandomUserDataLoader implements DataLoader<User> {
 

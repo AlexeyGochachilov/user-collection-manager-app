@@ -3,9 +3,11 @@ package ru.aston.finalproject.entity;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 
-import static ru.aston.finalproject.constants.ConstantMethods.checkedAge;
-import static ru.aston.finalproject.constants.ConstantMethods.checkedEmail;
-import static ru.aston.finalproject.constants.ConstantMethods.checkedName;
+import java.util.Objects;
+
+import static ru.aston.finalproject.util.ConstantMethods.checkedAge;
+import static ru.aston.finalproject.util.ConstantMethods.checkedEmail;
+import static ru.aston.finalproject.util.ConstantMethods.checkedName;
 
 @Getter
 @EqualsAndHashCode
@@ -51,25 +53,29 @@ public class User implements Comparable<User> {
         }
 
         public Builder setName(String name) {
-            checkedName(name);
-            this.name = name;
+            this.name = Objects.requireNonNull(name, "name cannot be null");
             return this;
         }
 
         public Builder setEmail(String email) {
-            checkedEmail(email);
-            this.email = email;
+            this.email = Objects.requireNonNull(email, "email cannot be null");
             return this;
         }
 
         public Builder setAge(int age) {
-            checkedAge(age);
             this.age = age;
             return this;
         }
 
         public User build() {
+            validate();
             return new User(this);
+        }
+
+        private void validate() {
+            checkedName(name);
+            checkedEmail(email);
+            checkedAge(age);
         }
     }
 }
