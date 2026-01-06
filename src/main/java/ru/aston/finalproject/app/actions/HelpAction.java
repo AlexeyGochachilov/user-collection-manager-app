@@ -6,8 +6,8 @@ import ru.aston.finalproject.app.AppRequest;
 
 public class HelpAction extends AppAction {
     @Override
-    public String action(AppData appData, AppRequest request) throws AppException {
-        return """
+    public void action(AppData appData, AppRequest request) throws AppException {
+        String help = """
                 help \t list available commands and required arguments
                 print \t print current saved list
                 load \t load user list
@@ -15,5 +15,6 @@ public class HelpAction extends AppAction {
                 \t\t -size=<size> -type=console \t\t\t load from console input
                 \t\t -size=<size> -type=random \t\t\t load random user list
                 """;
+        System.out.println(help);
     }
 }

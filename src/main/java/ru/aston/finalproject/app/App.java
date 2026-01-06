@@ -23,7 +23,7 @@ public class App {
     );
 
     public static void main(String[] args) {
-        try (BufferedReader inReader = new BufferedReader(new InputStreamReader(System.in))){
+        try (BufferedReader inReader = new BufferedReader(new InputStreamReader(System.in))) {
             AppData appData = new AppData();
 
             while (true) {
@@ -41,8 +41,7 @@ public class App {
                 if (actionMap.containsKey(command)) {
                     AppAction action = actionMap.get(command);
                     try {
-                        String consoleResult = action.action(appData, appRequest);
-                        System.out.println(consoleResult);
+                        action.action(appData, appRequest);
                     } catch (AppException exception) {
                         System.out.println(exception.getMessage());
                     }

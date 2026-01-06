@@ -30,7 +30,7 @@ public class FileDataLoader<T> implements DataLoader<T> {
                     .map(parser::parse)
                     .collect(Collectors.toList());
         } catch (IOException e) {
-            throw new AppException(Message.FILE_NOT_FOUND_X.formatted(filePath));
+            throw new AppException(Message.EXCEPTION_FILE_NOT_FOUND_X.formatted(filePath));
         }
     }
 }

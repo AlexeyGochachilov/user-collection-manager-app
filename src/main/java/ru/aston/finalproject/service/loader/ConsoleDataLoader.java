@@ -25,14 +25,14 @@ public class ConsoleDataLoader<T> implements DataLoader<T> {
     public List<T> loadEntityList(Integer size, AppRequest request) {
         try {
             BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-            System.out.printf(Message.ENTER_USERS_EXPECTED_FORMAT_X_N.formatted(USER_FORMAT));
+            System.out.printf(Message.ENTER_USERS_EXPECTED_FORMAT_S_N.formatted(USER_FORMAT));
 
-            return  reader.lines()
+            return reader.lines()
                     .limit(size)
                     .map(parser::parse)
                     .collect(Collectors.toList());
         } catch (UncheckedIOException | NoSuchElementException e) {
-            throw new AppException(Message.WRONG_CONSOLE_INPUT);
+            throw new AppException(Message.EXCEPTION_WRONG_CONSOLE_INPUT);
         }
     }
 }

@@ -12,15 +12,14 @@ import java.util.List;
 public class PrintAction extends AppAction {
 
     @Override
-    public String action(AppData appData, AppRequest request) throws AppException {
+    public void action(AppData appData, AppRequest request) throws AppException {
         List<User> userList = appData.getUserList();
         if (ObjectUtils.isEmpty(userList)) {
-            return Message.LIST_NOT_LOADED;
+            System.out.println(Message.EXCEPTION_LIST_NOT_LOADED);
         }
 
         userList.stream()
                 .map(appData.getUserParser()::parseToString)
                 .forEach(System.out::println);
-        return "";
     }
 }

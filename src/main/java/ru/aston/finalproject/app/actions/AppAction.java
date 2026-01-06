@@ -6,5 +6,5 @@ import ru.aston.finalproject.app.AppRequest;
 
 public abstract class AppAction {
 
-    public abstract String action(AppData appData, AppRequest request) throws AppException;
+    public abstract void action(AppData appData, AppRequest request) throws AppException;
 }

@@ -13,7 +13,7 @@ public class LoaderService<T> {
 
     public List<T> loadEntityList(String loaderKey, Integer size, AppRequest request) {
         if (!loaders.containsKey(loaderKey)) {
-            throw new AppException(Message.WRONG_LOADER_KEY_X);
+            throw new AppException(Message.EXCEPTION_WRONG_LOADER_KEY_X);
         }
         return loaders.get(loaderKey).loadEntityList(size, request);
     }
