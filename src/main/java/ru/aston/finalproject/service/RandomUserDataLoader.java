@@ -24,7 +24,7 @@ public class RandomUserDataLoader implements DataLoader<User> {
         return Stream.generate(User::builder)
                 .map(builder -> builder.setName(faker.name().firstName()))
                 .map(builder -> builder.setEmail(faker.internet().emailAddress()))
-                .map(builder -> builder.setAge(faker.number().numberBetween(MIN_AGE + ONE, MAX_AGE)))
+                .map(builder -> builder.setAge(faker.number().numberBetween(MIN_AGE, MAX_AGE)))
                 .map(User.Builder::build)
                 .limit(size)
                 .collect(Collectors.toList());
