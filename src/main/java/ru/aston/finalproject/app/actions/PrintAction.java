@@ -14,9 +14,7 @@ public class PrintAction extends AppAction {
 
     @Override
     public void action(AppData appData, AppRequest request) throws AppException {
-        if (!EXPECTED_PARAMETERS_AMOUNT.equals(request.getParametersAmount())){
-            throw new AppException(Message.EXCEPTION_WRONG_PARAMETERS_AMOUNT);
-        }
+        request.checkParametersAmount(EXPECTED_PARAMETERS_AMOUNT);
 
         List<User> userList = appData.getUserList();
         if (ObjectUtils.isEmpty(userList)) {

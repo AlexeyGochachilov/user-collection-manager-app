@@ -20,10 +20,11 @@ public class RandomUserDataLoader implements DataLoader<User> {
 
     @Override
     public List<User> loadEntityList(Integer size, AppRequest request) {
+
         return Stream.generate(User::builder)
                 .map(builder -> builder.setName(dataFaker.name().firstName()))
                 .map(builder -> builder.setEmail(dataFaker.internet().emailAddress()))
-                .map(builder -> builder.setAge(dataFaker.number().numberBetween(MIN_AGE, MAX_AGE)))
+                .map(builder -> builder.setAge(dataFaker.number().numberBetween(MIN_AGE, MAX_AGE + 1)))
                 .map(User.Builder::build)
                 .limit(size)
                 .collect(Collectors.toList());

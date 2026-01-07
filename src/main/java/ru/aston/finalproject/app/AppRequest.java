@@ -90,8 +90,10 @@ public class AppRequest {
         return parameters.containsKey(parameterKey);
     }
 
-    public Integer getParametersAmount() {
-        return parameters.size();
+    public void checkParametersAmount(Integer expectedParametersAmount) {
+        if (parameters.size() > expectedParametersAmount){
+            throw new AppException(Message.EXCEPTION_WRONG_PARAMETERS_AMOUNT);
+        }
     }
 
     public boolean isExitRequest() {
