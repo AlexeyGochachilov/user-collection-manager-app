@@ -30,10 +30,10 @@ public class ConstantMethods {
     }
 
     public static void checkedAge(int age) {
-        if (age <= MIN_AGE) {
-            throw new IllegalArgumentException(String.format("Age cannot be below %d", MIN_AGE));
+        if (age < MIN_AGE) {
+            throw new IllegalArgumentException(String.format("Age cannot be below %d: %d", MIN_AGE, age));
         }
-        if (age >= MAX_AGE) {
+        if (age > MAX_AGE) {
             throw new IllegalArgumentException(String.format("Age cannot be above %d", MAX_AGE));
         }
     }
