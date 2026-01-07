@@ -10,7 +10,6 @@ import java.util.stream.Stream;
 
 import static ru.aston.finalproject.util.ConstantFields.MAX_AGE;
 import static ru.aston.finalproject.util.ConstantFields.MIN_AGE;
-import static ru.aston.finalproject.util.ConstantFields.ONE;
 
 public class RandomUserDataLoader implements DataLoader<User> {
     private final Faker dataFaker;
@@ -25,7 +24,7 @@ public class RandomUserDataLoader implements DataLoader<User> {
         return Stream.generate(User::builder)
                 .map(builder -> builder.setName(dataFaker.name().firstName()))
                 .map(builder -> builder.setEmail(dataFaker.internet().emailAddress()))
-                .map(builder -> builder.setAge(dataFaker.number().numberBetween(MIN_AGE, MAX_AGE + 1)))
+                .map(builder -> builder.setAge(dataFaker.number().numberBetween(MIN_AGE, MAX_AGE)))
                 .map(User.Builder::build)
                 .limit(size)
                 .collect(Collectors.toList());
