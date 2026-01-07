@@ -3,8 +3,6 @@ package ru.aston.finalproject.entity;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 
-import java.util.Objects;
-
 import static ru.aston.finalproject.util.ConstantMethods.checkedAge;
 import static ru.aston.finalproject.util.ConstantMethods.checkedEmail;
 import static ru.aston.finalproject.util.ConstantMethods.checkedName;
