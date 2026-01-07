@@ -1,4 +1,4 @@
-package ru.aston.finalproject.service;
+package ru.aston.finalproject.service.writer;
 
 import lombok.NonNull;
 import ru.aston.finalproject.app.AppException;
