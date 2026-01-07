@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.stream.Collectors;
 
-import static ru.aston.finalproject.constants.ConstantFields.USER_FORMAT;
+import static ru.aston.finalproject.util.ConstantFields.USER_FORMAT;
 
 public class ConsoleDataLoader<T> implements DataLoader<T> {
     private final Parsing<T> parser;
