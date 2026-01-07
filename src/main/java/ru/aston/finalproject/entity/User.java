@@ -53,12 +53,12 @@ public class User implements Comparable<User> {
         }
 
         public Builder setName(String name) {
-            this.name = Objects.requireNonNull(name, "name cannot be null");
+            this.name = name;
             return this;
         }
 
         public Builder setEmail(String email) {
-            this.email = Objects.requireNonNull(email, "email cannot be null");
+            this.email = email;
             return this;
         }
 
