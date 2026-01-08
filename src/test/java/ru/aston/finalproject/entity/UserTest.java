@@ -20,6 +20,23 @@ public class UserTest {
     }
 
     @Test
+    public void testReturnType() {
+
+        assertEquals("Builder", User.builder().getClass().getSimpleName());
+
+        assertEquals("Builder", User.builder().setName("Ivan").getClass().getSimpleName());
+
+        assertEquals("Builder", User.builder().setName("Ivan").setEmail("email@mail.ru").
+                getClass().getSimpleName());
+
+        assertEquals("Builder", User.builder().setName("Ivan").setEmail("email@mail.ru").
+                setAge(20).getClass().getSimpleName());
+
+        assertEquals("User", User.builder().setName("Ivan").setEmail("email@mail.ru").
+                setAge(20).build().getClass().getSimpleName());
+    }
+
+    @Test
     public void testBuilderUser() {
         assertNotNull(user);
     }
