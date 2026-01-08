@@ -5,7 +5,6 @@ import ru.aston.finalproject.app.AppData;
 import ru.aston.finalproject.app.AppException;
 import ru.aston.finalproject.app.AppRequest;
 import ru.aston.finalproject.entity.User;
-import ru.aston.finalproject.service.writer.FileWriter;
 import ru.aston.finalproject.util.Message;
 
 import java.util.List;
@@ -20,13 +19,11 @@ public class WriteAction extends AppAction {
         String filePath = request.getStringParameter(FILE_PATH_PARAMETER);
 
         List<User> userList = appData.getUserList();
-
         if (ObjectUtils.isEmpty(userList)) {
             System.out.println(Message.EXCEPTION_LIST_NOT_LOADED);
         }
 
-        FileWriter<User> fileWriter = appData.getFileWriter();
-        fileWriter.write(userList, filePath);
+        appData.getFileWriter().write(userList, filePath);
         System.out.println(Message.USERS_SAVED + " to " + filePath);
     }
 }
