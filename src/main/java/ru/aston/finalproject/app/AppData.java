@@ -9,6 +9,7 @@ import ru.aston.finalproject.service.loader.ConsoleDataLoader;
 import ru.aston.finalproject.service.loader.FileDataLoader;
 import ru.aston.finalproject.service.loader.RandomUserDataLoader;
 import ru.aston.finalproject.service.loader.UserLoaderService;
+import ru.aston.finalproject.service.writer.FileWriter;
 
 import java.util.List;
 
@@ -22,6 +23,7 @@ public class AppData {
     private final RandomUserDataLoader randomUserDataLoader = new RandomUserDataLoader(dataFaker);
     private final UserLoaderService userService = new UserLoaderService(userFileDataLoader,
             userConsoleDataLoader, randomUserDataLoader);
+    private final FileWriter<User> fileWriter = new FileWriter<>(userParser);
 
     private List<User> userList;
 

@@ -40,9 +40,8 @@ public class FileWriter<T> {
         try {
             writeItemsToFile(items, filePath);
         } catch (IOException e) {
-            throw new RuntimeException(
-                    String.format("Failed to write %d items to file '%s'", items.size(), filePath),
-                    e
+            throw new AppException(
+                    String.format("Failed to write %d items to file '%s'", items.size(), filePath)
             );
         }
     }
