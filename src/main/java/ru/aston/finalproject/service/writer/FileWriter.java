@@ -16,6 +16,7 @@ import java.util.List;
 import java.util.Objects;
 
 import static ru.aston.finalproject.util.ConstantMethods.checkedStringOnEmpty;
+import static ru.aston.finalproject.util.Message.FAILED_TO_CREATE_FILE_X;
 
 public class FileWriter<T> {
 
@@ -40,9 +41,8 @@ public class FileWriter<T> {
         try {
             writeItemsToFile(items, filePath);
         } catch (IOException e) {
-            throw new RuntimeException(
-                    String.format("Failed to write %d items to file '%s'", items.size(), filePath),
-                    e
+            throw new AppException(
+                    String.format("Failed to write %d items to file '%s'", items.size(), filePath)
             );
         }
     }
@@ -60,7 +60,7 @@ public class FileWriter<T> {
                 Files.createDirectories(parent);
             } catch (IOException e) {
                 throw new AppException(
-                        String.format("Failed to create directory for file '%s'", filePath)
+                        String.format(FAILED_TO_CREATE_FILE_X, filePath)
                 );
             }
         }

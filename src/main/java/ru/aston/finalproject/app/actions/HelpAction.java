@@ -18,6 +18,8 @@ public class HelpAction extends AppAction {
                 \t\t -size=<size> -type=file -path=<path-to-file> \t load from file path
                 \t\t -size=<size> -type=console \t\t\t load from console input
                 \t\t -size=<size> -type=random \t\t\t load random user list
+                write \t write current list to file
+                \t\t -file=<file-path> \t\t\t write to file (uses current parser format)
                 """;
         System.out.println(help);
     }
