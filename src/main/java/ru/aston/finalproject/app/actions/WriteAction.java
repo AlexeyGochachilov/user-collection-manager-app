@@ -24,7 +24,7 @@ public class WriteAction extends AppAction {
         }
 
         appData.getFileWriter().write(userList, filePath);
-        System.out.println(Message.USERS_SAVED + " to " + filePath);
+        System.out.println(Message.USERS_SAVED);
     }
 }
 

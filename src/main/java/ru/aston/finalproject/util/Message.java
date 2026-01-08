@@ -12,6 +12,7 @@ public class Message {
     public final static String EXCEPTION_FILE_NOT_FOUND_X = "File %s not found";
     public final static String EXCEPTION_LIST_NOT_LOADED = "List not loaded";
     public final static String EXCEPTION_EMPTY_REQUEST = "Empty request";
+    public final static String FAILED_TO_CREATE_FILE_X = "Failed to create directory for file '%s'";
 
     public final static String ENTER_USERS_EXPECTED_FORMAT_S_N = "Enter users, expected format - \"%s\"%n";
     public final static String USERS_LOADED = "Users loaded";
