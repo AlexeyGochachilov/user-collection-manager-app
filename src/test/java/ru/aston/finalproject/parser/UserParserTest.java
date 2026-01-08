@@ -15,7 +15,11 @@ public class UserParserTest {
     @BeforeEach
     void initAll() {
         userParser = new UserParser();
-        user = userParser.parse("useR : EmAil@mAil.Ru : 20");
+        user = User.builder().
+                setName("User").
+                setEmail("email@mail.ru").
+                setAge(20).
+                build();
         toString = userParser.parseToString(user);
     }
 
