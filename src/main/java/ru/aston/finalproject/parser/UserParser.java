@@ -3,14 +3,14 @@ package ru.aston.finalproject.parser;
 import ru.aston.finalproject.entity.BuildUser;
 import ru.aston.finalproject.entity.User;
 
-import static ru.aston.finalproject.constants.ConstantFields.DELIMITER;
-import static ru.aston.finalproject.constants.ConstantFields.ONE;
-import static ru.aston.finalproject.constants.ConstantFields.TWO;
-import static ru.aston.finalproject.constants.ConstantFields.ZERO;
-import static ru.aston.finalproject.constants.ConstantMethods.checkedStringOnEmpty;
-import static ru.aston.finalproject.constants.ConstantMethods.createdDigitFromFirstInteger;
-import static ru.aston.finalproject.constants.ConstantMethods.exampleEntity;
-import static ru.aston.finalproject.constants.ConstantMethods.preparingForParsing;
+import static ru.aston.finalproject.util.ConstantFields.DELIMITER;
+import static ru.aston.finalproject.util.ConstantFields.ONE;
+import static ru.aston.finalproject.util.ConstantFields.TWO;
+import static ru.aston.finalproject.util.ConstantFields.ZERO;
+import static ru.aston.finalproject.util.ConstantMethods.checkedStringOnEmpty;
+import static ru.aston.finalproject.util.ConstantMethods.createdDigitFromFirstInteger;
+import static ru.aston.finalproject.util.ConstantMethods.exampleEntity;
+import static ru.aston.finalproject.util.ConstantMethods.preparingForParsing;
 
 public class UserParser implements Parsing<User> {
 
@@ -33,6 +33,6 @@ public class UserParser implements Parsing<User> {
         String name = dataArray[ZERO];
         String email = dataArray[ONE];
         int age = createdDigitFromFirstInteger(dataArray[TWO]);
-        return buildConcreteEntity.buildUser(name, email, age);
+        return buildConcreteEntity.capitalizeNameAndNormalizedEmail(name, email, age);
     }
 }
