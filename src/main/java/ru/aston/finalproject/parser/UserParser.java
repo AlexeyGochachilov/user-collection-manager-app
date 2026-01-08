@@ -33,6 +33,6 @@ public class UserParser implements Parsing<User> {
         String name = dataArray[ZERO];
         String email = dataArray[ONE];
         int age = createdDigitFromFirstInteger(dataArray[TWO]);
-        return buildConcreteEntity.buildUserWithAllFields(name, email, age);
+        return buildConcreteEntity.capitalizeNameAndNormalizedEmail(name, email, age);
     }
 }
