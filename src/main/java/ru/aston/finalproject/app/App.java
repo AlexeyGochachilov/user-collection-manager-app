@@ -5,6 +5,7 @@ import ru.aston.finalproject.app.actions.AppAction;
 import ru.aston.finalproject.app.actions.HelpAction;
 import ru.aston.finalproject.app.actions.LoadAction;
 import ru.aston.finalproject.app.actions.PrintAction;
+import ru.aston.finalproject.app.actions.WriteAction;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -15,11 +16,13 @@ public class App {
     public final static String HELP = "help";
     public final static String LOAD_USERS = "load";
     public final static String PRINT_USERS = "print";
+    public final static String WRITE_ALL_USERS = "write";
 
     private static final Map<String, AppAction> actionMap = Map.of(
             HELP, new HelpAction(),
             LOAD_USERS, new LoadAction(),
-            PRINT_USERS, new PrintAction()
+            PRINT_USERS, new PrintAction(),
+            WRITE_ALL_USERS, new WriteAction()
     );
 
     public static void main(String[] args) {
