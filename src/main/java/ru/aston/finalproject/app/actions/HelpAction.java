@@ -15,7 +15,7 @@ public class HelpAction extends AppAction {
                 help \t list available commands and required arguments
                 print \t print current saved list
                 load \t load user list
-                \t\t -size=<size> -type=file -file=<file-path> \t load from file path
+                \t\t -size=<size> -type=file -path=<path-to-file> \t load from file path
                 \t\t -size=<size> -type=console \t\t\t load from console input
                 \t\t -size=<size> -type=random \t\t\t load random user list
                 """;
