@@ -5,13 +5,13 @@ import java.util.List;
 
 public abstract class Sorter {
 
-    public abstract <ListItemT> List<ListItemT> sort(
-            List<ListItemT> list,
-            Comparator<ListItemT> comparator
+    public abstract <T> List<T> sort(
+            List<T> list,
+            Comparator<T> comparator
     );
 
-    public <ListItemT extends Comparable<ListItemT>> List<ListItemT> sort(
-            List<ListItemT> list
+    public <T extends Comparable<T>> List<T> sort(
+            List<T> list
     ) {
         return sort(list, Comparator.naturalOrder());
     }
