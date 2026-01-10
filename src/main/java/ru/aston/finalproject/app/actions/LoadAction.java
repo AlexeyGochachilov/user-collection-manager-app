@@ -7,6 +7,8 @@ import ru.aston.finalproject.entity.User;
 import ru.aston.finalproject.util.Message;
 
 import java.util.List;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
 public class LoadAction extends AppAction {
     private static final Integer EXPECTED_PARAMETERS_AMOUNT = 3;
@@ -19,7 +21,9 @@ public class LoadAction extends AppAction {
         Integer size = request.getIntegerParameter(SIZE_PARAMETER);
         String loaderKey = request.getStringParameter(LOADER_TYPE_PARAMETER);
 
-        List<User> users = appData.getUserService().loadEntityList(loaderKey, size, request);
+        List<User> users = appData.getUserService()
+                .loadEntityList(loaderKey, size, request)
+                .collect(Collectors.toList());
         appData.setUserList(users);
 
         System.out.println(Message.USERS_LOADED);
