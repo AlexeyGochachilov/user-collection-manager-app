@@ -1,5 +1,7 @@
 package ru.aston.finalproject.entity;
 
+import static ru.aston.finalproject.util.ConstantMethods.checkedStringOnEmpty;
+
 public class BuildUser {
 
     public User capitalizeNameAndNormalizedEmail(String name, String email, int age) {
@@ -9,6 +11,7 @@ public class BuildUser {
     }
 
     private String capitalize(String name) {
+        checkedStringOnEmpty(name, "name");
         return name.substring(0, 1).toUpperCase() + name.substring(1).toLowerCase();
     }
 }
