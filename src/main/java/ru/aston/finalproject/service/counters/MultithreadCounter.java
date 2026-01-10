@@ -6,16 +6,18 @@ import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
+import ru.aston.finalproject.app.AppException;
+import ru.aston.finalproject.util.Message;
 
-public class MultithreadCounter {
-    public <ListItemT> int count(
-           List<ListItemT> list,
-           ListItemT target,
+public class MultithreadCounter <T> {
+    public int count(
+           List<T> list,
+           T target,
            int threadCount
-    ) throws ExecutionException, InterruptedException {
+    ) throws AppException {
         if (threadCount < 1) {
-            throw new IllegalArgumentException(
-                   "Expected thread count to be a positive integer."
+            throw new AppException(
+                    Message.EXCEPTION_BAD_THREAD_COUNT
             );
         }
 
@@ -49,19 +51,22 @@ public class MultithreadCounter {
             for (Future<Integer> value : results) {
                 returnValue += value.get();
             }
-        }
-        finally {
+        } catch (ExecutionException|InterruptedException e) {
+            throw new AppException(String.format(
+                    Message.EXCEPTION_THREAD_FAILED, e.getMessage()
+            ));
+        } finally {
             tasks.shutdown();
         }
         return returnValue;
     }
 
-    public <ListItemT> int count(
-           List<ListItemT> list,
-           ListItemT target
+    public int count(
+           List<T> list,
+           T target
     ) {
         int count = 0;
-        for (ListItemT item : list) {
+        for (T item : list) {
             if (item.equals(target)) {
                 count++;
             }
