@@ -82,8 +82,8 @@ public class FileWriterTest {
 
         fileWriter.write(List.of(), deepPath.toString());
 
-        assertTrue(Files.exists(deepPath.getParent())); // Директория создана
-        assertFalse(Files.exists(deepPath)); // Файл не создан
+        assertTrue(Files.exists(deepPath.getParent()));
+        assertFalse(Files.exists(deepPath));
 
         verify(mockParser, never()).parseToString(any());
     }
