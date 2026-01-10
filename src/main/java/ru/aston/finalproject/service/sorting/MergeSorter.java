@@ -1,12 +1,10 @@
-package ru.aston.finalproject.service;
-
-import ru.aston.finalproject.service.sorting.Sorter;
+package ru.aston.finalproject.service.sorting;
 
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
-public class ListSorter extends Sorter {
+public class MergeSorter extends Sorter {
     public <ListItemT> List<ListItemT> sort(
             List<ListItemT> list,
             Comparator<ListItemT> comparator

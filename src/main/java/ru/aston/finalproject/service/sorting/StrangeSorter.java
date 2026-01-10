@@ -24,7 +24,7 @@ public class StrangeSorter {
             }
         }
 
-        mergeSort(list, Comparator.comparing(getIntegerField));
+        new MergeSorter().sort(evens, Comparator.comparing(getIntegerField));
 
         for (int i = 0; i < sequentialPositionsOfEvens.size(); i++) {
             list.set(
@@ -34,50 +34,5 @@ public class StrangeSorter {
         }
 
         return list;
-    }
-
-    // TODO: Дублирую слегка измененный код Виталия, это против DRY
-    private <ListItemT> void mergeSort(
-            List<ListItemT> list,
-            Comparator<ListItemT> comparator
-    ) {
-        if (list.size() <= 1) {
-            return;
-        }
-
-        int mid = list.size() / 2;
-        List<ListItemT> left = new ArrayList<>(list.subList(0, mid));
-        List<ListItemT> right = new ArrayList<>(list.subList(mid, list.size()));
-
-        mergeSort(left, comparator);
-        mergeSort(right, comparator);
-
-        merge(list, left, right, comparator);
-    }
-
-    // TODO: Дублирую слегка измененный код Виталия, это против DRY
-    private <ListItemT> void merge(
-            List<ListItemT> result,
-            List<ListItemT> left,
-            List<ListItemT> right,
-            Comparator<ListItemT> comparator
-    ) {
-        int i = 0;
-        int j = 0;
-        int k = 0;
-
-        while (i < left.size() && j < right.size()) {
-            if (comparator.compare(left.get(i), right.get(j)) <= 0) {
-                result.set(k++, left.get(i++));
-            } else {
-                result.set(k++, right.get(j++));
-            }
-        }
-        while (i < left.size()) {
-            result.set(k++, left.get(i++));
-        }
-        while (j < right.size()) {
-            result.set(k++, right.get(j++));
-        }
     }
 }
