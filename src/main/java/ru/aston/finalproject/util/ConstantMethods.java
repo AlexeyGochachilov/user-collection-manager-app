@@ -32,9 +32,6 @@ public class ConstantMethods {
     }
 
     public static void checkedAge(int age) {
-        if (age == ZERO) {
-            throw new AppException("age cannot be empty");
-        }
         if (age < MIN_AGE) {
             throw new AppException(String.format("age cannot be below %d: %d", MIN_AGE, age));
         }

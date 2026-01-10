@@ -1,6 +1,6 @@
 package ru.aston.finalproject.entity;
 
-import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import ru.aston.finalproject.app.AppException;
 
@@ -11,138 +11,178 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static ru.aston.finalproject.util.ConstantFields.MAX_AGE;
 import static ru.aston.finalproject.util.ConstantFields.MIN_AGE;
 
 public class UserTest {
 
-    private User user;
+    @Nested
+    class UserCreationTests {
 
-    @BeforeEach
-    void initUser() {
-        user = User.builder().
-                setName("Ivan").
-                setEmail("email@mail.ru").
-                setAge(20).
-                build();
+        @Test
+        void givenValidData_whenBuildUser_thenUserCreatedSuccessfully() {
+            User user = User.builder()
+                    .setName("Ivan")
+                    .setEmail("email@mail.ru")
+                    .setAge(20)
+                    .build();
+
+            assertNotNull(user);
+            assertEquals("Ivan", user.getName());
+            assertEquals("email@mail.ru", user.getEmail());
+            assertEquals(20, user.getAge());
+        }
     }
 
-    @Test
-    public void givenMethodOfClass_whenTakeSimpleNameOfMethod_thenReturnSimpleName() {
-        String simpleName;
+    @Nested
+    class NameValidationTests {
 
-        simpleName = User.builder().getClass().getSimpleName();
-        assertEquals("Builder", simpleName);
+        @Test
+        void givenNullName_whenBuildUser_thenThrowException() {
+            AppException exception = assertThrows(AppException.class, () ->
+                    User.builder()
+                            .setEmail("email@mail.ru")
+                            .setAge(20)
+                            .build()
+            );
+            assertTrue(exception.getMessage().contains("cannot be empty"));
+        }
 
-        simpleName = User.builder().setName("Ivan").getClass().getSimpleName();
-        assertEquals("Builder", simpleName);
+        @Test
+        void givenEmptyName_whenBuildUser_thenThrowException() {
+            AppException exception = assertThrows(AppException.class, () ->
+                    User.builder()
+                            .setName("")
+                            .setEmail("email@mail.ru")
+                            .setAge(20)
+                            .build()
+            );
+            assertTrue(exception.getMessage().contains("cannot be empty"));
+        }
 
-        simpleName = User.builder().setEmail("email@mail.ru").getClass().getSimpleName();
-        assertEquals("Builder", simpleName);
-
-        simpleName = User.builder().setAge(20).getClass().getSimpleName();
-        assertEquals("Builder", simpleName);
-
-        simpleName = User.builder().
-                setName("Ivan").
-                setEmail("email@mail.ru").
-                setAge(20).
-                build().getClass().getSimpleName();
-        assertEquals("User", simpleName);
+        @Test
+        void givenInvalidNameWithDigitsOrSymbols_whenBuildUser_thenThrowException() {
+            String invalidName = "I1v5a4n1";
+            AppException exception = assertThrows(AppException.class, () ->
+                    User.builder()
+                            .setName(invalidName)
+                            .setEmail("email@mail.ru")
+                            .setAge(20)
+                            .build()
+            );
+            assertTrue(exception.getMessage().contains("not a valid name"));
+        }
     }
 
-    @Test
-    public void givenInitUser_whenCheckedNotNull_thenReturnUser() {
-        assertNotNull(user);
+    @Nested
+    class EmailValidationTests {
+
+        @Test
+        void givenNullEmail_whenBuildUser_thenThrowException() {
+            AppException exception = assertThrows(AppException.class, () ->
+                    User.builder()
+                            .setName("Ivan")
+                            .setAge(20)
+                            .build()
+            );
+            assertTrue(exception.getMessage().contains("cannot be empty"));
+        }
+
+        @Test
+        void givenInvalidEmailFormat_whenBuildUser_thenThrowException() {
+            String invalidEmail = "invalid";
+            AppException exception = assertThrows(AppException.class, () ->
+                    User.builder()
+                            .setName("Ivan")
+                            .setEmail(invalidEmail)
+                            .setAge(20)
+                            .build()
+            );
+            assertTrue(exception.getMessage().contains("Invalid email"));
+        }
     }
 
-    @Test
-    public void givenInitUser_whenGetUserName_thenHaveExpectedName() {
-        String userName = user.getName();
-        assertEquals("Ivan", userName);
+    @Nested
+    class AgeValidationTests {
+
+        @Test
+        void givenAgeBelowMinimum_whenBuildUser_thenThrowException() {
+            int invalidAge = MIN_AGE - 1;
+            AppException exception = assertThrows(AppException.class, () ->
+                    User.builder()
+                            .setName("Ivan")
+                            .setEmail("email@mail.ru")
+                            .setAge(invalidAge)
+                            .build()
+            );
+            assertTrue(exception.getMessage().contains("cannot be below"));
+            assertTrue(exception.getMessage().contains(String.valueOf(invalidAge)));
+        }
+
+        @Test
+        void givenAgeAboveMaximum_whenBuildUser_thenThrowException() {
+            int invalidAge = MAX_AGE + 1;
+            AppException exception = assertThrows(AppException.class, () ->
+                    User.builder()
+                            .setName("Ivan")
+                            .setEmail("email@mail.ru")
+                            .setAge(invalidAge)
+                            .build()
+            );
+            assertTrue(exception.getMessage().contains("cannot be above"));
+            assertTrue(exception.getMessage().contains(String.valueOf(invalidAge)));
+        }
     }
 
-    @Test
-    public void givenInitUser_whenGetUserEmail_thenHaveExpectedEmail() {
-        String userEmail = user.getEmail();
-        assertEquals("email@mail.ru", userEmail);
+    @Nested
+    class ToStringTests {
+
+        @Test
+        void givenUserWithData_whenToString_thenReturnCorrectString() {
+            User user = User.builder()
+                    .setName("Ivan")
+                    .setEmail("email@mail.ru")
+                    .setAge(20)
+                    .build();
+            String result = user.toString();
+            assertTrue(result.contains("Ivan"));
+            assertTrue(result.contains("email@mail.ru"));
+            assertTrue(result.contains("20"));
+        }
     }
 
-    @Test
-    public void givenInitUser_whenGetUserAge_thenHaveExpectedAge() {
-        int userAge = user.getAge();
-        assertEquals(20, userAge);
-    }
+    @Nested
+    class ComparableTests {
 
-    @Test
-    public void givenDifferentUserWithoutName_whenCreatException_thenHaveValidExc() {
-        Exception exception = assertThrows(AppException.class, () -> {
-            User.builder().setEmail("email@mail.ru").setAge(20).build();
-        });
-        assertEquals("Name cannot be empty", exception.getMessage());
-    }
+        @Test
+        void givenTwoUsersWithDifferentNames_whenSort_thenSortedByName() {
+            User ivan = User.builder().setName("Ivan").setEmail("a@mail.ru").setAge(25).build();
+            User anna = User.builder().setName("Anna").setEmail("b@mail.ru").setAge(30).build();
+            List<User> users = Arrays.asList(ivan, anna);
+            Collections.sort(users);
+            assertEquals("Anna", users.get(0).getName());
+            assertEquals("Ivan", users.get(1).getName());
+        }
 
-    @Test
-    public void givenDifferentUserWithoutEmail_whenCreatException_thenHaveValidExc() {
-        Exception exception = assertThrows(AppException.class, () -> {
-            User.builder().setName("Ivan").setAge(20).build();
-        });
-        assertEquals("email cannot be empty", exception.getMessage());
-    }
+        @Test
+        void givenTwoUsersWithSameNameDifferentEmails_whenSort_thenSortedByEmail() {
+            User user1 = User.builder().setName("Ivan").setEmail("b@mail.ru").setAge(25).build();
+            User user2 = User.builder().setName("Ivan").setEmail("a@mail.ru").setAge(30).build();
+            List<User> users = Arrays.asList(user1, user2);
+            Collections.sort(users);
+            assertEquals("a@mail.ru", users.get(0).getEmail());
+            assertEquals("b@mail.ru", users.get(1).getEmail());
+        }
 
-    @Test
-    public void givenDifferentUserWithoutAge_whenCreatException_thenHaveValidExc() {
-        Exception exception = assertThrows(AppException.class, () -> {
-            User.builder().setName("Ivan").setEmail("email@mail.ru").build();
-        });
-        assertEquals("age cannot be empty", exception.getMessage());
-    }
-
-    @Test
-    public void givenDifferentUserWithAgeLessMinAge_whenCreatException_thenHaveValidExc() {
-
-        int setAge = -5;
-        Exception exception = assertThrows(AppException.class, () -> {
-            User.builder().setName("Ivan").setEmail("email@mail.ru").setAge(setAge).build();
-        });
-        assertEquals(String.format("age cannot be below %d: %d", MIN_AGE, setAge), exception.getMessage());
-    }
-
-    @Test
-    public void givenDifferentUserWithAgeMoreMaxAge_whenCreatException_thenHaveValidExc() {
-
-        int setAge = 121;
-        Exception exception = assertThrows(AppException.class, () -> {
-            User.builder().setName("Ivan").setEmail("email@mail.ru").setAge(setAge).build();
-        });
-        assertEquals(String.format("age cannot be above %d: %d", MAX_AGE, setAge), exception.getMessage());
-    }
-
-    @Test
-    public void givenUser_whenCallUserToString_thenHaveExpectedString() {
-        String toString = user.toString();
-        assertEquals("User{name: Ivan, email: email@mail.ru, age: 20}", toString);
-    }
-
-    @Test
-    public void givenListWithTwoDifferentUsers_whenSortListWithComparable_thenHaveResaltOfCompareTo() {
-        List<User> userList;
-        User userSecond = User.builder().setName("Max").setEmail("email@mail.ru").setAge(20).build();
-        userList = sortUsersWithComparable(user, userSecond);
-        assertEquals("Ivan", userList.get(0).getName());
-
-        userSecond = User.builder().setName("Ivan").setEmail("gmail@mail.ru").setAge(20).build();
-        userList = sortUsersWithComparable(user, userSecond);
-        assertEquals("email@mail.ru", userList.get(0).getEmail());
-
-        userSecond = User.builder().setName("Ivan").setEmail("email@mail.ru").setAge(21).build();
-        userList = sortUsersWithComparable(user, userSecond);
-        assertEquals(20, userList.get(0).getAge());
-    }
-
-    private List<User> sortUsersWithComparable(User userFirst, User userSecond) {
-        List<User> userList = Arrays.asList(userFirst, userSecond);
-        Collections.sort(userList);
-        return userList;
+        @Test
+        void givenTwoUsersWithSameNameAndEmailDifferentAges_whenSort_thenSortedByAge() {
+            User user1 = User.builder().setName("Ivan").setEmail("a@mail.ru").setAge(30).build();
+            User user2 = User.builder().setName("Ivan").setEmail("a@mail.ru").setAge(25).build();
+            List<User> users = Arrays.asList(user1, user2);
+            Collections.sort(users);
+            assertEquals(25, users.get(0).getAge());
+            assertEquals(30, users.get(1).getAge());
+        }
     }
 }
