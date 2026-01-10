@@ -17,5 +17,9 @@ public class Message {
     public final static String ENTER_USERS_EXPECTED_FORMAT_S_N = "Enter users, expected format - \"%s\"%n";
     public final static String USERS_LOADED = "Users loaded";
     public final static String USERS_SAVED = "Users saved";
-
+    public final static String X_CANNOT_BE_EMPTY = "%s cannot be empty";
+    public final static String X_IS_NOT_A_VALID_X = "%s is not a valid %s";
+    public final static String AGE_CANNOT_BE_X_X_X= "age cannot be %s %d: %d";
+    public final static String INVALID_DATA_X = "Invalid data %s";
+    public final static String USER_CANNOT_BE_NULL = "User cannot be null";
 }

@@ -12,6 +12,14 @@ public class BuildUser {
 
     private String capitalize(String name) {
         checkedStringOnEmpty(name, "name");
+        if (name.split("\\s").length > 1) {
+            String[] compoundName = name.split("\\s");
+            StringBuilder userName = new StringBuilder();
+            for (String s : compoundName) {
+                userName.append(capitalize(s)).append(" ");
+            }
+            return userName.toString().trim();
+        }
         return name.substring(0, 1).toUpperCase() + name.substring(1).toLowerCase();
     }
 }

@@ -51,12 +51,12 @@ public class User implements Comparable<User> {
         }
 
         public Builder setName(String name) {
-            this.name = name;
+            this.name = name.trim();
             return this;
         }
 
         public Builder setEmail(String email) {
-            this.email = email;
+            this.email = email.trim();
             return this;
         }
 
