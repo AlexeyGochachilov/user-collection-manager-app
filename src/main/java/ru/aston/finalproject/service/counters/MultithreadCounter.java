@@ -24,30 +24,35 @@ public class MultithreadCounter {
            return count(list, target);
         }
 
+        int returnValue;
+        // ExecutorService не является AutoCloseable до 19й версии java.
         ExecutorService tasks = Executors.newFixedThreadPool(threadCount);
-        List<Future<Integer>> results = new ArrayList<>();
-        for (int multiplier = 0; multiplier < threadCount - 1; multiplier++) {
-            int finalMultiplier = multiplier;
+        try {
+            List<Future<Integer>> results = new ArrayList<>();
+            for (int multiplier = 0; multiplier < threadCount - 1; multiplier++) {
+                int finalMultiplier = multiplier;
+                results.add(tasks.submit(
+                        () -> count(
+                                list.subList(step * finalMultiplier, step * (finalMultiplier + 1)),
+                                target
+                        )
+                ));
+            }
             results.add(tasks.submit(
                     () -> count(
-                            list.subList(step * finalMultiplier, step * (finalMultiplier + 1)),
+                            list.subList(step * (threadCount - 1), list.size()),
                             target
                     )
             ));
-        }
-        results.add(tasks.submit(
-                () -> count(
-                        list.subList(step * (threadCount - 1) , list.size()),
-                        target
-                )
-        ));
 
-        int returnValue = 0;
-        for (Future<Integer> value : results) {
-            returnValue += value.get();
+            returnValue = 0;
+            for (Future<Integer> value : results) {
+                returnValue += value.get();
+            }
         }
-
-        tasks.close();
+        finally {
+            tasks.shutdown();
+        }
         return returnValue;
     }
 
