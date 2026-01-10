@@ -21,7 +21,7 @@ public class BuildUserTest {
     class BuildUserCreationTests {
 
         @Test
-        void givenValidData_whenBuildUserUsedMethod_thenUserCreatedSuccessfully() {
+        void givenValidData_whenCapitalizeNameAndNormalizedEmail_thenUserCreatedWithCorrectFields() {
             user = buildUser.capitalizeNameAndNormalizedEmail("Ivan", "email@mail.ru", 20);
 
             assertNotNull(user);
@@ -32,12 +32,12 @@ public class BuildUserTest {
     }
 
     @Nested
-    class CapitalizeName {
+    class NameCapitalizationTests {
 
         private String invalidName;
 
         @Test
-        void givenLowerCaseName_whenBuildUser_thenCorrectCaseName() {
+        void givenNameInLowerCase_whenCapitalizeNameAndNormalizedEmail_thenNameCapitalized() {
             invalidName = "ivan";
             user = buildUser.capitalizeNameAndNormalizedEmail(invalidName, "email@mail.ru", 20);
             assertEquals("Ivan", user.getName());
@@ -45,14 +45,14 @@ public class BuildUserTest {
 
 
         @Test
-        void givenDifferentCaseName_whenBuildUser_thenCorrectCaseName() {
+        void givenNameInMixedCase_whenCapitalizeNameAndNormalizedEmail_thenNameNormalizedToCapitalized() {
             invalidName = "iVaN";
             user = buildUser.capitalizeNameAndNormalizedEmail(invalidName, "email@mail.ru", 20);
             assertEquals("Ivan", user.getName());
         }
 
         @Test
-        void givenUpperCaseName_whenBuildUser_thenCorrectCaseName() {
+        void givenNameInUpperCase_whenCapitalizeNameAndNormalizedEmail_thenNameConvertedToCapitalized() {
             invalidName = "IVAN";
             user = buildUser.capitalizeNameAndNormalizedEmail(invalidName, "email@mail.ru", 20);
             assertEquals("Ivan", user.getName());
@@ -60,19 +60,19 @@ public class BuildUserTest {
     }
 
     @Nested
-    class NormalizedEmail {
+    class EmailNormalizationTests {
 
         private String invalidEmail;
 
         @Test
-        public void givenUpperCaseEmail_whenBuildUser_thenCorrectCaseEmail() {
+        public void givenEmailInUpperCase_whenCapitalizeNameAndNormalizedEmail_thenEmailConvertedToLowerCase() {
             invalidEmail = "EMAIL@MAIL.RU";
             user = buildUser.capitalizeNameAndNormalizedEmail("Ivan", invalidEmail, 20);
             assertEquals("email@mail.ru", user.getEmail());
         }
 
         @Test
-        public void givenDifferentCaseEmail_whenBuildUser_thenCorrectCaseEmail() {
+        public void givenEmailInMixedCase_whenCapitalizeNameAndNormalizedEmail_thenEmailNormalizedToLowerCase() {
             invalidEmail = "EmAiL@mAiL.Ru";
             user = buildUser.capitalizeNameAndNormalizedEmail("Ivan", invalidEmail, 20);
             assertEquals("email@mail.ru", user.getEmail());
