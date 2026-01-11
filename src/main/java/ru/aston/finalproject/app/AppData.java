@@ -24,7 +24,7 @@ public class AppData {
             userConsoleDataLoader, randomUserDataLoader);
     private final FileWriter<User> fileWriter = new FileWriter<>(userParser);
 
-    private CustomArrayList<User> userList;
+    private CustomArrayList<User> userList = new CustomArrayList<>();
 
     // Этот класс хранит все переменные приложения.
     // Текущее наполнение - для демонстрации. Класс открыт для изменения.
