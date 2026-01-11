@@ -5,13 +5,13 @@ import ru.aston.finalproject.app.AppRequest;
 import ru.aston.finalproject.util.Message;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
+import java.util.stream.Stream;
 
 public class LoaderService<T> {
     private final Map<String, DataLoader<T>> loaders = new HashMap<>();
 
-    public List<T> loadEntityList(String loaderKey, Integer size, AppRequest request) {
+    public Stream<T> loadEntityList(String loaderKey, Integer size, AppRequest request) {
         if (!loaders.containsKey(loaderKey)) {
             throw new AppException(Message.EXCEPTION_WRONG_LOADER_KEY_X);
         }

@@ -14,6 +14,7 @@ public class HelpAction extends AppAction {
         String help = """
                 help \t list available commands and required arguments
                 print \t print current saved list
+                clear \t clear current saved list
                 load \t load user list
                 \t\t -size=<size> -type=file -path=<path-to-file> \t load from file path
                 \t\t -size=<size> -type=console \t\t\t load from console input

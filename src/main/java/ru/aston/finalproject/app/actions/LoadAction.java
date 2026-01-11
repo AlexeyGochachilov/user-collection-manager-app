@@ -3,10 +3,10 @@ package ru.aston.finalproject.app.actions;
 import ru.aston.finalproject.app.AppData;
 import ru.aston.finalproject.app.AppException;
 import ru.aston.finalproject.app.AppRequest;
+import ru.aston.finalproject.collection.CustomArrayList;
+import ru.aston.finalproject.collection.CustomArrayListCollector;
 import ru.aston.finalproject.entity.User;
 import ru.aston.finalproject.util.Message;
-
-import java.util.List;
 
 public class LoadAction extends AppAction {
     private static final Integer EXPECTED_PARAMETERS_AMOUNT = 3;
@@ -19,8 +19,10 @@ public class LoadAction extends AppAction {
         Integer size = request.getIntegerParameter(SIZE_PARAMETER);
         String loaderKey = request.getStringParameter(LOADER_TYPE_PARAMETER);
 
-        List<User> users = appData.getUserService().loadEntityList(loaderKey, size, request);
-        appData.setUserList(users);
+        CustomArrayList<User> users = appData.getUserService()
+                .loadEntityList(loaderKey, size, request)
+                .collect(CustomArrayListCollector.toCustomArrayList());
+        appData.getUserList().addAll(users);
 
         System.out.println(Message.USERS_LOADED);
     }

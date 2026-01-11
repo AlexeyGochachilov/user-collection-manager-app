@@ -20,5 +20,5 @@ public class Message {
     public final static String ENTER_USERS_EXPECTED_FORMAT_S_N = "Enter users, expected format - \"%s\"%n";
     public final static String USERS_LOADED = "Users loaded";
     public final static String USERS_SAVED = "Users saved";
-
+    public final static String USERS_CLEARED = "Users cleared";
 }
