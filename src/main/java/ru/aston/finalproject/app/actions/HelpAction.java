@@ -20,6 +20,8 @@ public class HelpAction extends AppAction {
                 \t\t -size=<size> -type=random \t\t\t load random user list
                 write \t write current list to file
                 \t\t -file=<file-path> \t\t\t write to file (uses current parser format)
+                sort \t sorting current list to file
+                \t\t -by=<field> \t\t sort by field (name, age, email)
                 """;
         System.out.println(help);
     }

@@ -17,12 +17,14 @@ public class App {
     public final static String LOAD_USERS = "load";
     public final static String PRINT_USERS = "print";
     public final static String WRITE_ALL_USERS = "write";
+    public final static String SORTING_ALL_USER = "sort";
 
     private static final Map<String, AppAction> actionMap = Map.of(
             HELP, new HelpAction(),
             LOAD_USERS, new LoadAction(),
             PRINT_USERS, new PrintAction(),
-            WRITE_ALL_USERS, new WriteAction()
+            WRITE_ALL_USERS, new WriteAction(),
+            SORTING_ALL_USER, new SortingAction()
     );
 
     public static void main(String[] args) {
