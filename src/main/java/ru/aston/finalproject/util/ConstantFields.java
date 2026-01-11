@@ -13,4 +13,7 @@ public class ConstantFields {
     public static final String DELIMITER = " : ";
     public static final String USER_FORMAT =
             String.format("name%semail%sage", DELIMITER, DELIMITER);
+    public final static String DIGITS_REGS = "\\D+";
+    public final static String NO_DIGITS_REGS = "\\d+";
+    public final static String DIGITS = "digits";
 }

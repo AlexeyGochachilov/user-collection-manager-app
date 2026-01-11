@@ -13,13 +13,14 @@ public class Message {
     public final static String EXCEPTION_LIST_NOT_LOADED = "List not loaded";
     public final static String EXCEPTION_EMPTY_REQUEST = "Empty request";
     public final static String FAILED_TO_CREATE_FILE_X = "Failed to create directory for file '%s'";
+    public final static String FAILED_TO_WRITE_X_ITEMS_TO_FILE_X = "Failed to write %d items to file '%s'";
 
     public final static String ENTER_USERS_EXPECTED_FORMAT_S_N = "Enter users, expected format - \"%s\"%n";
     public final static String USERS_LOADED = "Users loaded";
     public final static String USERS_SAVED = "Users saved";
     public final static String X_CANNOT_BE_EMPTY = "%s cannot be empty";
     public final static String X_IS_NOT_A_VALID_X = "%s is not a valid %s";
-    public final static String AGE_CANNOT_BE_X_X_X= "age cannot be %s %d: %d";
+    public final static String AGE_SHOULD_BETWEEN_X_X_X = "age should be between %d %d: %d";
     public final static String INVALID_DATA_X = "Invalid data %s";
     public final static String USER_CANNOT_BE_NULL = "User cannot be null";
 }

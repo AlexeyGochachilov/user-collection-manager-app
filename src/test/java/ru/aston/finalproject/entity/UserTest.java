@@ -71,7 +71,7 @@ public class UserTest {
                             .setAge(20)
                             .build()
             );
-            assertTrue(exception.getMessage().contains("not a valid name"));
+            assertTrue(exception.getMessage().contains("not a valid Name"));
         }
     }
 
@@ -99,7 +99,7 @@ public class UserTest {
                             .setAge(20)
                             .build()
             );
-            assertTrue(exception.getMessage().contains("Invalid email"));
+            assertTrue(exception.getMessage().contains("not a valid"));
         }
     }
 
@@ -116,7 +116,7 @@ public class UserTest {
                             .setAge(invalidAge)
                             .build()
             );
-            assertTrue(exception.getMessage().contains("cannot be below"));
+            assertTrue(exception.getMessage().contains("should be between"));
             assertTrue(exception.getMessage().contains(String.valueOf(invalidAge)));
         }
 
@@ -130,7 +130,7 @@ public class UserTest {
                             .setAge(invalidAge)
                             .build()
             );
-            assertTrue(exception.getMessage().contains("cannot be above"));
+            assertTrue(exception.getMessage().contains("should be between"));
             assertTrue(exception.getMessage().contains(String.valueOf(invalidAge)));
         }
     }
