@@ -18,7 +18,6 @@ public class SortingAction extends AppAction {
     @Override
     public void action(AppData appData, AppRequest request) throws AppException {
         request.checkParametersAmount(EXPECTED_PARAMETERS_AMOUNT);
-
         String field = request.getStringParameter(FIELD_PARAMETER);
 
         List<User> userList = appData.getUserList();
