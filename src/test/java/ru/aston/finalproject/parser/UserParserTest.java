@@ -10,8 +10,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static ru.aston.finalproject.util.ConstantFields.ForUserAndRandomUserDataLoader.MAX_AGE;
-import static ru.aston.finalproject.util.ConstantFields.ForUserAndRandomUserDataLoader.MIN_AGE;
+import static ru.aston.finalproject.util.ConstantFields.MAX_AGE;
+import static ru.aston.finalproject.util.ConstantFields.MIN_AGE;
 
 public class UserParserTest {
 

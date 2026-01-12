@@ -4,15 +4,17 @@ import ru.aston.finalproject.app.AppException;
 import ru.aston.finalproject.entity.BuildUser;
 import ru.aston.finalproject.entity.User;
 
-import static ru.aston.finalproject.util.ConstantFields.ForUserAndUserParser.DIGITS;
-import static ru.aston.finalproject.util.ConstantFields.ForUserParser.DELIMITER;
-import static ru.aston.finalproject.util.ConstantFields.ForUserParser.DIGITS_REGS;
+import static ru.aston.finalproject.util.ConstantFields.DIGITS;
 import static ru.aston.finalproject.util.ConstantFields.SPACE;
 import static ru.aston.finalproject.util.ConstantMethods.checkedStringOnEmpty;
 import static ru.aston.finalproject.util.Message.INVALID_DATA_X;
 import static ru.aston.finalproject.util.Message.USER_CANNOT_BE_NULL;
 
 public class UserParser implements Parsing<User> {
+
+    private final static String DIGITS_REGS = "\\D+";
+    private final static String DELIMITER = " : ";
+    public final static String USER_FORMAT = String.format("name%semail%sage", DELIMITER, DELIMITER);
 
     @Override
     public String parseToString(User user) {
