@@ -12,7 +12,9 @@ public class BuildUser {
     }
 
     private String capitalize(String name) {
+
         checkedStringOnEmpty(name, "name");
+
         if (name.split(SPACE).length > 1) {
             String[] compoundName = name.split(SPACE);
             StringBuilder userName = new StringBuilder();
@@ -21,6 +23,7 @@ public class BuildUser {
             }
             return userName.toString().trim();
         }
+
         return name.substring(0, 1).toUpperCase() + name.substring(1).toLowerCase();
     }
 }
