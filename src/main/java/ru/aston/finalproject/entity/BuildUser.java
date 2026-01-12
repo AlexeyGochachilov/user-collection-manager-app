@@ -1,5 +1,6 @@
 package ru.aston.finalproject.entity;
 
+import static ru.aston.finalproject.util.ConstantFields.SPACE;
 import static ru.aston.finalproject.util.ConstantMethods.checkedStringOnEmpty;
 
 public class BuildUser {
@@ -12,8 +13,8 @@ public class BuildUser {
 
     private String capitalize(String name) {
         checkedStringOnEmpty(name, "name");
-        if (name.split("\\s").length > 1) {
-            String[] compoundName = name.split("\\s");
+        if (name.split(SPACE).length > 1) {
+            String[] compoundName = name.split(SPACE);
             StringBuilder userName = new StringBuilder();
             for (String s : compoundName) {
                 userName.append(capitalize(s)).append(" ");

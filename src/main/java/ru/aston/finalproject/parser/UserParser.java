@@ -7,17 +7,14 @@ import ru.aston.finalproject.entity.User;
 import static ru.aston.finalproject.util.ConstantFields.DELIMITER;
 import static ru.aston.finalproject.util.ConstantFields.DIGITS;
 import static ru.aston.finalproject.util.ConstantFields.DIGITS_REGS;
-import static ru.aston.finalproject.util.ConstantFields.FIRST_ARRAY_COMPONENT;
-import static ru.aston.finalproject.util.ConstantFields.LENGTH_PARAMETER;
-import static ru.aston.finalproject.util.ConstantFields.SECOND_ARRAY_COMPONENT;
-import static ru.aston.finalproject.util.ConstantFields.THIRD_ARRAY_COMPONENT;
+import static ru.aston.finalproject.util.ConstantFields.SPACE;
 import static ru.aston.finalproject.util.ConstantMethods.checkedStringOnEmpty;
 import static ru.aston.finalproject.util.Message.INVALID_DATA_X;
 import static ru.aston.finalproject.util.Message.USER_CANNOT_BE_NULL;
 
 public class UserParser implements Parsing<User> {
 
-    BuildUser buildConcreteEntity = new BuildUser();
+    private final int FIRST_ARRAY_COMPONENT = 0;
 
     @Override
     public String parseToString(User user) {
@@ -38,17 +35,27 @@ public class UserParser implements Parsing<User> {
 
     @Override
     public User parse(String data, String delimiter) {
+
         checkedStringOnEmpty(data, "data in parser");
+
+        BuildUser buildConcreteEntity = new BuildUser();
+        int SECOND_ARRAY_COMPONENT = 1;
+        int THIRD_ARRAY_COMPONENT = 2;
+
         String[] dataArray = preparingForParsing(data, delimiter);
+
         String name = dataArray[FIRST_ARRAY_COMPONENT].trim();
         String email = dataArray[SECOND_ARRAY_COMPONENT].trim();
         int age = createdDigitFromFirstInteger(dataArray[THIRD_ARRAY_COMPONENT].trim());
+
         return buildConcreteEntity.capitalizeNameAndNormalizedEmail(name, email, age);
     }
 
     private String[] preparingForParsing(String data, String delimiter) {
         String DATA_AT_INDEX_X = "data at index %d";
         String[] dataArray = data.split(delimiter);
+        int LENGTH_PARAMETER = 3;
+
         if (dataArray.length != LENGTH_PARAMETER) {
             throw new AppException(String.format(INVALID_DATA_X, data));
         }
@@ -61,7 +68,7 @@ public class UserParser implements Parsing<User> {
     private int createdDigitFromFirstInteger(String string) {
         String numbersOnly = createdStringOnlyDigits(string);
         checkedStringOnEmpty(numbersOnly, DIGITS);
-        return Integer.parseInt(numbersOnly.trim().split(" ")[FIRST_ARRAY_COMPONENT]);
+        return Integer.parseInt(numbersOnly.trim().split(SPACE)[FIRST_ARRAY_COMPONENT]);
     }
 
     private String createdStringOnlyDigits(String string) {
