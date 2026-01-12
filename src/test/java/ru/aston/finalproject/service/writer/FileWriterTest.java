@@ -9,7 +9,7 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import ru.aston.finalproject.app.AppException;
 import ru.aston.finalproject.parser.Parsing;
-import ru.aston.finalproject.util.CustomArrayList;
+import ru.aston.finalproject.collection.CustomArrayList;
 
 import java.io.IOException;
 import java.nio.file.Files;

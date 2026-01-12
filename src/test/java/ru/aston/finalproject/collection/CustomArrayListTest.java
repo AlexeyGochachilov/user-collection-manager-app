@@ -1,4 +1,4 @@
-package ru.aston.finalproject.util;
+package ru.aston.finalproject.collection;
 
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
