@@ -1,4 +1,4 @@
-package ru.aston.finalproject.util;
+package ru.aston.finalproject.collection;
 
 import java.util.AbstractList;
 import java.util.Arrays;
