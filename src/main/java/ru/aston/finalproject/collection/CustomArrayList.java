@@ -1,4 +1,4 @@
-package ru.aston.finalproject.util;
+package ru.aston.finalproject.collection;
 
 import java.util.AbstractList;
 import java.util.Arrays;
@@ -16,7 +16,7 @@ public class CustomArrayList<E> extends AbstractList<E> implements List<E>, Clon
     private static final int GROWTH_THRESHOLD = 1000;
     private static final double HIGH_GROWTH_FACTOR = 2.0;
     private static final double NORMAL_GROWTH_FACTOR = 1.5;
-    private static final Object[] EMPTY_ELEMENTDATA = {};
+    private static final Object[] EMPTY_ELEMENT_DATA = {};
     private transient Object[] elementData;
     private int size;
     protected transient int modCount = 0;
@@ -30,7 +30,7 @@ public class CustomArrayList<E> extends AbstractList<E> implements List<E>, Clon
             int capacity = Math.max(initialCapacity, DEFAULT_CAPACITY);
             this.elementData = new Object[capacity];
         } else if (initialCapacity == 0) {
-            this.elementData = EMPTY_ELEMENTDATA;
+            this.elementData = EMPTY_ELEMENT_DATA;
         } else {
             throw new IllegalArgumentException("Illegal Capacity: " + initialCapacity);
         }
@@ -48,6 +48,11 @@ public class CustomArrayList<E> extends AbstractList<E> implements List<E>, Clon
         if (size >= elementData.length * LOAD_FACTOR) {
             ensureCapacity(size + 1);
         }
+    }
+
+    public CustomArrayList(CustomArrayList<E> other) {
+        this.elementData = Arrays.copyOf(other.elementData, other.size);
+        this.size = other.size;
     }
 
     private int calculateNewCapacity(int oldCapacity, int minCapacity) {
@@ -71,8 +76,8 @@ public class CustomArrayList<E> extends AbstractList<E> implements List<E>, Clon
         return newCapacity;
     }
 
-    private void ensureCapacity(int minCapacity) {
-        if (elementData == EMPTY_ELEMENTDATA) {
+    public void ensureCapacity(int minCapacity) {
+        if (elementData == EMPTY_ELEMENT_DATA) {
             minCapacity = Math.max(DEFAULT_CAPACITY, minCapacity);
         }
         if (minCapacity > elementData.length) {
@@ -337,7 +342,7 @@ public class CustomArrayList<E> extends AbstractList<E> implements List<E>, Clon
         modCount++;
         if (size < elementData.length) {
             elementData = (size == 0)
-                    ? EMPTY_ELEMENTDATA
+                    ? EMPTY_ELEMENT_DATA
                     : Arrays.copyOf(elementData, size);
         }
     }
