@@ -2,10 +2,16 @@ package ru.aston.finalproject.entity;
 
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
+import ru.aston.finalproject.app.AppException;
 
-import static ru.aston.finalproject.util.ConstantMethods.checkedAge;
-import static ru.aston.finalproject.util.ConstantMethods.checkedEmail;
-import static ru.aston.finalproject.util.ConstantMethods.checkedName;
+import static ru.aston.finalproject.util.ConstantFields.ForUserAndUserParser.DIGITS;
+import static ru.aston.finalproject.util.ConstantFields.ForUser.EMAIL_FORM;
+import static ru.aston.finalproject.util.ConstantFields.ForUserAndRandomUserDataLoader.MAX_AGE;
+import static ru.aston.finalproject.util.ConstantFields.ForUserAndRandomUserDataLoader.MIN_AGE;
+import static ru.aston.finalproject.util.ConstantFields.ForUser.NO_DIGITS_REGS;
+import static ru.aston.finalproject.util.ConstantMethods.checkedStringOnEmpty;
+import static ru.aston.finalproject.util.Message.AGE_SHOULD_BETWEEN_X_X_X;
+import static ru.aston.finalproject.util.Message.X_IS_NOT_A_VALID_X;
 
 @Getter
 @EqualsAndHashCode
@@ -74,6 +80,34 @@ public class User implements Comparable<User> {
             checkedName(name);
             checkedEmail(email);
             checkedAge(age);
+        }
+
+        private void checkedName(String name) {
+            String NAME = "Name";
+            checkedStringOnEmpty(name, NAME);
+            if (!name.equals(cleanStringFromDigit(name))) {
+                throw new AppException(String.format(X_IS_NOT_A_VALID_X, name, NAME));
+            }
+        }
+
+        private void checkedEmail(String email) {
+            String EMAIL = "email";
+            checkedStringOnEmpty(email, EMAIL);
+            if (!email.matches(EMAIL_FORM)) {
+                throw new AppException(String.format(X_IS_NOT_A_VALID_X, email, EMAIL));
+            }
+        }
+
+        private void checkedAge(int age) {
+            if (age < MIN_AGE || age > MAX_AGE) {
+                throw new AppException(String.format(AGE_SHOULD_BETWEEN_X_X_X, MIN_AGE, MAX_AGE, age));
+            }
+        }
+
+        public static String cleanStringFromDigit(String string) {
+            string = string.replaceAll(NO_DIGITS_REGS, "").trim();
+            checkedStringOnEmpty(string, DIGITS);
+            return string;
         }
     }
 }
