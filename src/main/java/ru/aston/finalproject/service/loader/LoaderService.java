@@ -1,8 +1,8 @@
 package ru.aston.finalproject.service.loader;
 
-import ru.aston.finalproject.app.AppException;
-import ru.aston.finalproject.app.AppRequest;
-import ru.aston.finalproject.util.Message;
+import ru.aston.finalproject.appenviroment.AppException;
+import ru.aston.finalproject.appenviroment.AppRequest;
+import ru.aston.finalproject.statictools.Message;
 
 import java.util.HashMap;
 import java.util.Map;

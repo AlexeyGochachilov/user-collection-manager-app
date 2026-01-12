@@ -1,4 +1,4 @@
-package ru.aston.finalproject.util;
+package ru.aston.finalproject.statictools;
 
 import java.util.LinkedList;
 import java.util.List;

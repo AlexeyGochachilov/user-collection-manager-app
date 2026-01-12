@@ -1,12 +1,12 @@
-package ru.aston.finalproject.app.actions;
+package ru.aston.finalproject.actions;
 
 import org.apache.commons.lang3.ObjectUtils;
-import ru.aston.finalproject.app.AppData;
-import ru.aston.finalproject.app.AppException;
-import ru.aston.finalproject.app.AppRequest;
+import ru.aston.finalproject.appenviroment.AppData;
+import ru.aston.finalproject.appenviroment.AppException;
+import ru.aston.finalproject.appenviroment.AppRequest;
 import ru.aston.finalproject.collection.CustomArrayList;
 import ru.aston.finalproject.entity.User;
-import ru.aston.finalproject.util.Message;
+import ru.aston.finalproject.statictools.Message;
 
 public class PrintAction extends AppAction {
     private static final Integer EXPECTED_PARAMETERS_AMOUNT = 0;

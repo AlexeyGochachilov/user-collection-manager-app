@@ -1,8 +1,8 @@
-package ru.aston.finalproject.app;
+package ru.aston.finalproject.appenviroment;
 
 import lombok.Getter;
 import org.apache.commons.lang3.StringUtils;
-import ru.aston.finalproject.util.Message;
+import ru.aston.finalproject.statictools.Message;
 
 import java.util.Arrays;
 import java.util.HashMap;

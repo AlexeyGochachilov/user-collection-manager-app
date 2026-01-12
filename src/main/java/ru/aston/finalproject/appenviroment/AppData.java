@@ -1,4 +1,4 @@
-package ru.aston.finalproject.app;
+package ru.aston.finalproject.appenviroment;
 
 import lombok.Getter;
 import lombok.Setter;

@@ -1,7 +1,7 @@
 package ru.aston.finalproject.service.writer;
 
 import lombok.NonNull;
-import ru.aston.finalproject.app.AppException;
+import ru.aston.finalproject.appenviroment.AppException;
 import ru.aston.finalproject.parser.Parsing;
 
 import java.io.BufferedWriter;
@@ -15,8 +15,8 @@ import java.nio.file.Paths;
 import java.util.List;
 import java.util.Objects;
 
-import static ru.aston.finalproject.util.ConstantMethods.checkedStringOnEmpty;
-import static ru.aston.finalproject.util.Message.FAILED_TO_CREATE_FILE_X;
+import static ru.aston.finalproject.statictools.ConstantMethods.checkedStringOnEmpty;
+import static ru.aston.finalproject.statictools.Message.FAILED_TO_CREATE_FILE_X;
 
 public class FileWriter<T> {
 

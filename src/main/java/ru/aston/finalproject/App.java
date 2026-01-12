@@ -1,7 +1,16 @@
-package ru.aston.finalproject.app;
+package ru.aston.finalproject;
 
 import org.apache.commons.lang3.StringUtils;
-import ru.aston.finalproject.app.actions.*;
+import ru.aston.finalproject.actions.AppAction;
+import ru.aston.finalproject.actions.ClearAction;
+import ru.aston.finalproject.actions.HelpAction;
+import ru.aston.finalproject.actions.LoadAction;
+import ru.aston.finalproject.actions.PrintAction;
+import ru.aston.finalproject.actions.WriteAction;
+import ru.aston.finalproject.appenviroment.AppData;
+import ru.aston.finalproject.appenviroment.AppException;
+import ru.aston.finalproject.appenviroment.AppRequest;
+import ru.aston.finalproject.actions.*;
 
 import java.io.BufferedReader;
 import java.io.IOException;
