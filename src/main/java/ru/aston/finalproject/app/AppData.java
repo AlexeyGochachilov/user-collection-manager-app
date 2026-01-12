@@ -11,7 +11,9 @@ import ru.aston.finalproject.service.loader.RandomUserDataLoader;
 import ru.aston.finalproject.service.loader.UserLoaderService;
 import ru.aston.finalproject.service.sorting.MergeSorter;
 import ru.aston.finalproject.service.sorting.Sorter;
+import ru.aston.finalproject.service.sorting.StrangeSorter;
 import ru.aston.finalproject.service.writer.FileWriter;
+import ru.aston.finalproject.util.CustomArrayList;
 
 import java.util.List;
 
@@ -27,9 +29,7 @@ public class AppData {
             userConsoleDataLoader, randomUserDataLoader);
     private final FileWriter<User> fileWriter = new FileWriter<>(userParser);
     private final Sorter sorter = new MergeSorter();
+    private final StrangeSorter strangeSorter = new StrangeSorter(sorter);
 
-    private List<User> userList;
-
-    // Этот класс хранит все переменные приложения.
-    // Текущее наполнение - для демонстрации. Класс открыт для изменения.
+    private List<User> userList = new CustomArrayList<>();
 }
