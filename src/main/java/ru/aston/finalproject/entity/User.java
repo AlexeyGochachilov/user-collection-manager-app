@@ -104,7 +104,7 @@ public class User implements Comparable<User> {
             }
         }
 
-        public static String cleanStringFromDigit(String string) {
+        private String cleanStringFromDigit(String string) {
             string = string.replaceAll(NO_DIGITS_REGS, "").trim();
             checkedStringOnEmpty(string, DIGITS);
             return string;
