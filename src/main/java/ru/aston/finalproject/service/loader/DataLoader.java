@@ -1,6 +1,6 @@
 package ru.aston.finalproject.service.loader;
 
-import ru.aston.finalproject.appenviroment.AppRequest;
+import ru.aston.finalproject.appEnviroment.AppRequest;
 
 import java.util.stream.Stream;
 

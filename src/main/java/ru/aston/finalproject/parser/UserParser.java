@@ -3,14 +3,14 @@ package ru.aston.finalproject.parser;
 import ru.aston.finalproject.entity.BuildUser;
 import ru.aston.finalproject.entity.User;
 
-import static ru.aston.finalproject.statictools.ConstantFields.DELIMITER;
-import static ru.aston.finalproject.statictools.ConstantFields.ONE;
-import static ru.aston.finalproject.statictools.ConstantFields.TWO;
-import static ru.aston.finalproject.statictools.ConstantFields.ZERO;
-import static ru.aston.finalproject.statictools.ConstantMethods.checkedStringOnEmpty;
-import static ru.aston.finalproject.statictools.ConstantMethods.createdDigitFromFirstInteger;
-import static ru.aston.finalproject.statictools.ConstantMethods.exampleEntity;
-import static ru.aston.finalproject.statictools.ConstantMethods.preparingForParsing;
+import static ru.aston.finalproject.staticTools.ConstantFields.DELIMITER;
+import static ru.aston.finalproject.staticTools.ConstantFields.ONE;
+import static ru.aston.finalproject.staticTools.ConstantFields.TWO;
+import static ru.aston.finalproject.staticTools.ConstantFields.ZERO;
+import static ru.aston.finalproject.staticTools.ConstantMethods.checkedStringOnEmpty;
+import static ru.aston.finalproject.staticTools.ConstantMethods.createdDigitFromFirstInteger;
+import static ru.aston.finalproject.staticTools.ConstantMethods.exampleEntity;
+import static ru.aston.finalproject.staticTools.ConstantMethods.preparingForParsing;
 
 public class UserParser implements Parsing<User> {
 

@@ -1,13 +1,13 @@
 package ru.aston.finalproject.service.loader;
 
 import net.datafaker.Faker;
-import ru.aston.finalproject.appenviroment.AppRequest;
+import ru.aston.finalproject.appEnviroment.AppRequest;
 import ru.aston.finalproject.entity.User;
 
 import java.util.stream.Stream;
 
-import static ru.aston.finalproject.statictools.ConstantFields.MAX_AGE;
-import static ru.aston.finalproject.statictools.ConstantFields.MIN_AGE;
+import static ru.aston.finalproject.staticTools.ConstantFields.MAX_AGE;
+import static ru.aston.finalproject.staticTools.ConstantFields.MIN_AGE;
 
 public class RandomUserDataLoader implements DataLoader<User> {
     private final Faker dataFaker;

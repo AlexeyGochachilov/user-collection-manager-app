@@ -3,9 +3,9 @@ package ru.aston.finalproject.entity;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 
-import static ru.aston.finalproject.statictools.ConstantMethods.checkedAge;
-import static ru.aston.finalproject.statictools.ConstantMethods.checkedEmail;
-import static ru.aston.finalproject.statictools.ConstantMethods.checkedName;
+import static ru.aston.finalproject.staticTools.ConstantMethods.checkedAge;
+import static ru.aston.finalproject.staticTools.ConstantMethods.checkedEmail;
+import static ru.aston.finalproject.staticTools.ConstantMethods.checkedName;
 
 @Getter
 @EqualsAndHashCode
