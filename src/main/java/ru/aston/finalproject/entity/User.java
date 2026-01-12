@@ -4,11 +4,9 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import ru.aston.finalproject.app.AppException;
 
-import static ru.aston.finalproject.util.ConstantFields.ForUserAndUserParser.DIGITS;
-import static ru.aston.finalproject.util.ConstantFields.ForUser.EMAIL_FORM;
-import static ru.aston.finalproject.util.ConstantFields.ForUserAndRandomUserDataLoader.MAX_AGE;
-import static ru.aston.finalproject.util.ConstantFields.ForUserAndRandomUserDataLoader.MIN_AGE;
-import static ru.aston.finalproject.util.ConstantFields.ForUser.NO_DIGITS_REGS;
+import static ru.aston.finalproject.util.ConstantFields.MAX_AGE;
+import static ru.aston.finalproject.util.ConstantFields.MIN_AGE;
+import static ru.aston.finalproject.util.ConstantFields.DIGITS;
 import static ru.aston.finalproject.util.ConstantMethods.checkedStringOnEmpty;
 import static ru.aston.finalproject.util.Message.AGE_SHOULD_BETWEEN_X_X_X;
 import static ru.aston.finalproject.util.Message.X_IS_NOT_A_VALID_X;
@@ -17,6 +15,8 @@ import static ru.aston.finalproject.util.Message.X_IS_NOT_A_VALID_X;
 @EqualsAndHashCode
 public class User implements Comparable<User> {
 
+    private final static String EMAIL_FORM = "^[\\w-\\.]+@[\\w-]+(\\.[\\w-]+)*\\.[a-z]{2,}$";
+    private final static String NO_DIGITS_REGS = "\\d+";
     private final String name;
     private final String email;
     private final int age;
