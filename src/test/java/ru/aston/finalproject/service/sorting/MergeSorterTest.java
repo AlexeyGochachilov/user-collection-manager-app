@@ -1,6 +1,5 @@
 package ru.aston.finalproject.service.sorting;
 
-import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Random;
@@ -11,6 +10,7 @@ import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
+import ru.aston.finalproject.util.CustomArrayList;
 
 @Tag("sorting")
 public class MergeSorterTest {
@@ -24,7 +24,7 @@ public class MergeSorterTest {
     static void init() {
         sorter = new MergeSorter();
 
-        integerList = new ArrayList<>();
+        integerList = new CustomArrayList<>();
         for (int i = 1; i <= 20; i++) {
             if (i % 2 == 0)
                 integerList.add(i);
@@ -32,12 +32,12 @@ public class MergeSorterTest {
                 integerList.add(9);
         }
 
-        integerListOrdered = new ArrayList<>();
+        integerListOrdered = new CustomArrayList<>();
         for (int i = 1; i <= 20; i++) {
             integerListOrdered.add(i);
         }
 
-        integerListRandom = new ArrayList<>();
+        integerListRandom = new CustomArrayList<>();
         Random generator = new Random();
         for (int i = 1; i <= 20; i++) {
             integerListRandom.add(generator.nextInt());
@@ -50,10 +50,10 @@ public class MergeSorterTest {
 
     @ParameterizedTest
     @MethodSource("integerListProvider")
-    void testMergeSorterNaturalOrder(List<Integer> list) {
-        List<Integer> utilsSortList = new ArrayList<>(list);
+    void givenMergeSorter_whenComparableItem_thenCorrectSorting(List<Integer> list) {
+        List<Integer> utilsSortList = new CustomArrayList<>(list);
         utilsSortList.sort(null);
-        List<Integer> mergeSortList = new ArrayList<>(list);
+        List<Integer> mergeSortList = new CustomArrayList<>(list);
         Assertions.assertEquals(
                 utilsSortList,
                 sorter.sort(mergeSortList)
@@ -62,10 +62,10 @@ public class MergeSorterTest {
 
     @ParameterizedTest
     @MethodSource("integerListProvider")
-    void testMergeSorterNaturalComparator(List<Integer> list) {
-        List<Integer> utilsSortList = new ArrayList<>(list);
+    void givenMergeSorter_whenNaturalComparator_thenCorrectSorting(List<Integer> list) {
+        List<Integer> utilsSortList = new CustomArrayList<>(list);
         utilsSortList.sort(null);
-        List<Integer> mergeSortList = new ArrayList<>(list);
+        List<Integer> mergeSortList = new CustomArrayList<>(list);
         Assertions.assertEquals(
                 utilsSortList,
                 sorter.sort(
@@ -77,13 +77,13 @@ public class MergeSorterTest {
 
     @ParameterizedTest
     @MethodSource("integerListProvider")
-    void testMergeSorterInvertedComparator(List<Integer> list) {
+    void givenMergeSorter_whenInverseComparator_thenCorrectSorting(List<Integer> list) {
         Comparator<Integer> invertedComparator = Comparator.comparing(
                 (num) -> -num
         );
-        List<Integer> utilsSortList = new ArrayList<>(list);
+        List<Integer> utilsSortList = new CustomArrayList<>(list);
         utilsSortList.sort(invertedComparator);
-        List<Integer> mergeSortList = new ArrayList<>(list);
+        List<Integer> mergeSortList = new CustomArrayList<>(list);
         Assertions.assertEquals(
                 utilsSortList,
                 sorter.sort(
@@ -94,7 +94,7 @@ public class MergeSorterTest {
     }
 
     @Test
-    void testMergeSorterNullList() {
+    void givenMergeSorter_whenNull_thenReturnNull() {
         Assertions.assertNull(
                 sorter.sort(null)
         );
