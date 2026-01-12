@@ -21,5 +21,5 @@ public class Message {
     public final static String USERS_LOADED = "Users loaded";
     public final static String USERS_SAVED = "Users saved";
 
-    public static final String USERS_SORTED = "User sorting";
+    public static final String USERS_SORTED = "User sorted";
 }

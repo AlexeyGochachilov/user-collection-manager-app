@@ -45,8 +45,8 @@ public class SortingAction extends AppAction {
             case "email":
                 return Comparator.comparing(User::getEmail);
             default:
-                throw new AppException("Неверное поле для сортировки: " + field +
-                        ". Доступные поля: name, age, email");
+                throw new AppException("Invalid sorting field: " + field +
+                        ". Available fields: name, age, email");
         }
     }
 }
