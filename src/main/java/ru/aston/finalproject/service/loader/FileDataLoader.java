@@ -1,9 +1,9 @@
 package ru.aston.finalproject.service.loader;
 
-import ru.aston.finalproject.app.AppException;
-import ru.aston.finalproject.app.AppRequest;
+import ru.aston.finalproject.appEnviroment.AppException;
+import ru.aston.finalproject.appEnviroment.AppRequest;
 import ru.aston.finalproject.parser.Parsing;
-import ru.aston.finalproject.util.Message;
+import ru.aston.finalproject.staticTools.Message;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;

@@ -15,16 +15,13 @@ import java.nio.file.Paths;
 import java.util.List;
 import java.util.Objects;
 
-import static ru.aston.finalproject.util.ConstantMethods.checkedStringOnEmpty;
-import static ru.aston.finalproject.util.Message.FAILED_TO_CREATE_FILE_X;
-import static ru.aston.finalproject.util.Message.FAILED_TO_WRITE_X_ITEMS_TO_FILE_X;
+import static ru.aston.finalproject.staticTools.ConstantMethods.checkedStringOnEmpty;
+import static ru.aston.finalproject.staticTools.Message.FAILED_TO_CREATE_FILE_X;
 
 public class FileWriter<T> {
 
     private static final int FLUSH_THRESHOLD = 1000;
     private static final String LINE_SEPARATOR = System.lineSeparator();
-    private static final String ITEMS_LIST_CANNOT_BE_NULL = "Items list cannot be null";
-    private static final String FILE_PATH = "filePath";
 
     @NonNull
     private final Parsing<T> parser;
@@ -45,14 +42,14 @@ public class FileWriter<T> {
             writeItemsToFile(items, filePath);
         } catch (IOException e) {
             throw new AppException(
-                    String.format(FAILED_TO_WRITE_X_ITEMS_TO_FILE_X, items.size(), filePath)
+                    String.format("Failed to write %d items to file '%s'", items.size(), filePath)
             );
         }
     }
 
     private void validateInput(List<T> items, String filePath) {
-        Objects.requireNonNull(items, ITEMS_LIST_CANNOT_BE_NULL);
-        checkedStringOnEmpty(filePath, FILE_PATH);
+        Objects.requireNonNull(items, "Items list cannot be null");
+        checkedStringOnEmpty(filePath, "filePath");
     }
 
     private void ensureDirectoryExists(String filePath) {

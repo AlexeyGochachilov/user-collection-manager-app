@@ -6,8 +6,8 @@ import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
-import ru.aston.finalproject.app.AppException;
-import ru.aston.finalproject.util.Message;
+import ru.aston.finalproject.appEnviroment.AppException;
+import ru.aston.finalproject.staticTools.Message;
 
 public class MultithreadCounter <T> {
     public int count(

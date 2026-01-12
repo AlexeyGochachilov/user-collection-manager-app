@@ -1,4 +1,4 @@
-package ru.aston.finalproject.util;
+package ru.aston.finalproject.staticTools;
 
 public class Message {
     public final static String EXCEPTION_WRONG_REQUEST_PARAMETER_SYNTAXES_X = "Wrong request parameter syntaxes: %s";

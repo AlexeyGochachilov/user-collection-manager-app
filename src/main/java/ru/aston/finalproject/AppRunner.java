@@ -1,19 +1,22 @@
-package ru.aston.finalproject.app;
+package ru.aston.finalproject;
 
 import org.apache.commons.lang3.StringUtils;
-import ru.aston.finalproject.app.actions.AppAction;
-import ru.aston.finalproject.app.actions.ClearAction;
-import ru.aston.finalproject.app.actions.HelpAction;
-import ru.aston.finalproject.app.actions.LoadAction;
-import ru.aston.finalproject.app.actions.PrintAction;
-import ru.aston.finalproject.app.actions.WriteAction;
+import ru.aston.finalproject.actions.AppAction;
+import ru.aston.finalproject.actions.ClearAction;
+import ru.aston.finalproject.actions.HelpAction;
+import ru.aston.finalproject.actions.LoadAction;
+import ru.aston.finalproject.actions.PrintAction;
+import ru.aston.finalproject.actions.WriteAction;
+import ru.aston.finalproject.appEnviroment.AppData;
+import ru.aston.finalproject.appEnviroment.AppException;
+import ru.aston.finalproject.appEnviroment.AppRequest;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Map;
 
-public class App {
+public class AppRunner {
     public final static String HELP = "help";
     public final static String CLEAR_USERS = "clear";
     public final static String LOAD_USERS = "load";

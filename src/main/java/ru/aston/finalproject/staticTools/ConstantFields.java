@@ -1,4 +1,4 @@
-package ru.aston.finalproject.util;
+package ru.aston.finalproject.staticTools;
 
 public class ConstantFields {
 

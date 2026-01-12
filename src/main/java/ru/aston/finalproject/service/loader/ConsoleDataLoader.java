@@ -11,7 +11,7 @@ import java.io.UncheckedIOException;
 import java.util.NoSuchElementException;
 import java.util.stream.Stream;
 
-import static ru.aston.finalproject.parser.UserParser.USER_FORMAT;
+import static ru.aston.finalproject.staticTools.ConstantFields.USER_FORMAT;
 
 public class ConsoleDataLoader<T> implements DataLoader<T> {
 
