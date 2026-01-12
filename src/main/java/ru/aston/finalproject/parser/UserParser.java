@@ -4,17 +4,15 @@ import ru.aston.finalproject.app.AppException;
 import ru.aston.finalproject.entity.BuildUser;
 import ru.aston.finalproject.entity.User;
 
-import static ru.aston.finalproject.util.ConstantFields.DELIMITER;
-import static ru.aston.finalproject.util.ConstantFields.DIGITS;
-import static ru.aston.finalproject.util.ConstantFields.DIGITS_REGS;
+import static ru.aston.finalproject.util.ConstantFields.ForUserAndUserParser.DIGITS;
+import static ru.aston.finalproject.util.ConstantFields.ForUserParser.DELIMITER;
+import static ru.aston.finalproject.util.ConstantFields.ForUserParser.DIGITS_REGS;
 import static ru.aston.finalproject.util.ConstantFields.SPACE;
 import static ru.aston.finalproject.util.ConstantMethods.checkedStringOnEmpty;
 import static ru.aston.finalproject.util.Message.INVALID_DATA_X;
 import static ru.aston.finalproject.util.Message.USER_CANNOT_BE_NULL;
 
 public class UserParser implements Parsing<User> {
-
-    private final int FIRST_ARRAY_COMPONENT = 0;
 
     @Override
     public String parseToString(User user) {
@@ -39,14 +37,12 @@ public class UserParser implements Parsing<User> {
         checkedStringOnEmpty(data, "data in parser");
 
         BuildUser buildConcreteEntity = new BuildUser();
-        int SECOND_ARRAY_COMPONENT = 1;
-        int THIRD_ARRAY_COMPONENT = 2;
 
         String[] dataArray = preparingForParsing(data, delimiter);
 
-        String name = dataArray[FIRST_ARRAY_COMPONENT].trim();
-        String email = dataArray[SECOND_ARRAY_COMPONENT].trim();
-        int age = createdDigitFromFirstInteger(dataArray[THIRD_ARRAY_COMPONENT].trim());
+        String name = dataArray[0].trim();
+        String email = dataArray[1].trim();
+        int age = createdDigitFromFirstInteger(dataArray[2].trim());
 
         return buildConcreteEntity.capitalizeNameAndNormalizedEmail(name, email, age);
     }
@@ -68,7 +64,7 @@ public class UserParser implements Parsing<User> {
     private int createdDigitFromFirstInteger(String string) {
         String numbersOnly = createdStringOnlyDigits(string);
         checkedStringOnEmpty(numbersOnly, DIGITS);
-        return Integer.parseInt(numbersOnly.trim().split(SPACE)[FIRST_ARRAY_COMPONENT]);
+        return Integer.parseInt(numbersOnly.trim().split(SPACE)[0]);
     }
 
     private String createdStringOnlyDigits(String string) {

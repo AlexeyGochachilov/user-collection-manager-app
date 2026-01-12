@@ -6,8 +6,8 @@ import ru.aston.finalproject.entity.User;
 
 import java.util.stream.Stream;
 
-import static ru.aston.finalproject.util.ConstantFields.MAX_AGE;
-import static ru.aston.finalproject.util.ConstantFields.MIN_AGE;
+import static ru.aston.finalproject.util.ConstantFields.ForUserAndRandomUserDataLoader.MAX_AGE;
+import static ru.aston.finalproject.util.ConstantFields.ForUserAndRandomUserDataLoader.MIN_AGE;
 
 public class RandomUserDataLoader implements DataLoader<User> {
     private final Faker dataFaker;
