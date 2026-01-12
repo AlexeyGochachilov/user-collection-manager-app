@@ -7,15 +7,19 @@ import java.util.function.Function;
 
 public class StrangeSorter {
 
-    public <T> List<T> sort(
-            List<T> list,
-            Function<T, Integer> getIntegerField
+    public <ListItemT> List<ListItemT> sort(
+            List<ListItemT> list,
+            Function<ListItemT, Integer> getIntegerField
     ) {
-        List<T> evens = new ArrayList<>();
+        if (list == null) {
+            return null;
+        }
+
+        List<ListItemT> evens = new ArrayList<>();
         List<Integer> sequentialPositionsOfEvens = new ArrayList<>();
 
         for (int i = 0; i < list.size(); i++) {
-            T reference = list.get(i);
+            ListItemT reference = list.get(i);
             if (
                     getIntegerField.apply(reference) % 2 == 0
             ) {
