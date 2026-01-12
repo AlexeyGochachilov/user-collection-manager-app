@@ -1,7 +1,12 @@
 package ru.aston.finalproject.app;
 
 import org.apache.commons.lang3.StringUtils;
-import ru.aston.finalproject.app.actions.*;
+import ru.aston.finalproject.app.actions.AppAction;
+import ru.aston.finalproject.app.actions.ClearAction;
+import ru.aston.finalproject.app.actions.HelpAction;
+import ru.aston.finalproject.app.actions.LoadAction;
+import ru.aston.finalproject.app.actions.PrintAction;
+import ru.aston.finalproject.app.actions.WriteAction;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -59,7 +64,5 @@ public class App {
                     "Ошибка ввода: %s", exception.getMessage()
             ));
         }
-
-
     }
 }
