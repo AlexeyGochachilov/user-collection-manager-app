@@ -11,6 +11,10 @@ public class StrangeSorter {
             List<ListItemT> list,
             Function<ListItemT, Integer> getIntegerField
     ) {
+        if (list == null) {
+            return null;
+        }
+
         List<ListItemT> evens = new ArrayList<>();
         List<Integer> sequentialPositionsOfEvens = new ArrayList<>();
 

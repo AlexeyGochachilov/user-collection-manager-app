@@ -9,6 +9,10 @@ public class MergeSorter extends Sorter {
             List<ListItemT> list,
             Comparator<ListItemT> comparator
     ) {
+        if (list == null) {
+            return null;
+        }
+
         if (list.size() <= 1) {
             return list;
         }

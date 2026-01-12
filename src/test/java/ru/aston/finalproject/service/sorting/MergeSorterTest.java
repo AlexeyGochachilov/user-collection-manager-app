@@ -93,6 +93,10 @@ public class MergeSorterTest {
         );
     }
 
-    // TODO: Если передать в sort 2-м аргументом null - то будет натуральный порядок
-    // TODO: Если вызвать sort на не Comparable объекте - кинется исключение
+    @Test
+    void testMergeSorterNullList() {
+        Assertions.assertNull(
+                sorter.sort(null)
+        );
+    }
 }
