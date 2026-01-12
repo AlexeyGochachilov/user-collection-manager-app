@@ -9,11 +9,11 @@ import ru.aston.finalproject.entity.User;
 import ru.aston.finalproject.staticTools.Message;
 
 public class PrintAction extends AppAction {
-    private static final Integer EXPECTED_PARAMETERS_AMOUNT = 0;
+    private static final Integer EXPECTED_MAX_PARAMETERS_AMOUNT = 0;
 
     @Override
     public void action(AppData appData, AppRequest request) throws AppException {
-        request.checkParametersAmount(EXPECTED_PARAMETERS_AMOUNT);
+        request.checkParametersAmount(EXPECTED_MAX_PARAMETERS_AMOUNT);
 
         CustomArrayList<User> userList = appData.getUserList();
         if (ObjectUtils.isEmpty(userList)) {

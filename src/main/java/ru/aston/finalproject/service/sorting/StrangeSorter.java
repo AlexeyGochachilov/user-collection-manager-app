@@ -1,40 +1,39 @@
 package ru.aston.finalproject.service.sorting;
 
-import java.util.ArrayList;
+import lombok.AllArgsConstructor;
+import ru.aston.finalproject.collection.CustomArrayList;
+
 import java.util.Comparator;
 import java.util.List;
+import java.util.Objects;
 import java.util.function.Function;
 
+@AllArgsConstructor
 public class StrangeSorter {
+    private MergeSorter mergeSorter;
 
-    public <ListItemT> List<ListItemT> sort(
-            List<ListItemT> list,
-            Function<ListItemT, Integer> getIntegerField
-    ) {
-        if (list == null) {
-            return null;
+    public <ListItemT> List<ListItemT> sort(List<ListItemT> list,
+                                            Function<ListItemT, Integer> getIntegerField) {
+        if (Objects.isNull(list)) {
+            return new CustomArrayList<>();
         }
 
-        List<ListItemT> evens = new ArrayList<>();
-        List<Integer> sequentialPositionsOfEvens = new ArrayList<>();
+        List<ListItemT> evens = new CustomArrayList<>();
+        List<Integer> sequentialPositionsOfEvens = new CustomArrayList<>();
 
         for (int i = 0; i < list.size(); i++) {
             ListItemT reference = list.get(i);
-            if (
-                    getIntegerField.apply(reference) % 2 == 0
-            ) {
+
+            if (getIntegerField.apply(reference) % 2 == 0) {
                 evens.add(reference);
                 sequentialPositionsOfEvens.add(i);
             }
         }
 
-        new MergeSorter().sort(evens, Comparator.comparing(getIntegerField));
+        mergeSorter.sort(evens, Comparator.comparing(getIntegerField));
 
         for (int i = 0; i < sequentialPositionsOfEvens.size(); i++) {
-            list.set(
-                    sequentialPositionsOfEvens.get(i),
-                    evens.get(i)
-            );
+            list.set(sequentialPositionsOfEvens.get(i), evens.get(i));
         }
 
         return list;

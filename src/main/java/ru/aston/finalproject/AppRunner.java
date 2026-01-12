@@ -10,6 +10,7 @@ import ru.aston.finalproject.actions.WriteAction;
 import ru.aston.finalproject.appEnviroment.AppData;
 import ru.aston.finalproject.appEnviroment.AppException;
 import ru.aston.finalproject.appEnviroment.AppRequest;
+import ru.aston.finalproject.staticTools.Message;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -57,15 +58,10 @@ public class AppRunner {
                     continue;
                 }
 
-                System.out.println(String.format(
-                        "Неверный синтаксис команды - \"%s\".",
-                        command
-                ));
+                System.out.println(String.format(Message.EXCEPTION_WRONG_REQUEST_PARAMETER_SYNTAXES_X, command));
             }
         } catch (IOException exception) {
-            System.out.println(String.format(
-                    "Ошибка ввода: %s", exception.getMessage()
-            ));
+            System.out.println(String.format(Message.INPUT_ERROR_X, exception.getMessage()));
         }
     }
 }

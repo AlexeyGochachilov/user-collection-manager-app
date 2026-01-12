@@ -9,12 +9,12 @@ import ru.aston.finalproject.entity.User;
 import ru.aston.finalproject.staticTools.Message;
 
 public class WriteAction extends AppAction {
-    private static final Integer EXPECTED_PARAMETERS_AMOUNT = 1;
+    private static final Integer EXPECTED_MAX_PARAMETERS_AMOUNT = 1;
     private static final String FILE_PATH_PARAMETER = "-file";
 
     @Override
     public void action(AppData appData, AppRequest request) throws AppException {
-        request.checkParametersAmount(EXPECTED_PARAMETERS_AMOUNT);
+        request.checkParametersAmount(EXPECTED_MAX_PARAMETERS_AMOUNT);
         String filePath = request.getStringParameter(FILE_PATH_PARAMETER);
 
         CustomArrayList<User> userList = appData.getUserList();
