@@ -5,19 +5,17 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import ru.aston.finalproject.app.AppData;
-import ru.aston.finalproject.app.AppException;
-import ru.aston.finalproject.app.AppRequest;
+import ru.aston.finalproject.actions.WriteAction;
+import ru.aston.finalproject.appEnviroment.AppData;
+import ru.aston.finalproject.appEnviroment.AppException;
+import ru.aston.finalproject.appEnviroment.AppRequest;
 import ru.aston.finalproject.collection.CustomArrayList;
 import ru.aston.finalproject.entity.User;
 import ru.aston.finalproject.service.writer.FileWriter;
-import ru.aston.finalproject.util.Message;
+import ru.aston.finalproject.staticTools.Message;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;

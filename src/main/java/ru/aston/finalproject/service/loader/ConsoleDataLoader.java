@@ -1,9 +1,9 @@
 package ru.aston.finalproject.service.loader;
 
-import ru.aston.finalproject.app.AppException;
-import ru.aston.finalproject.app.AppRequest;
+import ru.aston.finalproject.appEnviroment.AppException;
+import ru.aston.finalproject.appEnviroment.AppRequest;
 import ru.aston.finalproject.parser.Parsing;
-import ru.aston.finalproject.util.Message;
+import ru.aston.finalproject.staticTools.Message;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -11,7 +11,7 @@ import java.io.UncheckedIOException;
 import java.util.NoSuchElementException;
 import java.util.stream.Stream;
 
-import static ru.aston.finalproject.staticTools.ConstantFields.USER_FORMAT;
+import static ru.aston.finalproject.parser.UserParser.USER_FORMAT;
 
 public class ConsoleDataLoader<T> implements DataLoader<T> {
 
