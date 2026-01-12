@@ -1,9 +1,9 @@
 package ru.aston.finalproject.service.loader;
 
-import ru.aston.finalproject.appEnviroment.AppException;
-import ru.aston.finalproject.appEnviroment.AppRequest;
+import ru.aston.finalproject.app.AppException;
+import ru.aston.finalproject.app.AppRequest;
 import ru.aston.finalproject.parser.Parsing;
-import ru.aston.finalproject.staticTools.Message;
+import ru.aston.finalproject.util.Message;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -14,6 +14,7 @@ import java.util.stream.Stream;
 import static ru.aston.finalproject.staticTools.ConstantFields.USER_FORMAT;
 
 public class ConsoleDataLoader<T> implements DataLoader<T> {
+
     private final Parsing<T> parser;
 
     public ConsoleDataLoader(Parsing<T> parser) {

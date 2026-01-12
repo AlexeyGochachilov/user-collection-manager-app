@@ -67,7 +67,5 @@ public class AppRunner {
                     "Ошибка ввода: %s", exception.getMessage()
             ));
         }
-
-
     }
 }

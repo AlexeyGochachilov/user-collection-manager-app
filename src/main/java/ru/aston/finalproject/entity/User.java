@@ -75,5 +75,33 @@ public class User implements Comparable<User> {
             checkedEmail(email);
             checkedAge(age);
         }
+
+        private void checkedName(String name) {
+            String NAME = "Name";
+            checkedStringOnEmpty(name, NAME);
+            if (!name.equals(cleanStringFromDigit(name))) {
+                throw new AppException(String.format(X_IS_NOT_A_VALID_X, name, NAME));
+            }
+        }
+
+        private void checkedEmail(String email) {
+            String EMAIL = "email";
+            checkedStringOnEmpty(email, EMAIL);
+            if (!email.matches(EMAIL_FORM)) {
+                throw new AppException(String.format(X_IS_NOT_A_VALID_X, email, EMAIL));
+            }
+        }
+
+        private void checkedAge(int age) {
+            if (age < MIN_AGE || age > MAX_AGE) {
+                throw new AppException(String.format(AGE_SHOULD_BETWEEN_X_X_X, MIN_AGE, MAX_AGE, age));
+            }
+        }
+
+        public static String cleanStringFromDigit(String string) {
+            string = string.replaceAll(NO_DIGITS_REGS, "").trim();
+            checkedStringOnEmpty(string, DIGITS);
+            return string;
+        }
     }
 }

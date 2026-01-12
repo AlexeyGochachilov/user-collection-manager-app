@@ -1,23 +1,9 @@
 package ru.aston.finalproject.staticTools;
 
-import java.util.LinkedList;
-import java.util.List;
-
 public class ConstantFields {
 
-    public static final int MIN_AGE = 1;
-    public static final int MAX_AGE = 120;
-    public static final int ZERO = 0;
-    public static final int ONE = 1;
-    public static final int TWO = 2;
-    public static final int LENGTH_PARAMETER = 3;
-
-    public static final String EMAIL_FORM = "^[\\w-\\.]+@[\\w-]+(\\.[\\w-]+)*\\.[a-z]{2,}$";
-
-    public static final String DELIMITER = " : ";
-    public static final String USER_FORMAT =
-            String.format("name%semail%sage", DELIMITER, DELIMITER);
-
-    public static List<Exception> EXCEPTION = new LinkedList<>();
-
+    public final static int MIN_AGE = 1;
+    public final static int MAX_AGE = 120;
+    public final static String DIGITS = "digits";
+    public final static String SPACE = "\\s";
 }

@@ -1,7 +1,7 @@
 package ru.aston.finalproject.service.writer;
 
 import lombok.NonNull;
-import ru.aston.finalproject.appEnviroment.AppException;
+import ru.aston.finalproject.app.AppException;
 import ru.aston.finalproject.parser.Parsing;
 
 import java.io.BufferedWriter;

@@ -1,6 +1,6 @@
-package ru.aston.finalproject.staticTools;
+package ru.aston.finalproject.util;
 
-import ru.aston.finalproject.appEnviroment.AppException;
+import ru.aston.finalproject.app.AppException;
 
 import static ru.aston.finalproject.staticTools.ConstantFields.DELIMITER;
 import static ru.aston.finalproject.staticTools.ConstantFields.EMAIL_FORM;
