@@ -1,15 +1,25 @@
-package ru.aston.finalproject.app;
+package ru.aston.finalproject;
 
 import org.apache.commons.lang3.StringUtils;
-import ru.aston.finalproject.app.actions.*;
+import ru.aston.finalproject.actions.AppAction;
+import ru.aston.finalproject.actions.ClearAction;
+import ru.aston.finalproject.actions.HelpAction;
+import ru.aston.finalproject.actions.LoadAction;
+import ru.aston.finalproject.actions.PrintAction;
+import ru.aston.finalproject.actions.WriteAction;
+import ru.aston.finalproject.appEnviroment.AppData;
+import ru.aston.finalproject.appEnviroment.AppException;
+import ru.aston.finalproject.appEnviroment.AppRequest;
+import ru.aston.finalproject.staticTools.Message;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Map;
 
-public class App {
+public class AppRunner {
     public final static String HELP = "help";
+    public final static String CLEAR_USERS = "clear";
     public final static String LOAD_USERS = "load";
     public final static String PRINT_USERS = "print";
     public final static String WRITE_ALL_USERS = "write";
@@ -17,6 +27,7 @@ public class App {
 
     private static final Map<String, AppAction> actionMap = Map.of(
             HELP, new HelpAction(),
+            CLEAR_USERS, new ClearAction(),
             LOAD_USERS, new LoadAction(),
             PRINT_USERS, new PrintAction(),
             WRITE_ALL_USERS, new WriteAction(),
@@ -49,15 +60,10 @@ public class App {
                     continue;
                 }
 
-                System.out.println(String.format(
-                        "Неверный синтаксис команды - \"%s\".",
-                        command
-                ));
+                System.out.println(String.format(Message.EXCEPTION_WRONG_REQUEST_SYNTAXES_X, command));
             }
         } catch (IOException exception) {
-            System.out.println(String.format(
-                    "Ошибка ввода: %s", exception.getMessage()
-            ));
+            System.out.println(String.format(Message.INPUT_ERROR_X, exception.getMessage()));
         }
     }
 }

@@ -1,19 +1,20 @@
-package ru.aston.finalproject.app.actions;
+package ru.aston.finalproject.actions;
 
-import ru.aston.finalproject.app.AppData;
-import ru.aston.finalproject.app.AppException;
-import ru.aston.finalproject.app.AppRequest;
+import ru.aston.finalproject.appEnviroment.AppData;
+import ru.aston.finalproject.appEnviroment.AppException;
+import ru.aston.finalproject.appEnviroment.AppRequest;
 
 public class HelpAction extends AppAction {
-    private static final Integer EXPECTED_PARAMETERS_AMOUNT = 0;
+    private static final Integer EXPECTED_MAX_PARAMETERS_AMOUNT = 0;
 
     @Override
     public void action(AppData appData, AppRequest request) throws AppException {
-        request.checkParametersAmount(EXPECTED_PARAMETERS_AMOUNT);
+        request.checkParametersAmount(EXPECTED_MAX_PARAMETERS_AMOUNT);
 
         String help = """
                 help \t list available commands and required arguments
                 print \t print current saved list
+                clear \t clear current saved list
                 load \t load user list
                 \t\t -size=<size> -type=file -path=<path-to-file> \t load from file path
                 \t\t -size=<size> -type=console \t\t\t load from console input

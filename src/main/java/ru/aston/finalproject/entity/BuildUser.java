@@ -1,6 +1,7 @@
 package ru.aston.finalproject.entity;
 
-import static net.datafaker.internal.helper.WordUtils.capitalize;
+import static ru.aston.finalproject.staticTools.ConstantFields.SPACE;
+import static ru.aston.finalproject.staticTools.ConstantMethods.checkedStringOnEmpty;
 
 public class BuildUser {
 
@@ -8,5 +9,21 @@ public class BuildUser {
         String normalizedEmail = email.toLowerCase();
         String capitalizedName = capitalize(name);
         return User.builder().setName(capitalizedName).setEmail(normalizedEmail).setAge(age).build();
+    }
+
+    private String capitalize(String name) {
+
+        checkedStringOnEmpty(name, "name");
+
+        if (name.split(SPACE).length > 1) {
+            String[] compoundName = name.split(SPACE);
+            StringBuilder userName = new StringBuilder();
+            for (String s : compoundName) {
+                userName.append(capitalize(s)).append(" ");
+            }
+            return userName.toString().trim();
+        }
+
+        return name.substring(0, 1).toUpperCase() + name.substring(1).toLowerCase();
     }
 }

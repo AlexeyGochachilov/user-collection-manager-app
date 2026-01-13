@@ -2,15 +2,21 @@ package ru.aston.finalproject.entity;
 
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
+import ru.aston.finalproject.appEnviroment.AppException;
 
-import static ru.aston.finalproject.util.ConstantMethods.checkedAge;
-import static ru.aston.finalproject.util.ConstantMethods.checkedEmail;
-import static ru.aston.finalproject.util.ConstantMethods.checkedName;
+import static ru.aston.finalproject.staticTools.ConstantFields.DIGITS;
+import static ru.aston.finalproject.staticTools.ConstantFields.MAX_AGE;
+import static ru.aston.finalproject.staticTools.ConstantFields.MIN_AGE;
+import static ru.aston.finalproject.staticTools.Message.AGE_SHOULD_BETWEEN_X_X_X;
+import static ru.aston.finalproject.staticTools.Message.X_IS_NOT_A_VALID_X;
+import static ru.aston.finalproject.staticTools.ConstantMethods.checkedStringOnEmpty;
 
 @Getter
 @EqualsAndHashCode
 public class User implements Comparable<User> {
 
+    private final static String EMAIL_FORM = "^[\\w-\\.]+@[\\w-]+(\\.[\\w-]+)*\\.[a-z]{2,}$";
+    private final static String NO_DIGITS_REGS = "\\d+";
     private final String name;
     private final String email;
     private final int age;
@@ -74,6 +80,34 @@ public class User implements Comparable<User> {
             checkedName(name);
             checkedEmail(email);
             checkedAge(age);
+        }
+
+        private void checkedName(String name) {
+            String NAME = "Name";
+            checkedStringOnEmpty(name, NAME);
+            if (!name.equals(cleanStringFromDigit(name))) {
+                throw new AppException(String.format(X_IS_NOT_A_VALID_X, name, NAME));
+            }
+        }
+
+        private void checkedEmail(String email) {
+            String EMAIL = "email";
+            checkedStringOnEmpty(email, EMAIL);
+            if (!email.matches(EMAIL_FORM)) {
+                throw new AppException(String.format(X_IS_NOT_A_VALID_X, email, EMAIL));
+            }
+        }
+
+        private void checkedAge(int age) {
+            if (age < MIN_AGE || age > MAX_AGE) {
+                throw new AppException(String.format(AGE_SHOULD_BETWEEN_X_X_X, MIN_AGE, MAX_AGE, age));
+            }
+        }
+
+        public static String cleanStringFromDigit(String string) {
+            string = string.replaceAll(NO_DIGITS_REGS, "").trim();
+            checkedStringOnEmpty(string, DIGITS);
+            return string;
         }
     }
 }
