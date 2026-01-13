@@ -7,6 +7,7 @@ import ru.aston.finalproject.entity.BuildUser;
 import ru.aston.finalproject.entity.User;
 import ru.aston.finalproject.entity.UserDataFaker;
 import ru.aston.finalproject.parser.UserParser;
+import ru.aston.finalproject.service.counters.MultithreadCounter;
 import ru.aston.finalproject.service.loader.ConsoleDataLoader;
 import ru.aston.finalproject.service.loader.FileDataLoader;
 import ru.aston.finalproject.service.loader.RandomUserDataLoader;
@@ -32,6 +33,7 @@ public class AppData {
     private final FileWriter<User> fileWriter = new FileWriter<>(userParser);
     private final Sorter sorter = new MergeSorter();
     private final StrangeSorter strangeSorter = new StrangeSorter(sorter);
+    private final MultithreadCounter<User> entryCounter = new MultithreadCounter<>();
 
     private List<User> userList = new CustomArrayList<>();
 }
