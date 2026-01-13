@@ -5,11 +5,11 @@ import ru.aston.finalproject.appEnviroment.AppException;
 import ru.aston.finalproject.appEnviroment.AppRequest;
 
 public class HelpAction extends AppAction {
-    private static final Integer EXPECTED_PARAMETERS_AMOUNT = 0;
+    private static final Integer EXPECTED_MAX_PARAMETERS_AMOUNT = 0;
 
     @Override
     public void action(AppData appData, AppRequest request) throws AppException {
-        request.checkParametersAmount(EXPECTED_PARAMETERS_AMOUNT);
+        request.checkParametersAmount(EXPECTED_MAX_PARAMETERS_AMOUNT);
 
         String help = """
                 help \t list available commands and required arguments
@@ -21,6 +21,12 @@ public class HelpAction extends AppAction {
                 \t\t -size=<size> -type=random \t\t\t load random user list
                 write \t write current list to file
                 \t\t -file=<file-path> \t\t\t write to file (uses current parser format)
+                sort \t sorting current list to file
+                \t\t -basic \t\t natural order sorting
+                \t\t -strange \t\t sorting only by even age
+                count \t count entries of a given user
+                \t\t -threads=<tread count> \t\t\t thread count for multithread search
+                \t\t\t (set at 1 for sequential search)
                 """;
         System.out.println(help);
     }
