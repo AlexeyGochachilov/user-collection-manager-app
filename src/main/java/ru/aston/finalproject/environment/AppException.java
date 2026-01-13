@@ -1,4 +1,4 @@
-package ru.aston.finalproject.appEnviroment;
+package ru.aston.finalproject.environment;
 
 public class AppException extends RuntimeException {
 

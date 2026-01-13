@@ -8,6 +8,9 @@ public class CustomArrayListCollector {
         return Collector.of(
                 CustomArrayList::new,
                 CustomArrayList::add,
-                (l1, l2) -> { l1.addAll(l2); return l1; });
+                (l1, l2) -> {
+                    l1.addAll(l2);
+                    return l1;
+                });
     }
 }

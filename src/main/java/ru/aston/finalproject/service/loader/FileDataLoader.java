@@ -1,10 +1,11 @@
 package ru.aston.finalproject.service.loader;
 
 import lombok.AllArgsConstructor;
-import ru.aston.finalproject.appEnviroment.AppException;
-import ru.aston.finalproject.appEnviroment.AppRequest;
+import org.apache.commons.lang3.StringUtils;
+import ru.aston.finalproject.environment.AppException;
+import ru.aston.finalproject.environment.AppRequest;
 import ru.aston.finalproject.parser.Parsing;
-import ru.aston.finalproject.staticTools.Message;
+import ru.aston.finalproject.util.Message;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
@@ -23,10 +24,11 @@ public class FileDataLoader<T> implements DataLoader<T> {
 
         try {
             return Files.lines(Paths.get(filePath), StandardCharsets.UTF_8)
+                    .filter(StringUtils::isNotBlank)
                     .map(parser::parse)
                     .limit(size);
         } catch (IOException e) {
-            throw new AppException(Message.EXCEPTION_FILE_NOT_FOUND_X.formatted(filePath));
+            throw new AppException(Message.FILE_NOT_FOUND_X.formatted(filePath));
         }
     }
 }

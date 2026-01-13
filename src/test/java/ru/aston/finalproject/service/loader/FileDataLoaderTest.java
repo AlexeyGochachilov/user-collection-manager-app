@@ -8,9 +8,9 @@ import org.junit.jupiter.api.io.TempDir;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-import ru.aston.finalproject.appEnviroment.AppException;
-import ru.aston.finalproject.appEnviroment.AppRequest;
-import ru.aston.finalproject.entity.User;
+import ru.aston.finalproject.environment.AppException;
+import ru.aston.finalproject.environment.AppRequest;
+import ru.aston.finalproject.entity.user.User;
 import ru.aston.finalproject.parser.UserParser;
 
 import java.io.IOException;
@@ -80,7 +80,7 @@ class FileDataLoaderTest {
     }
 
     @Test
-    void givenFileWithNotValidData_whenCallLoadEntityList_thenTrowAppException() throws IOException {
+    void givenFileWithNotValidData_whenCallLoadEntityList_thenThrowAppException() throws IOException {
         int expected = 10;
         createFile(expected);
         when(appRequest.getStringParameter(any())).thenReturn(testFilePath.toString());

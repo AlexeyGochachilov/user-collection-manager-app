@@ -1,9 +1,9 @@
 package ru.aston.finalproject.service.writer;
 
 import lombok.NonNull;
-import ru.aston.finalproject.appEnviroment.AppException;
+import ru.aston.finalproject.environment.AppException;
 import ru.aston.finalproject.parser.Parsing;
-import ru.aston.finalproject.staticTools.Message;
+import ru.aston.finalproject.util.Message;
 
 import java.io.BufferedWriter;
 import java.io.FileOutputStream;
@@ -16,7 +16,7 @@ import java.nio.file.Paths;
 import java.util.List;
 import java.util.Objects;
 
-import static ru.aston.finalproject.staticTools.ConstantMethods.checkedStringOnEmpty;
+import static ru.aston.finalproject.util.ConstantMethods.checkedStringOnEmpty;
 
 public class FileWriter<T> {
 
@@ -44,7 +44,7 @@ public class FileWriter<T> {
             writeItemsToFile(items, filePath);
         } catch (IOException e) {
             throw new AppException(
-                    String.format(Message.EXCEPTION_FAILED_TO_WRITE_X_ITEMS_TO_FILE_X, items.size(), filePath)
+                    String.format(Message.FAILED_TO_WRITE_X_ITEMS_TO_FILE_X, items.size(), filePath)
             );
         }
     }

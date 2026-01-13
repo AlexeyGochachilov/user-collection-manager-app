@@ -6,11 +6,9 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-import ru.aston.finalproject.appEnviroment.AppException;
-import ru.aston.finalproject.appEnviroment.AppRequest;
-import ru.aston.finalproject.entity.User;
+import ru.aston.finalproject.environment.AppRequest;
+import ru.aston.finalproject.entity.user.User;
 import ru.aston.finalproject.parser.UserParser;
-import ru.aston.finalproject.staticTools.Message;
 
 import java.io.ByteArrayInputStream;
 import java.util.List;
@@ -21,7 +19,6 @@ import java.util.stream.Stream;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
-import static ru.aston.finalproject.parser.UserParser.USER_FORMAT;
 
 @ExtendWith(MockitoExtension.class)
 class ConsoleDataLoaderTest {

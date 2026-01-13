@@ -1,11 +1,11 @@
-package ru.aston.finalproject.appEnviroment;
+package ru.aston.finalproject.environment;
 
 import lombok.Getter;
 import lombok.Setter;
 import ru.aston.finalproject.collection.CustomArrayList;
-import ru.aston.finalproject.entity.BuildUser;
-import ru.aston.finalproject.entity.User;
-import ru.aston.finalproject.entity.UserDataFaker;
+import ru.aston.finalproject.entity.user.BuildUser;
+import ru.aston.finalproject.entity.user.User;
+import ru.aston.finalproject.entity.user.UserDataFaker;
 import ru.aston.finalproject.parser.UserParser;
 import ru.aston.finalproject.service.counters.MultithreadCounter;
 import ru.aston.finalproject.service.loader.ConsoleDataLoader;

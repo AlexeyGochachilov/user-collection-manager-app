@@ -1,22 +1,23 @@
 package ru.aston.finalproject.parser;
 
-import ru.aston.finalproject.appEnviroment.AppException;
-import ru.aston.finalproject.entity.BuildUser;
-import ru.aston.finalproject.entity.User;
+import ru.aston.finalproject.entity.user.BuildUser;
+import ru.aston.finalproject.entity.user.User;
+import ru.aston.finalproject.environment.AppException;
 
-import static ru.aston.finalproject.staticTools.ConstantFields.SPACE;
-import static ru.aston.finalproject.staticTools.ConstantMethods.checkedStringOnEmpty;
-import static ru.aston.finalproject.staticTools.Message.INVALID_DATA_X;
-import static ru.aston.finalproject.staticTools.Message.USER_CANNOT_BE_NULL;
-import static ru.aston.finalproject.staticTools.Message.X_IS_NOT_A_VALID_X;
+import static ru.aston.finalproject.util.ConstantFields.SPACE;
+import static ru.aston.finalproject.util.ConstantMethods.checkedStringOnEmpty;
+import static ru.aston.finalproject.util.Message.DATA_AT_INDEX_X;
+import static ru.aston.finalproject.util.Message.INVALID_DATA_X;
+import static ru.aston.finalproject.util.Message.USER_CANNOT_BE_NULL;
+import static ru.aston.finalproject.util.Message.X_IS_NOT_A_VALID_X;
 
 public class UserParser implements Parsing<User> {
 
-    private final static String NO_DIGITS_REGS = "\\D+";
-    private final static String DELIMITER = " : ";
-    private final static String AGE = "age";
-
-    public final static String USER_FORMAT = String.format("name%semail%sage", DELIMITER, DELIMITER);
+    private static final String NO_DIGITS_REGS = "\\D+";
+    private static final String DELIMITER = " : ";
+    public static final String USER_FORMAT = String.format("name%semail%sage", DELIMITER, DELIMITER);
+    private static final String AGE = "age";
+    private static final int LENGTH_PARAMETER = 3;
 
     @Override
     public String parseToString(User user) {
@@ -51,9 +52,7 @@ public class UserParser implements Parsing<User> {
     }
 
     private String[] preparingForParsing(String data, String delimiter) {
-        String DATA_AT_INDEX_X = "data at index %d";
         String[] dataArray = data.split(delimiter);
-        int LENGTH_PARAMETER = 3;
 
         if (dataArray.length != LENGTH_PARAMETER) {
             throw new AppException(String.format(INVALID_DATA_X, data));

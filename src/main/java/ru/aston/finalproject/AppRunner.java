@@ -7,12 +7,12 @@ import ru.aston.finalproject.actions.CountAction;
 import ru.aston.finalproject.actions.HelpAction;
 import ru.aston.finalproject.actions.LoadAction;
 import ru.aston.finalproject.actions.PrintAction;
-import ru.aston.finalproject.actions.WriteAction;
 import ru.aston.finalproject.actions.SortingAction;
-import ru.aston.finalproject.appEnviroment.AppData;
-import ru.aston.finalproject.appEnviroment.AppException;
-import ru.aston.finalproject.appEnviroment.AppRequest;
-import ru.aston.finalproject.staticTools.Message;
+import ru.aston.finalproject.actions.WriteAction;
+import ru.aston.finalproject.environment.AppData;
+import ru.aston.finalproject.environment.AppException;
+import ru.aston.finalproject.environment.AppRequest;
+import ru.aston.finalproject.util.Message;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -20,13 +20,13 @@ import java.io.InputStreamReader;
 import java.util.Map;
 
 public class AppRunner {
-    public final static String HELP = "help";
-    public final static String CLEAR_USERS = "clear";
-    public final static String LOAD_USERS = "load";
-    public final static String PRINT_USERS = "print";
-    public final static String WRITE_ALL_USERS = "write";
-    public final static String COUNT_ENTRIES = "count";
-    public final static String SORTING_ALL_USER = "sort";
+    public static final String HELP = "help";
+    public static final String CLEAR_USERS = "clear";
+    public static final String LOAD_USERS = "load";
+    public static final String PRINT_USERS = "print";
+    public static final String WRITE_ALL_USERS = "write";
+    public static final String COUNT_ENTRIES = "count";
+    public static final String SORTING_ALL_USER = "sort";
 
     private static final Map<String, AppAction> actionMap = Map.of(
             HELP, new HelpAction(),
@@ -64,7 +64,7 @@ public class AppRunner {
                     continue;
                 }
 
-                System.out.println(String.format(Message.EXCEPTION_WRONG_REQUEST_SYNTAXES_X, command));
+                System.out.println(String.format(Message.WRONG_REQUEST_SYNTAXES_X, command));
             }
         } catch (IOException exception) {
             System.out.println(String.format(Message.INPUT_ERROR_X, exception.getMessage()));

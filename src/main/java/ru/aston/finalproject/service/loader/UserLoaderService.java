@@ -1,11 +1,11 @@
 package ru.aston.finalproject.service.loader;
 
-import ru.aston.finalproject.entity.User;
+import ru.aston.finalproject.entity.user.User;
 
 public class UserLoaderService extends LoaderService<User> {
-    public final static String LOAD_FROM_FILE = "file";
-    public final static String LOAD_FROM_CONSOLE = "console";
-    public final static String LOAD_RANDOM = "random";
+    public static final String LOAD_FROM_FILE = "file";
+    public static final String LOAD_FROM_CONSOLE = "console";
+    public static final String LOAD_RANDOM = "random";
 
     public UserLoaderService(FileDataLoader<User> userFileDataLoader,
                              ConsoleDataLoader<User> userConsoleDataLoader,

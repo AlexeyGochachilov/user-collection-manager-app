@@ -1,12 +1,11 @@
 package ru.aston.finalproject.actions;
 
 import org.apache.commons.lang3.ObjectUtils;
-import ru.aston.finalproject.appEnviroment.AppData;
-import ru.aston.finalproject.appEnviroment.AppException;
-import ru.aston.finalproject.appEnviroment.AppRequest;
-import ru.aston.finalproject.collection.CustomArrayList;
-import ru.aston.finalproject.entity.User;
-import ru.aston.finalproject.staticTools.Message;
+import ru.aston.finalproject.entity.user.User;
+import ru.aston.finalproject.environment.AppData;
+import ru.aston.finalproject.environment.AppException;
+import ru.aston.finalproject.environment.AppRequest;
+import ru.aston.finalproject.util.Message;
 
 import java.util.List;
 
@@ -21,7 +20,7 @@ public class WriteAction extends AppAction {
 
         List<User> userList = appData.getUserList();
         if (ObjectUtils.isEmpty(userList)) {
-            System.out.println(Message.EXCEPTION_LIST_NOT_LOADED);
+            System.out.println(Message.LIST_NOT_LOADED);
         }
 
         appData.getFileWriter().write(userList, filePath);

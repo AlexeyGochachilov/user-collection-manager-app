@@ -1,9 +1,9 @@
-package ru.aston.finalproject.entity;
+package ru.aston.finalproject.entity.user;
 
-import net.datafaker.Faker;
+import com.github.javafaker.Faker;
 
-import static ru.aston.finalproject.staticTools.ConstantFields.MAX_AGE_EXCLUDED;
-import static ru.aston.finalproject.staticTools.ConstantFields.MIN_AGE;
+import static ru.aston.finalproject.util.ConstantFields.MAX_AGE_EXCLUDED;
+import static ru.aston.finalproject.util.ConstantFields.MIN_AGE;
 
 public class UserDataFaker {
     private final Faker dataFaker = new Faker();

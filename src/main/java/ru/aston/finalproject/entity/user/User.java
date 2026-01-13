@@ -1,21 +1,21 @@
-package ru.aston.finalproject.entity;
+package ru.aston.finalproject.entity.user;
 
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
-import ru.aston.finalproject.appEnviroment.AppException;
+import ru.aston.finalproject.environment.AppException;
 
-import static ru.aston.finalproject.staticTools.ConstantFields.MAX_AGE;
-import static ru.aston.finalproject.staticTools.ConstantFields.MIN_AGE;
-import static ru.aston.finalproject.staticTools.Message.AGE_SHOULD_BETWEEN_X_X_X;
-import static ru.aston.finalproject.staticTools.Message.X_IS_NOT_A_VALID_X;
-import static ru.aston.finalproject.staticTools.ConstantMethods.checkedStringOnEmpty;
+import static ru.aston.finalproject.util.ConstantFields.MAX_AGE;
+import static ru.aston.finalproject.util.ConstantFields.MIN_AGE;
+import static ru.aston.finalproject.util.ConstantMethods.checkedStringOnEmpty;
+import static ru.aston.finalproject.util.Message.AGE_SHOULD_BETWEEN_X_X_X;
+import static ru.aston.finalproject.util.Message.X_IS_NOT_A_VALID_X;
 
 @Getter
 @EqualsAndHashCode
 public class User implements Comparable<User> {
 
-    private final static String EMAIL_FORM = "^[\\w-\\.]+@[\\w-]+(\\.[\\w-]+)*\\.[a-z]{2,}$";
-    private final static String DIGITS_REGS = "\\d+";
+    private static final String EMAIL_FORM = "^[\\w-\\.]+@[\\w-]+(\\.[\\w-]+)*\\.[a-z]{2,}$";
+    private static final String DIGITS_REGS = "\\d+";
     private final String name;
     private final String email;
     private final int age;
@@ -24,6 +24,10 @@ public class User implements Comparable<User> {
         this.name = builder.name;
         this.email = builder.email;
         this.age = builder.age;
+    }
+
+    public static Builder builder() {
+        return new Builder();
     }
 
     @Override
@@ -42,12 +46,10 @@ public class User implements Comparable<User> {
         return String.format("User{name: %s, email: %s, age: %d}", this.name, this.email, this.age);
     }
 
-    public static Builder builder() {
-        return new Builder();
-    }
-
     public static class Builder {
 
+        private static final String NAME = "Name";
+        private static final String EMAIL = "email";
         private String name;
         private String email;
         private int age;
@@ -88,8 +90,6 @@ public class User implements Comparable<User> {
             }
         }
 
-        private static final String NAME = "Name";
-
         private String cleanStringFromDigit(String string) {
             string = string.replaceAll(DIGITS_REGS, "").trim();
             try {
@@ -101,7 +101,6 @@ public class User implements Comparable<User> {
         }
 
         private void checkedEmail(String email) {
-            String EMAIL = "email";
             checkedStringOnEmpty(email, EMAIL);
             if (!email.matches(EMAIL_FORM)) {
                 throw new AppException(String.format(X_IS_NOT_A_VALID_X, email, EMAIL));

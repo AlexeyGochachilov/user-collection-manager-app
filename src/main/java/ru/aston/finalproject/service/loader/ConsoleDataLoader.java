@@ -1,11 +1,11 @@
 package ru.aston.finalproject.service.loader;
 
 import lombok.AllArgsConstructor;
-import ru.aston.finalproject.appEnviroment.AppException;
-import ru.aston.finalproject.appEnviroment.AppRequest;
 import ru.aston.finalproject.collection.CustomArrayList;
+import ru.aston.finalproject.environment.AppException;
+import ru.aston.finalproject.environment.AppRequest;
 import ru.aston.finalproject.parser.Parsing;
-import ru.aston.finalproject.staticTools.Message;
+import ru.aston.finalproject.util.Message;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -37,7 +37,7 @@ public class ConsoleDataLoader<T> implements DataLoader<T> {
                     .limit(size);
 
         } catch (UncheckedIOException | NoSuchElementException e) {
-            throw new AppException(Message.EXCEPTION_CONSOLE_INPUT_FAILED);
+            throw new AppException(Message.CONSOLE_INPUT_FAILED);
         }
     }
 

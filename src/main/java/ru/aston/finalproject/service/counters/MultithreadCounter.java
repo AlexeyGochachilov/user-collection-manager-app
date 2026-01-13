@@ -1,8 +1,8 @@
 package ru.aston.finalproject.service.counters;
 
-import ru.aston.finalproject.appEnviroment.AppException;
 import ru.aston.finalproject.collection.CustomArrayList;
-import ru.aston.finalproject.staticTools.Message;
+import ru.aston.finalproject.environment.AppException;
+import ru.aston.finalproject.util.Message;
 
 import java.util.List;
 import java.util.concurrent.ExecutionException;
@@ -19,7 +19,7 @@ public class MultithreadCounter<T> {
         }
 
         if (threadCount < 1) {
-            throw new AppException(Message.EXCEPTION_BAD_THREAD_COUNT);
+            throw new AppException(Message.BAD_THREAD_COUNT);
         }
 
         int step = list.size() / threadCount;
@@ -54,7 +54,7 @@ public class MultithreadCounter<T> {
             }
         } catch (ExecutionException | InterruptedException e) {
             throw new AppException(String.format(
-                    Message.EXCEPTION_THREAD_FAILED, e.getMessage()
+                    Message.THREAD_FAILED, e.getMessage()
             ));
         } finally {
             tasks.shutdown();

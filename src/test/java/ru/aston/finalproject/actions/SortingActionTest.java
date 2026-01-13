@@ -5,10 +5,10 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentCaptor;
-import ru.aston.finalproject.appEnviroment.AppData;
-import ru.aston.finalproject.appEnviroment.AppException;
-import ru.aston.finalproject.appEnviroment.AppRequest;
-import ru.aston.finalproject.entity.User;
+import ru.aston.finalproject.environment.AppData;
+import ru.aston.finalproject.environment.AppException;
+import ru.aston.finalproject.environment.AppRequest;
+import ru.aston.finalproject.entity.user.User;
 import ru.aston.finalproject.service.sorting.Sorter;
 import ru.aston.finalproject.service.sorting.StrangeSorter;
 
@@ -105,10 +105,20 @@ class SortingActionTest {
         @Test
         void shouldThrowWhenUserListIsEmpty() {
             when(appDataMock.getUserList()).thenReturn(null);
+            when(requestMock.containsParameter(any())).thenReturn(true);
 
             AppException exception = assertThrows(AppException.class, () -> action.action(appDataMock, requestMock));
 
             assertTrue(exception.getMessage().toLowerCase().contains("list not loaded"));
+        }
+
+        @Test
+        void shouldThrowWhenCommandParameterIsWrong() {
+            when(requestMock.containsParameter(any())).thenReturn(false);
+
+            AppException exception = assertThrows(AppException.class, () -> action.action(appDataMock, requestMock));
+
+            assertTrue(exception.getMessage().toLowerCase().contains("wrong"));
         }
 
         @Test
