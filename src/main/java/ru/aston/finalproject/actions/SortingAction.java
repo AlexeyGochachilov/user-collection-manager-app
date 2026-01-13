@@ -19,6 +19,10 @@ public class SortingAction extends AppAction {
         request.checkParametersAmount(EXPECTED_PARAMETERS_AMOUNT);
         List<User> userList = appData.getUserList();
 
+        if (!request.containsParameter(COMMAND_PARAMETER_BASIC) && !request.containsParameter(COMMAND_PARAMETER_STRANGE)) {
+            throw new AppException(Message.WRONG_REQUEST_PARAMETER_SYNTAXES);
+        }
+
         if (ObjectUtils.isEmpty(userList)) {
             throw new AppException(Message.LIST_NOT_LOADED);
         }
@@ -27,8 +31,6 @@ public class SortingAction extends AppAction {
             userList = appData.getSorter().sort(userList);
         } else if (request.containsParameter(COMMAND_PARAMETER_STRANGE)) {
             userList = appData.getStrangeSorter().sort(userList, User::getAge);
-        } else {
-            throw new AppException(Message.WRONG_REQUEST_PARAMETER_SYNTAXES);
         }
 
         appData.setUserList(userList);
