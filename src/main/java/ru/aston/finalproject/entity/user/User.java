@@ -6,9 +6,9 @@ import ru.aston.finalproject.environment.AppException;
 
 import static ru.aston.finalproject.util.ConstantFields.MAX_AGE;
 import static ru.aston.finalproject.util.ConstantFields.MIN_AGE;
+import static ru.aston.finalproject.util.ConstantMethods.checkedStringOnEmpty;
 import static ru.aston.finalproject.util.Message.AGE_SHOULD_BETWEEN_X_X_X;
 import static ru.aston.finalproject.util.Message.X_IS_NOT_A_VALID_X;
-import static ru.aston.finalproject.util.ConstantMethods.checkedStringOnEmpty;
 
 @Getter
 @EqualsAndHashCode
@@ -24,6 +24,10 @@ public class User implements Comparable<User> {
         this.name = builder.name;
         this.email = builder.email;
         this.age = builder.age;
+    }
+
+    public static Builder builder() {
+        return new Builder();
     }
 
     @Override
@@ -42,12 +46,10 @@ public class User implements Comparable<User> {
         return String.format("User{name: %s, email: %s, age: %d}", this.name, this.email, this.age);
     }
 
-    public static Builder builder() {
-        return new Builder();
-    }
-
     public static class Builder {
 
+        private static final String NAME = "Name";
+        private static final String EMAIL = "email";
         private String name;
         private String email;
         private int age;
@@ -88,8 +90,6 @@ public class User implements Comparable<User> {
             }
         }
 
-        private static final String NAME = "Name";
-
         private String cleanStringFromDigit(String string) {
             string = string.replaceAll(DIGITS_REGS, "").trim();
             try {
@@ -101,7 +101,6 @@ public class User implements Comparable<User> {
         }
 
         private void checkedEmail(String email) {
-            String EMAIL = "email";
             checkedStringOnEmpty(email, EMAIL);
             if (!email.matches(EMAIL_FORM)) {
                 throw new AppException(String.format(X_IS_NOT_A_VALID_X, email, EMAIL));

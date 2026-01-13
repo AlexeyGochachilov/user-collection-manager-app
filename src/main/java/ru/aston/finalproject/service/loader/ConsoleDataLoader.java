@@ -1,9 +1,9 @@
 package ru.aston.finalproject.service.loader;
 
 import lombok.AllArgsConstructor;
+import ru.aston.finalproject.collection.CustomArrayList;
 import ru.aston.finalproject.environment.AppException;
 import ru.aston.finalproject.environment.AppRequest;
-import ru.aston.finalproject.collection.CustomArrayList;
 import ru.aston.finalproject.parser.Parsing;
 import ru.aston.finalproject.util.Message;
 

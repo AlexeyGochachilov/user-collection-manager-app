@@ -1,7 +1,7 @@
 package ru.aston.finalproject.service.counters;
 
-import ru.aston.finalproject.environment.AppException;
 import ru.aston.finalproject.collection.CustomArrayList;
+import ru.aston.finalproject.environment.AppException;
 import ru.aston.finalproject.util.Message;
 
 import java.util.List;

@@ -2,10 +2,10 @@ package ru.aston.finalproject.service.loader;
 
 import lombok.AllArgsConstructor;
 import lombok.NonNull;
-import ru.aston.finalproject.environment.AppRequest;
 import ru.aston.finalproject.entity.user.BuildUser;
 import ru.aston.finalproject.entity.user.User;
 import ru.aston.finalproject.entity.user.UserDataFaker;
+import ru.aston.finalproject.environment.AppRequest;
 
 import java.util.stream.Stream;
 

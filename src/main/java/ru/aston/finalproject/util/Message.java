@@ -30,6 +30,7 @@ public class Message {
     public static final String ENTER_USERS_EXPECTED_FORMAT_S = "Enter users, expected format - \"%s\"";
     public static final String ENTER_X_TO_INTERRUPT_CONSOLE_INPUT = "Enter '%s' to interrupt console input";
     public static final String CONSOLE_INPUT_INTERRUPTED = "Console input interrupted";
+    public static final String DATA_AT_INDEX_X = "data at index %d";
     public static final String USERS_LOADED = "Users loaded";
     public static final String X_USERS_LOADED = "%d users loaded";
     public static final String USERS_SAVED = "Users saved";

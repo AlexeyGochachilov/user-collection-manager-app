@@ -1,10 +1,10 @@
 package ru.aston.finalproject.actions;
 
 import org.apache.commons.lang3.ObjectUtils;
+import ru.aston.finalproject.entity.user.User;
 import ru.aston.finalproject.environment.AppData;
 import ru.aston.finalproject.environment.AppException;
 import ru.aston.finalproject.environment.AppRequest;
-import ru.aston.finalproject.entity.user.User;
 import ru.aston.finalproject.util.Message;
 
 import java.util.List;

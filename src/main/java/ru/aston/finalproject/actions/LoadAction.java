@@ -1,11 +1,11 @@
 package ru.aston.finalproject.actions;
 
-import ru.aston.finalproject.environment.AppData;
-import ru.aston.finalproject.environment.AppException;
-import ru.aston.finalproject.environment.AppRequest;
 import ru.aston.finalproject.collection.CustomArrayList;
 import ru.aston.finalproject.collection.CustomArrayListCollector;
 import ru.aston.finalproject.entity.user.User;
+import ru.aston.finalproject.environment.AppData;
+import ru.aston.finalproject.environment.AppException;
+import ru.aston.finalproject.environment.AppRequest;
 import ru.aston.finalproject.util.Message;
 
 public class LoadAction extends AppAction {

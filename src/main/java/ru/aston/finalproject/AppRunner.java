@@ -7,8 +7,8 @@ import ru.aston.finalproject.actions.CountAction;
 import ru.aston.finalproject.actions.HelpAction;
 import ru.aston.finalproject.actions.LoadAction;
 import ru.aston.finalproject.actions.PrintAction;
-import ru.aston.finalproject.actions.WriteAction;
 import ru.aston.finalproject.actions.SortingAction;
+import ru.aston.finalproject.actions.WriteAction;
 import ru.aston.finalproject.environment.AppData;
 import ru.aston.finalproject.environment.AppException;
 import ru.aston.finalproject.environment.AppRequest;
@@ -20,13 +20,13 @@ import java.io.InputStreamReader;
 import java.util.Map;
 
 public class AppRunner {
-    public  static final String HELP = "help";
-    public  static final String CLEAR_USERS = "clear";
-    public  static final String LOAD_USERS = "load";
-    public  static final String PRINT_USERS = "print";
-    public  static final String WRITE_ALL_USERS = "write";
-    public  static final String COUNT_ENTRIES = "count";
-    public  static final String SORTING_ALL_USER = "sort";
+    public static final String HELP = "help";
+    public static final String CLEAR_USERS = "clear";
+    public static final String LOAD_USERS = "load";
+    public static final String PRINT_USERS = "print";
+    public static final String WRITE_ALL_USERS = "write";
+    public static final String COUNT_ENTRIES = "count";
+    public static final String SORTING_ALL_USER = "sort";
 
     private static final Map<String, AppAction> actionMap = Map.of(
             HELP, new HelpAction(),
