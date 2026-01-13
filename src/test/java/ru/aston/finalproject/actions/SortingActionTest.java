@@ -25,7 +25,7 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-
+@SuppressWarnings("unchecked")
 class SortingActionTest {
 
     private SortingAction action;
@@ -106,9 +106,7 @@ class SortingActionTest {
         void shouldThrowWhenUserListIsEmpty() {
             when(appDataMock.getUserList()).thenReturn(null);
 
-            AppException exception = assertThrows(AppException.class, () -> {
-                action.action(appDataMock, requestMock);
-            });
+            AppException exception = assertThrows(AppException.class, () -> action.action(appDataMock, requestMock));
 
             assertTrue(exception.getMessage().toLowerCase().contains("list not loaded"));
         }
@@ -119,9 +117,7 @@ class SortingActionTest {
             when(requestMock.containsParameter("-basic")).thenReturn(false);
             when(requestMock.containsParameter("-strange")).thenReturn(false);
 
-            AppException exception = assertThrows(AppException.class, () -> {
-                action.action(appDataMock, requestMock);
-            });
+            AppException exception = assertThrows(AppException.class, () -> action.action(appDataMock, requestMock));
 
             assertTrue(exception.getMessage().toLowerCase().contains("wrong request parameter"));
         }
