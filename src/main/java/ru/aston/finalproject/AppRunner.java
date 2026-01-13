@@ -34,7 +34,7 @@ public class AppRunner {
             LOAD_USERS, new LoadAction(),
             PRINT_USERS, new PrintAction(),
             WRITE_ALL_USERS, new WriteAction(),
-            COUNT_ENTRIES, new CountAction()
+            COUNT_ENTRIES, new CountAction(),
             SORTING_ALL_USER, new SortingAction()
     );
 
