@@ -9,5 +9,6 @@
     <suppress checks="MissingJavadocMethod" files=".*"/>
     <suppress checks="CustomImportOrde" files=".*"/>
     <suppress checks="LineLength" files=".*"/>
+    <suppress checks="AbbreviationAsWordInName" files=".*"/>
 
 </suppressions>

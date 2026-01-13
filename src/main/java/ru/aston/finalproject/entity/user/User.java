@@ -15,8 +15,8 @@ import static ru.aston.finalproject.util.ConstantMethods.checkedStringOnEmpty;
 @EqualsAndHashCode
 public class User implements Comparable<User> {
 
-    private final static String EMAIL_FORM = "^[\\w-]+@[\\w-]+(\\.[\\w-]+)*\\.[a-z]{2,}$";
-    private final static String DIGITS_REGS = "\\d+";
+    private static final String EMAIL_FORM = "^[\\w-]+@[\\w-]+(\\.[\\w-]+)*\\.[a-z]{2,}$";
+    private static final String DIGITS_REGS = "\\d+";
     private final String name;
     private final String email;
     private final int age;

@@ -12,9 +12,9 @@ import static ru.aston.finalproject.util.Message.USER_CANNOT_BE_NULL;
 
 public class UserParser implements Parsing<User> {
 
-    private final static String NO_DIGITS_REGS = "\\D+";
-    private final static String DELIMITER = " : ";
-    public final static String USER_FORMAT = String.format("name%semail%sage", DELIMITER, DELIMITER);
+    private static final String NO_DIGITS_REGS = "\\D+";
+    private static final String DELIMITER = " : ";
+    public static final String USER_FORMAT = String.format("name%semail%sage", DELIMITER, DELIMITER);
 
     @Override
     public String parseToString(User user) {
