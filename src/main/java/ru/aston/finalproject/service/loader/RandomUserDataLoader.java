@@ -1,29 +1,26 @@
 package ru.aston.finalproject.service.loader;
 
-import net.datafaker.Faker;
+import lombok.AllArgsConstructor;
+import lombok.NonNull;
 import ru.aston.finalproject.appEnviroment.AppRequest;
+import ru.aston.finalproject.entity.BuildUser;
 import ru.aston.finalproject.entity.User;
+import ru.aston.finalproject.entity.UserDataFaker;
 
 import java.util.stream.Stream;
 
-import static ru.aston.finalproject.staticTools.ConstantFields.MAX_AGE;
-import static ru.aston.finalproject.staticTools.ConstantFields.MIN_AGE;
-
+@AllArgsConstructor
 public class RandomUserDataLoader implements DataLoader<User> {
-    private final Faker dataFaker;
-
-    public RandomUserDataLoader(Faker dataFaker) {
-        this.dataFaker = dataFaker;
-    }
+    private final UserDataFaker userDataFaker;
+    private final BuildUser buildUser;
 
     @Override
-    public Stream<User> loadEntityList(Integer size, AppRequest request) {
+    public Stream<User> loadEntityList(@NonNull Integer size, AppRequest request) {
 
-        return Stream.generate(User::builder)
-                .map(builder -> builder.setName(dataFaker.name().firstName()))
-                .map(builder -> builder.setEmail(dataFaker.internet().emailAddress()))
-                .map(builder -> builder.setAge(dataFaker.number().numberBetween(MIN_AGE, MAX_AGE + 1)))
-                .map(User.Builder::build)
+        return Stream.generate(() -> buildUser.capitalizeNameAndNormalizedEmail(
+                        userDataFaker.getRandomUserName(),
+                        userDataFaker.getRandomUserEmail(),
+                        userDataFaker.getRandomUserAge()))
                 .limit(size);
     }
 }

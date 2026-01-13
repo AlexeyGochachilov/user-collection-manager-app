@@ -17,6 +17,8 @@ import java.util.List;
 import java.util.Objects;
 
 import static ru.aston.finalproject.staticTools.ConstantMethods.checkedStringOnEmpty;
+import static ru.aston.finalproject.staticTools.Message.FAILED_TO_CREATE_FILE_X;
+import static ru.aston.finalproject.staticTools.Message.EXCEPTION_FAILED_TO_WRITE_X_ITEMS_TO_FILE_X;
 
 public class FileWriter<T> {
 
@@ -44,7 +46,7 @@ public class FileWriter<T> {
             writeItemsToFile(items, filePath);
         } catch (IOException e) {
             throw new AppException(
-                    String.format(Message.FAILED_TO_WRITE_X_ITEMS_TO_FILE_X, items.size(), filePath)
+                    String.format(EXCEPTION_FAILED_TO_WRITE_X_ITEMS_TO_FILE_X, items.size(), filePath)
             );
         }
     }
