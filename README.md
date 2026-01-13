@@ -2,6 +2,15 @@
 консольное приложение для работы с масивом данных класса User(name, email, age)\
 приложение готово к расширению для работы с кастомными классами
 
+## Быстрый старт
+```bash
+git clone https://github.com/nikolenolga/user-collection-manager-app.git
+cd user-collection-manager-app
+
+mvn clean install
+java -jar user-collection-manager-app-1.0-SNAPSHOT.jar
+```
+
 ## Установка
 ```bash
 # Ensure Git is installed
