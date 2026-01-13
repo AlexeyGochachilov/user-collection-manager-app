@@ -12,8 +12,7 @@ import static ru.aston.finalproject.staticTools.Message.USER_CANNOT_BE_NULL;
 
 public class UserParser implements Parsing<User> {
 
-
-    private final static String DIGITS_REGS = "\\D+";
+    private final static String NO_DIGITS_REGS = "\\D+";
     private final static String DELIMITER = " : ";
     public final static String USER_FORMAT = String.format("name%semail%sage", DELIMITER, DELIMITER);
 
@@ -40,7 +39,6 @@ public class UserParser implements Parsing<User> {
         checkedStringOnEmpty(data, "data in parser");
 
         BuildUser buildConcreteEntity = new BuildUser();
-
         String[] dataArray = preparingForParsing(data, delimiter);
 
         String name = dataArray[0].trim();
@@ -65,18 +63,12 @@ public class UserParser implements Parsing<User> {
     }
 
     private int createdDigitFromFirstInteger(String string) {
-        String numbersOnly = createdStringOnlyDigits(string);
-        checkedStringOnEmpty(numbersOnly, DIGITS);
-        return Integer.parseInt(numbersOnly.trim().split(SPACE)[0]);
-    }
-
-    private String createdStringOnlyDigits(String string) {
         checkedStringContainDigitsOnly(string);
-        return string;
+        return Integer.parseInt(string.trim().split(SPACE)[0]);
     }
 
     private void checkedStringContainDigitsOnly(String string) {
-        string = string.replaceAll(DIGITS_REGS, "").trim();
+        string = string.replaceAll(NO_DIGITS_REGS, "").trim();
         checkedStringOnEmpty(string, DIGITS);
     }
 }

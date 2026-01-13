@@ -1,11 +1,10 @@
-package ru.aston.finalproject.app.actions;
+package ru.aston.finalproject.actions;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import ru.aston.finalproject.actions.WriteAction;
 import ru.aston.finalproject.appEnviroment.AppData;
 import ru.aston.finalproject.appEnviroment.AppException;
 import ru.aston.finalproject.appEnviroment.AppRequest;
