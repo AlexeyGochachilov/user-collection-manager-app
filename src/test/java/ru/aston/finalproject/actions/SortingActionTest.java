@@ -16,8 +16,14 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.function.Function;
 
-import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.mockito.Mockito.any;
+import static org.mockito.Mockito.doNothing;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 
 class SortingActionTest {
@@ -51,6 +57,7 @@ class SortingActionTest {
                 User.builder().setName("Bob").setEmail("bob@example.com").setAge(30).build()
         );
     }
+
     @Nested
     @DisplayName("Basic sorting")
     class BasicSorting {
