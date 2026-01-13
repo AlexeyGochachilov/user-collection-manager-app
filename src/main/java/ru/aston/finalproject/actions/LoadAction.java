@@ -24,6 +24,6 @@ public class LoadAction extends AppAction {
                 .collect(CustomArrayListCollector.toCustomArrayList());
         appData.getUserList().addAll(users);
 
-        System.out.println(Message.USERS_LOADED);
+        System.out.println(Message.X_USERS_LOADED.formatted(users.size()));
     }
 }

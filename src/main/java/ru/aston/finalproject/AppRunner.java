@@ -58,7 +58,7 @@ public class AppRunner {
                     continue;
                 }
 
-                System.out.println(String.format(Message.EXCEPTION_WRONG_REQUEST_PARAMETER_SYNTAXES_X, command));
+                System.out.println(String.format(Message.EXCEPTION_WRONG_REQUEST_SYNTAXES_X, command));
             }
         } catch (IOException exception) {
             System.out.println(String.format(Message.INPUT_ERROR_X, exception.getMessage()));

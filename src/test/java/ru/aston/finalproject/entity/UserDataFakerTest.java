@@ -8,18 +8,21 @@ import java.util.stream.Stream;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 class UserDataFakerTest {
-    private static UserDataFaker userDataFaker = new UserDataFaker();
+    private final static UserDataFaker userDataFaker = new UserDataFaker();
 
     static Stream<String> RandomNameSource() {
-        return Stream.generate(() -> userDataFaker.getRandomUserName()).limit(10);
+        return Stream.generate(userDataFaker::getRandomUserName)
+                .limit(10);
     }
 
     static Stream<String> RandomEmailSource() {
-        return Stream.generate(() -> userDataFaker.getRandomUserEmail()).limit(10);
+        return Stream.generate(userDataFaker::getRandomUserEmail)
+                .limit(10);
     }
 
     static Stream<Integer> RandomAgeSource() {
-        return Stream.generate(() -> userDataFaker.getRandomUserAge()).limit(10);
+        return Stream.generate(userDataFaker::getRandomUserAge)
+                .limit(10);
     }
 
     @ParameterizedTest

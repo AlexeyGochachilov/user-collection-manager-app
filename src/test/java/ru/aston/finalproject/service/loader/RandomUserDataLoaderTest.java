@@ -55,7 +55,7 @@ class RandomUserDataLoaderTest {
     @Test
     void givenUserDataFakerReturningAgeNameAndEmail_whenCallLoadEntityListAndCollect_thenVerifyBuildUserCapitalizeNameAndNormalizedEmailMethodCalledWithSameParameters() {
         int size = 1;
-        Integer age = 3;
+        int age = 3;
         String name = "Test";
         String email = "test@gmail.com";
         when(userDataFaker.getRandomUserName()).thenReturn(name);

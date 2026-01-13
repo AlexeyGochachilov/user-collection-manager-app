@@ -12,7 +12,6 @@ import static ru.aston.finalproject.staticTools.Message.USER_CANNOT_BE_NULL;
 
 public class UserParser implements Parsing<User> {
 
-
     private final static String DIGITS_REGS = "\\D+";
     private final static String DELIMITER = " : ";
     public final static String USER_FORMAT = String.format("name%semail%sage", DELIMITER, DELIMITER);
