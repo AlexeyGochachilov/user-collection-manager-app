@@ -15,7 +15,8 @@ import ru.aston.finalproject.service.sorting.MergeSorter;
 import ru.aston.finalproject.service.sorting.Sorter;
 import ru.aston.finalproject.service.sorting.StrangeSorter;
 import ru.aston.finalproject.service.writer.FileWriter;
-import ru.aston.finalproject.util.CustomArrayList;
+
+import java.util.List;
 
 @Setter
 @Getter
