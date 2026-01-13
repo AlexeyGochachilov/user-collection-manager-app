@@ -11,17 +11,9 @@ import java.util.Set;
 
 @Getter
 public class AppRequest {
-    private static final Integer COMMAND_NAME_INDEX = 0;
-    private static final Integer REQUEST_NON_PARAMETER_PARTS_AMOUNT = 1;
-    private static final Integer PARAMETER_PARTS_AMOUNT = 2;
-    private static final Integer PARAMETER_KEY_INDEX = 0;
-    private static final Integer PARAMETER_VALUE_INDEX = 1;
     private static final String PARAMETERS_SPLITERATOR = "=";
     private static final String REQUEST_PARTS_SPLITERATOR = "\s+";
-    private static final Set<String> exitWords = Set.of(
-            "exit",
-            "^Z"
-    );
+    private static final Set<String> exitWords = Set.of("exit", "^Z");
     private final Map<String, String> parameters = new HashMap<>();
     private String commandName;
 
@@ -35,11 +27,10 @@ public class AppRequest {
 
         String[] requestParts = requestLine.trim().split(REQUEST_PARTS_SPLITERATOR);
         AppRequest request = new AppRequest();
-        request.commandName = requestParts[COMMAND_NAME_INDEX];
+        request.commandName = requestParts[0];
 
-        if (requestParts.length > REQUEST_NON_PARAMETER_PARTS_AMOUNT) {
-            String[] parameters = Arrays.copyOfRange(requestParts, REQUEST_NON_PARAMETER_PARTS_AMOUNT,
-                    requestParts.length);
+        if (requestParts.length > 1) {
+            String[] parameters = Arrays.copyOfRange(requestParts, 1, requestParts.length);
             setRequestParameters(parameters, request);
         }
         return request;
@@ -48,13 +39,13 @@ public class AppRequest {
     private static void setRequestParameters(String[] requestParts, AppRequest request) {
         for (String part : requestParts) {
             String[] parameterParts = part.trim().split(PARAMETERS_SPLITERATOR);
-            if (parameterParts.length > PARAMETER_PARTS_AMOUNT) {
+            if (parameterParts.length > 2) {
                 throw new AppException(Message.EXCEPTION_WRONG_REQUEST_PARAMETER_SYNTAXES_X.formatted(part));
             }
 
-            String parameterKey = parameterParts[PARAMETER_KEY_INDEX];
-            String parameterValue = (parameterParts.length == PARAMETER_PARTS_AMOUNT)
-                    ? parameterParts[PARAMETER_VALUE_INDEX]
+            String parameterKey = parameterParts[0];
+            String parameterValue = (parameterParts.length == 2)
+                    ? parameterParts[1]
                     : null;
             request.parameters.put(parameterKey, parameterValue);
         }
@@ -79,6 +70,7 @@ public class AppRequest {
 
     public Integer getIntegerParameter(String parameterKey) {
         String parameterValue = getStringParameter(parameterKey);
+
         try {
             return Integer.parseInt(parameterValue);
         } catch (NumberFormatException e) {
@@ -91,7 +83,7 @@ public class AppRequest {
     }
 
     public void checkParametersAmount(Integer expectedParametersAmount) {
-        if (parameters.size() > expectedParametersAmount){
+        if (parameters.size() > expectedParametersAmount) {
             throw new AppException(Message.EXCEPTION_WRONG_PARAMETERS_AMOUNT);
         }
     }
