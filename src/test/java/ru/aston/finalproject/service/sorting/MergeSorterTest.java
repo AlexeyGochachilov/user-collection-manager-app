@@ -94,9 +94,9 @@ public class MergeSorterTest {
     }
 
     @Test
-    void givenMergeSorter_whenNull_thenReturnNull() {
-        Assertions.assertNull(
-                sorter.sort(null)
+    void givenMergeSorter_whenNull_thenReturnEmptyList() {
+        Assertions.assertTrue(
+                sorter.sort(null).isEmpty()
         );
     }
 }

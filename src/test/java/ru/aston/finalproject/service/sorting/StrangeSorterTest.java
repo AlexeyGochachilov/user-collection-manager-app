@@ -18,7 +18,7 @@ public class StrangeSorterTest {
 
     @BeforeAll
     static void init() {
-        sorter = new StrangeSorter();
+        sorter = new StrangeSorter(new MergeSorter());
         integerList = new CustomArrayList<>(Arrays.asList(
                 10, 9, 8, 7, 6, 5, 4, 3, 2, 1
         ));
@@ -66,12 +66,12 @@ public class StrangeSorterTest {
     }
 
     @Test
-    void givenStrangeSorter_whenNull_thenReturnNull() {
-        Assertions.assertNull(
+    void givenStrangeSorter_whenNull_thenReturnEmptyList() {
+        Assertions.assertTrue(
                 sorter.sort(
                         null,
                         (integer) -> 0
-                )
+                ).isEmpty()
         );
     }
 }
