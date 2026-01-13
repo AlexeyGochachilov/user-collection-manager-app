@@ -3,6 +3,7 @@ package ru.aston.finalproject;
 import org.apache.commons.lang3.StringUtils;
 import ru.aston.finalproject.actions.AppAction;
 import ru.aston.finalproject.actions.ClearAction;
+import ru.aston.finalproject.actions.CountAction;
 import ru.aston.finalproject.actions.HelpAction;
 import ru.aston.finalproject.actions.LoadAction;
 import ru.aston.finalproject.actions.PrintAction;
@@ -24,6 +25,7 @@ public class AppRunner {
     public final static String LOAD_USERS = "load";
     public final static String PRINT_USERS = "print";
     public final static String WRITE_ALL_USERS = "write";
+    public final static String COUNT_ENTRIES = "count";
     public final static String SORTING_ALL_USER = "sort";
 
     private static final Map<String, AppAction> actionMap = Map.of(
@@ -32,6 +34,7 @@ public class AppRunner {
             LOAD_USERS, new LoadAction(),
             PRINT_USERS, new PrintAction(),
             WRITE_ALL_USERS, new WriteAction(),
+            COUNT_ENTRIES, new CountAction()
             SORTING_ALL_USER, new SortingAction()
     );
 
