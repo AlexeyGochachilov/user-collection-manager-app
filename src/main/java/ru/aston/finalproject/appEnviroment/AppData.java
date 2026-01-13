@@ -6,6 +6,7 @@ import net.datafaker.Faker;
 import ru.aston.finalproject.collection.CustomArrayList;
 import ru.aston.finalproject.entity.User;
 import ru.aston.finalproject.parser.UserParser;
+import ru.aston.finalproject.service.counters.MultithreadCounter;
 import ru.aston.finalproject.service.loader.ConsoleDataLoader;
 import ru.aston.finalproject.service.loader.FileDataLoader;
 import ru.aston.finalproject.service.loader.RandomUserDataLoader;
@@ -23,9 +24,7 @@ public class AppData {
     private final UserLoaderService userService = new UserLoaderService(userFileDataLoader,
             userConsoleDataLoader, randomUserDataLoader);
     private final FileWriter<User> fileWriter = new FileWriter<>(userParser);
+    private final MultithreadCounter<User> entryCounter = new MultithreadCounter<>();
 
     private CustomArrayList<User> userList = new CustomArrayList<>();
-
-    // Этот класс хранит все переменные приложения.
-    // Текущее наполнение - для демонстрации. Класс открыт для изменения.
 }

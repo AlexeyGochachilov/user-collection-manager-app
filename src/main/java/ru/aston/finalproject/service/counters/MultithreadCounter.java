@@ -10,6 +10,7 @@ import ru.aston.finalproject.appEnviroment.AppException;
 import ru.aston.finalproject.staticTools.Message;
 
 public class MultithreadCounter <T> {
+
     public int count(
            List<T> list,
            T target,
