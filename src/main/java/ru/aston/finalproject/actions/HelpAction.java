@@ -16,16 +16,17 @@ public class HelpAction extends AppAction {
                 print \t print current saved list
                 clear \t clear current saved list
                 load \t load user list
-                \t\t -size=<size> -type=file -path=<path-to-file> \t load from file path
-                \t\t -size=<size> -type=console \t\t\t load from console input
-                \t\t -size=<size> -type=random \t\t\t load random user list
+                \t\t -size=<size> -type=file \t -path=<path-to-file> \t load from file path
+                \t\t -size=<size> -type=console \t\t\t\t\t\t load from console input
+                \t\t -size=<size> -type=random \t\t\t\t\t\t\t load random user list
                 write \t write current list to file
                 \t\t -file=<file-path> \t\t\t write to file (uses current parser format)
                 sort \t sorting current list to file
-                \t\t -by=<field> \t\t sort by field (name, age, email)
+                \t\t -basic \t\t\t\t\t sort with Comparable
+                \t\t -strange \t\t\t\t\t sort with StrangeSorter
                 count \t count entries of a given user
-                \t\t -threads=<tread count> \t\t\t thread count for multithread search
-                \t\t\t (set at 1 for sequential search)
+                \t\t -threads=<tread count> \t thread count for multithread search
+                \t\t (set at 1 for sequential search)
                 """;
         System.out.println(help);
     }
