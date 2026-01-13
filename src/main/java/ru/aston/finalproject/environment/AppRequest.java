@@ -1,8 +1,8 @@
-package ru.aston.finalproject.appEnviroment;
+package ru.aston.finalproject.environment;
 
 import lombok.Getter;
 import org.apache.commons.lang3.StringUtils;
-import ru.aston.finalproject.staticTools.Message;
+import ru.aston.finalproject.util.Message;
 
 import java.util.Arrays;
 import java.util.HashMap;
@@ -22,7 +22,7 @@ public class AppRequest {
 
     public static AppRequest createRequest(String requestLine) {
         if (StringUtils.isBlank(requestLine)) {
-            throw new AppException(Message.EXCEPTION_EMPTY_REQUEST);
+            throw new AppException(Message.EMPTY_REQUEST);
         }
 
         String[] requestParts = requestLine.trim().split(REQUEST_PARTS_SPLITERATOR);
@@ -40,7 +40,7 @@ public class AppRequest {
         for (String part : requestParts) {
             String[] parameterParts = part.trim().split(PARAMETERS_SPLITERATOR);
             if (parameterParts.length > 2) {
-                throw new AppException(Message.EXCEPTION_WRONG_REQUEST_PARAMETER_SYNTAXES_X.formatted(part));
+                throw new AppException(Message.WRONG_REQUEST_PARAMETER_SYNTAXES_X.formatted(part));
             }
 
             String parameterKey = parameterParts[0];
@@ -53,7 +53,7 @@ public class AppRequest {
 
     public String getParameter(String parameterKey) {
         if (!parameters.containsKey(parameterKey)) {
-            throw new AppException(Message.EXCEPTION_ENTER_PARAMETER_X.formatted(parameterKey));
+            throw new AppException(Message.ENTER_PARAMETER_X.formatted(parameterKey));
         }
 
         return parameters.get(parameterKey);
@@ -62,7 +62,7 @@ public class AppRequest {
     public String getStringParameter(String parameterKey) {
         String parameterValue = getParameter(parameterKey);
         if (StringUtils.isBlank(parameterValue)) {
-            throw new AppException(Message.EXCEPTION_ENTER_PARAMETER_VALUE_X.formatted(parameterKey));
+            throw new AppException(Message.ENTER_PARAMETER_VALUE_X.formatted(parameterKey));
         }
 
         return parameterValue;
@@ -74,7 +74,7 @@ public class AppRequest {
         try {
             return Integer.parseInt(parameterValue);
         } catch (NumberFormatException e) {
-            throw new AppException(Message.EXCEPTION_WRONG_PARAMETER_VALUE_X.formatted(parameterKey, parameterValue));
+            throw new AppException(Message.WRONG_PARAMETER_VALUE_X.formatted(parameterKey, parameterValue));
         }
     }
 
@@ -84,7 +84,7 @@ public class AppRequest {
 
     public void checkParametersAmount(Integer expectedParametersAmount) {
         if (parameters.size() > expectedParametersAmount) {
-            throw new AppException(Message.EXCEPTION_WRONG_PARAMETERS_AMOUNT);
+            throw new AppException(Message.WRONG_PARAMETERS_AMOUNT);
         }
     }
 

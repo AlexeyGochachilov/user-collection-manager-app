@@ -1,21 +1,21 @@
-package ru.aston.finalproject.entity;
+package ru.aston.finalproject.entity.user;
 
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
-import ru.aston.finalproject.appEnviroment.AppException;
+import ru.aston.finalproject.environment.AppException;
 
-import static ru.aston.finalproject.staticTools.ConstantFields.DIGITS;
-import static ru.aston.finalproject.staticTools.ConstantFields.MAX_AGE;
-import static ru.aston.finalproject.staticTools.ConstantFields.MIN_AGE;
-import static ru.aston.finalproject.staticTools.Message.AGE_SHOULD_BETWEEN_X_X_X;
-import static ru.aston.finalproject.staticTools.Message.X_IS_NOT_A_VALID_X;
-import static ru.aston.finalproject.staticTools.ConstantMethods.checkedStringOnEmpty;
+import static ru.aston.finalproject.util.ConstantFields.DIGITS;
+import static ru.aston.finalproject.util.ConstantFields.MAX_AGE;
+import static ru.aston.finalproject.util.ConstantFields.MIN_AGE;
+import static ru.aston.finalproject.util.Message.AGE_SHOULD_BETWEEN_X_X_X;
+import static ru.aston.finalproject.util.Message.X_IS_NOT_A_VALID_X;
+import static ru.aston.finalproject.util.ConstantMethods.checkedStringOnEmpty;
 
 @Getter
 @EqualsAndHashCode
 public class User implements Comparable<User> {
 
-    private final static String EMAIL_FORM = "^[\\w-\\.]+@[\\w-]+(\\.[\\w-]+)*\\.[a-z]{2,}$";
+    private final static String EMAIL_FORM = "^[\\w-]+@[\\w-]+(\\.[\\w-]+)*\\.[a-z]{2,}$";
     private final static String DIGITS_REGS = "\\d+";
     private final String name;
     private final String email;
@@ -83,18 +83,18 @@ public class User implements Comparable<User> {
         }
 
         private void checkedName(String name) {
-            String NAME = "Name";
-            checkedStringOnEmpty(name, NAME);
+            String nameField = "Name";
+            checkedStringOnEmpty(name, nameField);
             if (!name.equals(cleanStringFromDigit(name))) {
-                throw new AppException(String.format(X_IS_NOT_A_VALID_X, name, NAME));
+                throw new AppException(String.format(X_IS_NOT_A_VALID_X, name, nameField));
             }
         }
 
         private void checkedEmail(String email) {
-            String EMAIL = "email";
-            checkedStringOnEmpty(email, EMAIL);
+            String emailField = "email";
+            checkedStringOnEmpty(email, emailField);
             if (!email.matches(EMAIL_FORM)) {
-                throw new AppException(String.format(X_IS_NOT_A_VALID_X, email, EMAIL));
+                throw new AppException(String.format(X_IS_NOT_A_VALID_X, email, emailField));
             }
         }
 

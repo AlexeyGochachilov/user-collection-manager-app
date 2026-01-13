@@ -1,7 +1,7 @@
-package ru.aston.finalproject.entity;
+package ru.aston.finalproject.entity.user;
 
-import static ru.aston.finalproject.staticTools.ConstantFields.SPACE;
-import static ru.aston.finalproject.staticTools.ConstantMethods.checkedStringOnEmpty;
+import static ru.aston.finalproject.util.ConstantFields.SPACE;
+import static ru.aston.finalproject.util.ConstantMethods.checkedStringOnEmpty;
 
 public class BuildUser {
 

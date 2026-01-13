@@ -1,8 +1,8 @@
-package ru.aston.finalproject.staticTools;
+package ru.aston.finalproject.util;
 
-import ru.aston.finalproject.appEnviroment.AppException;
+import ru.aston.finalproject.environment.AppException;
 
-import static ru.aston.finalproject.staticTools.Message.X_CANNOT_BE_EMPTY;
+import static ru.aston.finalproject.util.Message.X_CANNOT_BE_EMPTY;
 
 public class ConstantMethods {
 

@@ -5,13 +5,13 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import ru.aston.finalproject.appEnviroment.AppData;
-import ru.aston.finalproject.appEnviroment.AppException;
-import ru.aston.finalproject.appEnviroment.AppRequest;
+import ru.aston.finalproject.environment.AppData;
+import ru.aston.finalproject.environment.AppException;
+import ru.aston.finalproject.environment.AppRequest;
 import ru.aston.finalproject.collection.CustomArrayList;
-import ru.aston.finalproject.entity.User;
+import ru.aston.finalproject.entity.user.User;
 import ru.aston.finalproject.service.writer.FileWriter;
-import ru.aston.finalproject.staticTools.Message;
+import ru.aston.finalproject.util.Message;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
@@ -72,7 +72,7 @@ public class WriteActionTest {
 
         String output = outputStream.toString().trim();
         assertTrue(output.contains(Message.USERS_SAVED));
-        assertFalse(output.contains(Message.EXCEPTION_LIST_NOT_LOADED));
+        assertFalse(output.contains(Message.LIST_NOT_LOADED));
     }
 
     @Test
@@ -88,7 +88,7 @@ public class WriteActionTest {
         verify(mockFileWriter).write(userList, "output.txt");
 
         String output = outputStream.toString().trim();
-        assertTrue(output.contains(Message.EXCEPTION_LIST_NOT_LOADED));
+        assertTrue(output.contains(Message.LIST_NOT_LOADED));
         assertTrue(output.contains(Message.USERS_SAVED));
     }
 
@@ -105,7 +105,7 @@ public class WriteActionTest {
         verify(mockFileWriter).write(null, "output.txt");
 
         String output = outputStream.toString().trim();
-        assertTrue(output.contains(Message.EXCEPTION_LIST_NOT_LOADED));
+        assertTrue(output.contains(Message.LIST_NOT_LOADED));
         assertTrue(output.contains(Message.USERS_SAVED));
     }
 
@@ -146,7 +146,7 @@ public class WriteActionTest {
 
         String output = outputStream.toString().trim();
         assertFalse(output.contains(Message.USERS_SAVED));
-        assertFalse(output.contains(Message.EXCEPTION_LIST_NOT_LOADED));
+        assertFalse(output.contains(Message.LIST_NOT_LOADED));
     }
 
     @Test
@@ -196,7 +196,7 @@ public class WriteActionTest {
 
         String output = outputStream.toString().trim();
         assertTrue(output.contains(Message.USERS_SAVED));
-        assertFalse(output.contains(Message.EXCEPTION_LIST_NOT_LOADED));
+        assertFalse(output.contains(Message.LIST_NOT_LOADED));
     }
 
     @Test

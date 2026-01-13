@@ -2,7 +2,8 @@ package ru.aston.finalproject.entity;
 
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
-import ru.aston.finalproject.appEnviroment.AppException;
+import ru.aston.finalproject.entity.user.User;
+import ru.aston.finalproject.environment.AppException;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -12,8 +13,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static ru.aston.finalproject.staticTools.ConstantFields.MAX_AGE;
-import static ru.aston.finalproject.staticTools.ConstantFields.MIN_AGE;
+import static ru.aston.finalproject.util.ConstantFields.MAX_AGE;
+import static ru.aston.finalproject.util.ConstantFields.MIN_AGE;
 
 public class UserTest {
 

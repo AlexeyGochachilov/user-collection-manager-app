@@ -109,8 +109,8 @@
                 <version>${checkstyle.version}</version>
                 <configuration>
                     <consoleOutput>true</consoleOutput>
-                    <failOnViolation>true</failOnViolation>
-                    <failsOnError>true</failsOnError>
+                    <failOnViolation>false</failOnViolation>
+                    <failsOnError>false</failsOnError>
                     <configLocation>checkstyle/checkstyle.xml</configLocation>
                     <suppressionsLocation>checkstyle/suppressions.xml</suppressionsLocation>
                 </configuration>

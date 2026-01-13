@@ -1,14 +1,14 @@
 package ru.aston.finalproject.parser;
 
-import ru.aston.finalproject.appEnviroment.AppException;
-import ru.aston.finalproject.entity.BuildUser;
-import ru.aston.finalproject.entity.User;
+import ru.aston.finalproject.environment.AppException;
+import ru.aston.finalproject.entity.user.BuildUser;
+import ru.aston.finalproject.entity.user.User;
 
-import static ru.aston.finalproject.staticTools.ConstantFields.DIGITS;
-import static ru.aston.finalproject.staticTools.ConstantFields.SPACE;
-import static ru.aston.finalproject.staticTools.ConstantMethods.checkedStringOnEmpty;
-import static ru.aston.finalproject.staticTools.Message.INVALID_DATA_X;
-import static ru.aston.finalproject.staticTools.Message.USER_CANNOT_BE_NULL;
+import static ru.aston.finalproject.util.ConstantFields.DIGITS;
+import static ru.aston.finalproject.util.ConstantFields.SPACE;
+import static ru.aston.finalproject.util.ConstantMethods.checkedStringOnEmpty;
+import static ru.aston.finalproject.util.Message.INVALID_DATA_X;
+import static ru.aston.finalproject.util.Message.USER_CANNOT_BE_NULL;
 
 public class UserParser implements Parsing<User> {
 

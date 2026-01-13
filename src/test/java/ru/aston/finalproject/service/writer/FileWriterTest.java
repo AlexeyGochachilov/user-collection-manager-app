@@ -7,7 +7,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.api.io.TempDir;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-import ru.aston.finalproject.appEnviroment.AppException;
+import ru.aston.finalproject.environment.AppException;
 import ru.aston.finalproject.parser.Parsing;
 import ru.aston.finalproject.collection.CustomArrayList;
 

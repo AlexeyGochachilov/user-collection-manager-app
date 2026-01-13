@@ -1,8 +1,8 @@
 package ru.aston.finalproject.actions;
 
-import ru.aston.finalproject.appEnviroment.AppData;
-import ru.aston.finalproject.appEnviroment.AppException;
-import ru.aston.finalproject.appEnviroment.AppRequest;
+import ru.aston.finalproject.environment.AppData;
+import ru.aston.finalproject.environment.AppException;
+import ru.aston.finalproject.environment.AppRequest;
 
 public class HelpAction extends AppAction {
     private static final Integer EXPECTED_MAX_PARAMETERS_AMOUNT = 0;

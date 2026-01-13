@@ -1,5 +1,6 @@
 package ru.aston.finalproject.collection;
 
+import java.io.Serializable;
 import java.util.AbstractList;
 import java.util.Arrays;
 import java.util.Collection;
@@ -9,7 +10,8 @@ import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Objects;
 
-public class CustomArrayList<E> extends AbstractList<E> implements List<E>, Cloneable, java.io.Serializable {
+public class CustomArrayList<E> extends AbstractList<E>
+        implements List<E>, Cloneable, Serializable {
 
     private static final int DEFAULT_CAPACITY = 16;
     private static final double LOAD_FACTOR = 0.75;
@@ -17,9 +19,9 @@ public class CustomArrayList<E> extends AbstractList<E> implements List<E>, Clon
     private static final double HIGH_GROWTH_FACTOR = 2.0;
     private static final double NORMAL_GROWTH_FACTOR = 1.5;
     private static final Object[] EMPTY_ELEMENT_DATA = {};
+    protected transient int modCount = 0;
     private transient Object[] elementData;
     private int size;
-    protected transient int modCount = 0;
 
     public CustomArrayList() {
         this.elementData = new Object[DEFAULT_CAPACITY];
@@ -63,14 +65,16 @@ public class CustomArrayList<E> extends AbstractList<E> implements List<E>, Clon
         } else {
             newCapacity = (int) (oldCapacity * NORMAL_GROWTH_FACTOR);
         }
-        if (newCapacity < minCapacity) {
-            newCapacity = minCapacity;
-        }
+
         if (newCapacity < 0) {
             if (minCapacity < 0) {
                 throw new OutOfMemoryError();
             }
             newCapacity = Integer.MAX_VALUE;
+        }
+
+        if (newCapacity < minCapacity) {
+            newCapacity = minCapacity;
         }
 
         return newCapacity;
@@ -177,14 +181,14 @@ public class CustomArrayList<E> extends AbstractList<E> implements List<E>, Clon
         return true;
     }
 
-    private void copyCollectionElements(Collection<? extends E> c, Object[] destination, int destPos) {
+    private void copyCollectionElements(Collection<? extends E> c, Object[] destination, int destinedPosition) {
         if (c instanceof CustomArrayList) {
             CustomArrayList<?> sourceList = (CustomArrayList<?>) c;
-            System.arraycopy(sourceList.elementData, 0, destination, destPos, sourceList.size);
+            System.arraycopy(sourceList.elementData, 0, destination, destinedPosition, sourceList.size);
         } else {
-            int pos = destPos;
+            int position = destinedPosition;
             for (E element : c) {
-                destination[pos++] = element;
+                destination[position++] = element;
             }
         }
     }
@@ -347,6 +351,42 @@ public class CustomArrayList<E> extends AbstractList<E> implements List<E>, Clon
         }
     }
 
+    @Override
+    public Iterator<E> iterator() {
+        return new Itr();
+    }
+
+    public String getGrowthStrategyInfo() {
+        int capacity = elementData.length;
+        if (capacity < GROWTH_THRESHOLD) {
+            return String.format("Current capacity: %d (fast growth: x%.1f)",
+                    capacity, HIGH_GROWTH_FACTOR);
+        } else {
+            return String.format("Current capacity: %d (normal growth: x%.1f)",
+                    capacity, NORMAL_GROWTH_FACTOR);
+        }
+    }
+
+    @Override
+    public String toString() {
+        if (size == 0) {
+            return "[]";
+        }
+
+        StringBuilder sb = new StringBuilder();
+        sb.append('[');
+
+        for (int i = 0; i < size; i++) {
+            if (i > 0) {
+                sb.append(", ");
+            }
+            sb.append(elementData[i]);
+        }
+
+        sb.append(']');
+        return sb.toString();
+    }
+
     private class Itr implements Iterator<E> {
         int cursor = 0;
         int lastRet = -1;
@@ -398,41 +438,5 @@ public class CustomArrayList<E> extends AbstractList<E> implements List<E>, Clon
                 throw new ConcurrentModificationException();
             }
         }
-    }
-
-    @Override
-    public Iterator<E> iterator() {
-        return new Itr();
-    }
-
-    public String getGrowthStrategyInfo() {
-        int capacity = elementData.length;
-        if (capacity < GROWTH_THRESHOLD) {
-            return String.format("Current capacity: %d (fast growth: x%.1f)",
-                    capacity, HIGH_GROWTH_FACTOR);
-        } else {
-            return String.format("Current capacity: %d (normal growth: x%.1f)",
-                    capacity, NORMAL_GROWTH_FACTOR);
-        }
-    }
-
-    @Override
-    public String toString() {
-        if (size == 0) {
-            return "[]";
-        }
-
-        StringBuilder sb = new StringBuilder();
-        sb.append('[');
-
-        for (int i = 0; i < size; i++) {
-            if (i > 0) {
-                sb.append(", ");
-            }
-            sb.append(elementData[i]);
-        }
-
-        sb.append(']');
-        return sb.toString();
     }
 }

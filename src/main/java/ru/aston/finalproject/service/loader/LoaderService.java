@@ -1,8 +1,8 @@
 package ru.aston.finalproject.service.loader;
 
-import ru.aston.finalproject.appEnviroment.AppException;
-import ru.aston.finalproject.appEnviroment.AppRequest;
-import ru.aston.finalproject.staticTools.Message;
+import ru.aston.finalproject.environment.AppException;
+import ru.aston.finalproject.environment.AppRequest;
+import ru.aston.finalproject.util.Message;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -13,7 +13,7 @@ public class LoaderService<T> {
 
     public Stream<T> loadEntityList(String loaderKey, Integer size, AppRequest request) {
         if (!loaders.containsKey(loaderKey)) {
-            throw new AppException(Message.EXCEPTION_WRONG_LOADER_KEY_X);
+            throw new AppException(Message.WRONG_LOADER_KEY_X);
         }
         return loaders.get(loaderKey).loadEntityList(size, request);
     }

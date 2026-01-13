@@ -1,11 +1,11 @@
 package ru.aston.finalproject.actions;
 
 import org.apache.commons.lang3.ObjectUtils;
-import ru.aston.finalproject.appEnviroment.AppData;
-import ru.aston.finalproject.appEnviroment.AppException;
-import ru.aston.finalproject.appEnviroment.AppRequest;
-import ru.aston.finalproject.entity.User;
-import ru.aston.finalproject.staticTools.Message;
+import ru.aston.finalproject.environment.AppData;
+import ru.aston.finalproject.environment.AppException;
+import ru.aston.finalproject.environment.AppRequest;
+import ru.aston.finalproject.entity.user.User;
+import ru.aston.finalproject.util.Message;
 
 import java.util.List;
 
@@ -20,7 +20,7 @@ public class SortingAction extends AppAction {
         List<User> userList = appData.getUserList();
 
         if (ObjectUtils.isEmpty(userList)) {
-            throw new AppException(Message.EXCEPTION_LIST_NOT_LOADED);
+            throw new AppException(Message.LIST_NOT_LOADED);
         }
 
         if (request.containsParameter(COMMAND_PARAMETER_BASIC)) {
@@ -28,7 +28,7 @@ public class SortingAction extends AppAction {
         } else if (request.containsParameter(COMMAND_PARAMETER_STRANGE)) {
             userList = appData.getStrangeSorter().sort(userList, User::getAge);
         } else {
-            throw new AppException(Message.EXCEPTION_WRONG_REQUEST_PARAMETER_SYNTAXES);
+            throw new AppException(Message.WRONG_REQUEST_PARAMETER_SYNTAXES);
         }
 
         appData.setUserList(userList);
