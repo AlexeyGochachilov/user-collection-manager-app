@@ -10,6 +10,8 @@ cd user-collection-manager-app
 mvn clean install
 java -jar user-collection-manager-app-1.0-SNAPSHOT.jar
 ```
+## Contributing
+
 
 ## Установка
 ```bash
@@ -34,8 +36,5 @@ java --version  # Check the installed version of JDK
 # Visit the official website of OpenJDK or Oracle JDK to install or update it if necessary
 
 # run project jar 
-java -jar user-collection-manager-app-1.0-SNAPSHOT.jar
+java -jar target/user-collection-manager-app-1.0-SNAPSHOT.jar
 ```
-
-## Contributing
-
