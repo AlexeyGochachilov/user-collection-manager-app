@@ -12,6 +12,12 @@ import java.util.concurrent.Future;
 
 public class MultithreadCounter<T> {
     public int count(List<T> list, T target, int threadCount) throws AppException {
+        if (list == null) {
+            throw new AppException(
+                    String.format(Message.ARGUMENT_MAY_NOT_BE_NULL, "List")
+            );
+        }
+
         if (threadCount < 1) {
             throw new AppException(Message.EXCEPTION_BAD_THREAD_COUNT);
         }
