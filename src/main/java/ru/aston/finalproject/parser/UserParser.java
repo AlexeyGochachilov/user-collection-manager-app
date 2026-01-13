@@ -8,7 +8,7 @@ import static ru.aston.finalproject.util.ConstantFields.SPACE;
 import static ru.aston.finalproject.util.ConstantMethods.checkedStringOnEmpty;
 import static ru.aston.finalproject.util.Message.INVALID_DATA_X;
 import static ru.aston.finalproject.util.Message.USER_CANNOT_BE_NULL;
-import static ru.aston.finalproject.staticTools.Message.X_IS_NOT_A_VALID_X;
+import static ru.aston.finalproject.util.Message.X_IS_NOT_A_VALID_X;
 
 public class UserParser implements Parsing<User> {
 

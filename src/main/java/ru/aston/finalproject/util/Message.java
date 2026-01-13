@@ -25,6 +25,7 @@ public class Message {
     public static final String USER_CANNOT_BE_NULL = "User cannot be null";
     public static final String X_CANNOT_BE_EMPTY = "%s cannot be empty";
     public static final String X_IS_NOT_A_VALID_X = "%s is not a valid %s";
+    public static final String ARGUMENT_MAY_NOT_BE_NULL = "%s argument may not be null.";
     public static final String AGE_SHOULD_BETWEEN_X_X_X = "age should be between %d %d: %d";
     public static final String ENTER_USERS_EXPECTED_FORMAT_S = "Enter users, expected format - \"%s\"";
     public static final String ENTER_X_TO_INTERRUPT_CONSOLE_INPUT = "Enter '%s' to interrupt console input";
