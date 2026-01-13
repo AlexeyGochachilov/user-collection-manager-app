@@ -33,7 +33,7 @@ public class MultithreadCounterTest {
 
     @ParameterizedTest
     @ValueSource(ints = {-1, 0})
-    void givenMultithreadCounter_whenBadThreadCount_thenAppException(int threadCount) {
+    void givenNonPositive_whenMultithreadCounter_thenAppException(int threadCount) {
         Assertions.assertThrowsExactly(
                 AppException.class,
                 () -> counter.count(
@@ -45,7 +45,7 @@ public class MultithreadCounterTest {
     }
 
     @Test
-    void givenMultithreadCounter_whenNullList_thenAppException() {
+    void givenNullList_whenMultithreadCounter_thenAppException() {
         Assertions.assertThrowsExactly(
                 AppException.class,
                 () -> counter.count(
@@ -58,7 +58,7 @@ public class MultithreadCounterTest {
 
     @ParameterizedTest
     @ValueSource(ints = {-1, 1, 2})
-    void givenMultithreadCounter_whenDifferentTargets_thenCorrectCounting(int target) {
+    void givenDifferentTargets_whenMultithreadCounter_thenCorrectCounting(int target) {
         Assertions.assertEquals(
                 list.stream().filter((number) -> number == target).count(),
                 counter.count(
@@ -71,7 +71,7 @@ public class MultithreadCounterTest {
 
     @ParameterizedTest
     @ValueSource(ints = {1, 2, 3, 4, 5})
-    void givenMultithreadCounter_whenDifferentThreadCount_thenCorrectCounting(int threadCount) {
+    void givenDifferentThreadCount_whenMultithreadCounter_thenCorrectCounting(int threadCount) {
         Assertions.assertEquals(
                 list.stream().filter((number) -> number == -1).count(),
                 counter.count(
