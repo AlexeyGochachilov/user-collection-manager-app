@@ -19,7 +19,7 @@ import static ru.aston.finalproject.parser.UserParser.USER_FORMAT;
 
 @AllArgsConstructor
 public class ConsoleDataLoader<T> implements DataLoader<T> {
-    private static final String STOP_CONSOLE_LOADER_COMMAND = "q";
+    public static final String STOP_CONSOLE_LOADER_COMMAND = "q";
     private final Parsing<T> parser;
 
     @Override

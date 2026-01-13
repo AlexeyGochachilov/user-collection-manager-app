@@ -1,33 +1,27 @@
 package ru.aston.finalproject.service.loader;
 
-import lombok.SneakyThrows;
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
+import ru.aston.finalproject.appEnviroment.AppException;
 import ru.aston.finalproject.appEnviroment.AppRequest;
 import ru.aston.finalproject.entity.User;
-import ru.aston.finalproject.parser.Parsing;
 import ru.aston.finalproject.parser.UserParser;
+import ru.aston.finalproject.staticTools.Message;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
 import java.io.ByteArrayInputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
 import java.util.List;
+import java.util.StringJoiner;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
+import static ru.aston.finalproject.parser.UserParser.USER_FORMAT;
 
 @ExtendWith(MockitoExtension.class)
 class ConsoleDataLoaderTest {
@@ -38,6 +32,7 @@ class ConsoleDataLoaderTest {
     @InjectMocks
     private ConsoleDataLoader<User> consoleDataLoader;
     private User user;
+    private Stream<String> validConsoleInputStream;
 
     @BeforeEach
     void setUp() {
@@ -46,40 +41,49 @@ class ConsoleDataLoaderTest {
                 .setEmail("test@mail.ru")
                 .setName("Name")
                 .build();
-
+        validConsoleInputStream = Stream.generate(() -> "Name test@mail.ru 3");
     }
 
-    @AfterEach
-    void tearDown() throws IOException {
-
-    }
-
-    @SneakyThrows
     @Test
-    void loadEntityList() {
+    void givenValidConsoleInputAndExpectedSize_whenCallLoadEntityList_thenReturnStreamWithRequiredUserAmount() {
         int expected = 10;
-        when(userParser.parse(any())).thenReturn(user);
-        String consoleInput = Stream.generate(() -> "Name test@mail.ru 3").limit(expected).collect(Collectors.joining("\n"));
+        String consoleInput = validConsoleInputStream.limit(expected).collect(Collectors.joining("\n"));
         System.setIn(new ByteArrayInputStream(consoleInput.getBytes()));
+        when(userParser.parse(any())).thenReturn(user);
 
         List<User> list = consoleDataLoader.loadEntityList(expected, appRequest).toList();
 
         assertEquals(expected, list.size());
     }
 
-//    @Test
-//    void loadEntityList() {
-//    }
-//
-//    @Test
-//    void loadEntityList() {
-//    }
-//
-//    @Test
-//    void loadEntityList() {
-//    }
-//
-//    @Test
-//    void loadEntityList() {
-//    }
+    @Test
+    void givenConsoleInputContainsInvalidDataAndExpectedSize_whenCallLoadEntityList_thenReturnStreamWithRequiredUserAmount() {
+        int expected = 10;
+        StringJoiner stringJoiner = new StringJoiner("\n");
+        stringJoiner.add("wrong input").add("wrong input");
+        validConsoleInputStream.limit(expected).forEach(stringJoiner::add);
+        System.setIn(new ByteArrayInputStream(stringJoiner.toString().getBytes()));
+        when(userParser.parse(any())).thenReturn(user);
+
+        List<User> list = consoleDataLoader.loadEntityList(expected, appRequest).toList();
+
+        assertEquals(expected, list.size());
+    }
+
+    @Test
+    void givenConsoleInputContainsConsoleExitCommandAfterExpectedValidUsersInput_whenCallLoadEntityList_thenReturnStreamWithExpectedUserAmountLessThenSize() {
+        int size = 10;
+        int expected = 5;
+        StringJoiner stringJoiner = new StringJoiner("\n");
+        List<String> validInputList = validConsoleInputStream.limit(expected).toList();
+        validInputList.forEach(stringJoiner::add);
+        stringJoiner.add(ConsoleDataLoader.STOP_CONSOLE_LOADER_COMMAND);
+        validInputList.forEach(stringJoiner::add);
+        System.setIn(new ByteArrayInputStream(stringJoiner.toString().getBytes()));
+        when(userParser.parse(any())).thenReturn(user);
+
+        List<User> list = consoleDataLoader.loadEntityList(size, appRequest).toList();
+
+        assertEquals(expected, list.size());
+    }
 }
