@@ -22,7 +22,8 @@ public class HelpAction extends AppAction {
                 write \t write current list to file
                 \t\t -file=<file-path> \t\t\t write to file (uses current parser format)
                 sort \t sorting current list to file
-                \t\t -by=<field> \t\t sort by field (name, age, email)
+                \t\t -basic \t\t natural order sorting
+                \t\t -strange \t\t sorting only by even age
                 count \t count entries of a given user
                 \t\t -threads=<tread count> \t\t\t thread count for multithread search
                 \t\t\t (set at 1 for sequential search)
