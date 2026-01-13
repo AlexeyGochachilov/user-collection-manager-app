@@ -3,9 +3,6 @@ package ru.aston.finalproject.service.sorting;
 import lombok.AllArgsConstructor;
 import ru.aston.finalproject.collection.CustomArrayList;
 
-import lombok.AllArgsConstructor;
-
-import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Objects;
