@@ -4,17 +4,19 @@ import ru.aston.finalproject.environment.AppException;
 import ru.aston.finalproject.entity.user.BuildUser;
 import ru.aston.finalproject.entity.user.User;
 
-import static ru.aston.finalproject.util.ConstantFields.DIGITS;
 import static ru.aston.finalproject.util.ConstantFields.SPACE;
 import static ru.aston.finalproject.util.ConstantMethods.checkedStringOnEmpty;
 import static ru.aston.finalproject.util.Message.INVALID_DATA_X;
 import static ru.aston.finalproject.util.Message.USER_CANNOT_BE_NULL;
+import static ru.aston.finalproject.staticTools.Message.X_IS_NOT_A_VALID_X;
 
 public class UserParser implements Parsing<User> {
 
-    private static final String NO_DIGITS_REGS = "\\D+";
-    private static final String DELIMITER = " : ";
-    public static final String USER_FORMAT = String.format("name%semail%sage", DELIMITER, DELIMITER);
+    private final static String NO_DIGITS_REGS = "\\D+";
+    private final static String DELIMITER = " : ";
+    private final static String AGE = "age";
+
+    public final static String USER_FORMAT = String.format("name%semail%sage", DELIMITER, DELIMITER);
 
     @Override
     public String parseToString(User user) {
@@ -64,11 +66,18 @@ public class UserParser implements Parsing<User> {
 
     private int createdDigitFromFirstInteger(String string) {
         checkedStringContainDigitsOnly(string);
-        return Integer.parseInt(string.trim().split(SPACE)[0]);
+        try {
+            return Integer.parseInt(string.trim().split(SPACE)[0]);
+        } catch (NumberFormatException e) {
+            throw new AppException(String.format(INVALID_DATA_X, string));
+        }
     }
 
     private void checkedStringContainDigitsOnly(String string) {
-        string = string.replaceAll(NO_DIGITS_REGS, "").trim();
-        checkedStringOnEmpty(string, DIGITS);
+        checkedStringOnEmpty(string, AGE);
+        String onlyDigits = string.replaceAll(NO_DIGITS_REGS, "").trim();
+        if (onlyDigits.trim().isEmpty()) {
+            throw new AppException(String.format(X_IS_NOT_A_VALID_X, string, AGE));
+        }
     }
 }
