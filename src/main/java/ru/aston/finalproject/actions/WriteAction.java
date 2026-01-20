@@ -27,4 +27,3 @@ public class WriteAction extends AppAction {
         System.out.println(Message.USERS_SAVED);
     }
 }
-

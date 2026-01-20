@@ -21,6 +21,7 @@ public class Message {
     public static final String CONSOLE_INPUT_FAILED = "Console input failed";
     public static final String INPUT_ERROR_X = "input error: %s";
     public static final String INVALID_DATA_X = "Invalid data %s";
+    public static final String INVALID_DATA = "Invalid data";
 
     public static final String USER_CANNOT_BE_NULL = "User cannot be null";
     public static final String X_CANNOT_BE_EMPTY = "%s cannot be empty";
@@ -33,7 +34,9 @@ public class Message {
     public static final String DATA_AT_INDEX_X = "data at index %d";
     public static final String USERS_LOADED = "Users loaded";
     public static final String X_USERS_LOADED = "%d users loaded";
+    public static final String X_STOCKS_LOADED = "%d stocks loaded";
     public static final String USERS_SAVED = "Users saved";
+    public static final String STOCKS_SAVED = "Stocks saved";
     public static final String USERS_CLEARED = "Users cleared";
     public static final String USERS_SORTED = "User sorted";
 }
