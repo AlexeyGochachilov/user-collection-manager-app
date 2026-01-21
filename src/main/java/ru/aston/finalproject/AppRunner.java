@@ -6,7 +6,9 @@ import ru.aston.finalproject.actions.ClearAction;
 import ru.aston.finalproject.actions.CountAction;
 import ru.aston.finalproject.actions.HelpAction;
 import ru.aston.finalproject.actions.LoadAction;
+import ru.aston.finalproject.actions.LoadStockAction;
 import ru.aston.finalproject.actions.PrintAction;
+import ru.aston.finalproject.actions.ShowAction;
 import ru.aston.finalproject.actions.SortingAction;
 import ru.aston.finalproject.actions.WriteAction;
 import ru.aston.finalproject.environment.AppData;
@@ -22,8 +24,10 @@ import java.util.Map;
 public class AppRunner {
     public static final String HELP = "help";
     public static final String CLEAR_USERS = "clear";
-    public static final String LOAD_USERS = "load";
+    public static final String LOAD_USERS = "load_user";
+    public static final String LOAD_STOCKS = "load_stock";
     public static final String PRINT_USERS = "print";
+    public static final String SHOW_STOCK = "show";
     public static final String WRITE_ALL_USERS = "write";
     public static final String COUNT_ENTRIES = "count";
     public static final String SORTING_ALL_USER = "sort";
@@ -32,7 +36,9 @@ public class AppRunner {
             HELP, new HelpAction(),
             CLEAR_USERS, new ClearAction(),
             LOAD_USERS, new LoadAction(),
+            LOAD_STOCKS, new LoadStockAction(),
             PRINT_USERS, new PrintAction(),
+            SHOW_STOCK, new ShowAction(),
             WRITE_ALL_USERS, new WriteAction(),
             COUNT_ENTRIES, new CountAction(),
             SORTING_ALL_USER, new SortingAction()

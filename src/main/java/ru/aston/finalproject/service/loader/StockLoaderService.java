@@ -6,7 +6,7 @@ public class StockLoaderService extends LoaderService<Stock> {
     public static final String LOAD_FROM_FILE = "file";
     public static final String LOAD_FROM_CONSOLE = "console";
 
-    public StockLoaderService(FileDataLoader<Stock> stockFileDataLoader,
+    public StockLoaderService(ReadFromFileDataLoader<Stock> stockFileDataLoader,
                               ConsoleDataLoader<Stock> stockConsoleDataLoader) {
         addLoader(LOAD_FROM_FILE, stockFileDataLoader);
         addLoader(LOAD_FROM_CONSOLE, stockConsoleDataLoader);

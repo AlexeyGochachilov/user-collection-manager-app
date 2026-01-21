@@ -35,7 +35,7 @@ public class StockValidator implements Validate<Stock> {
             throw new AppException(INVALID_DATA);
         }
         if (nowValue.compareTo(maxValue) > 0) {
-            throw new AppException("nowValue can't be greater than maxValue");
+            throw new AppException("nowValue: " + value + " can't be greater than maxValue");
         }
         if (nowValue.compareTo(minValue) < 0) {
             throw new AppException("nowValue can't be less than minValue");
