@@ -28,26 +28,26 @@ public class AppRunner {
     private static BufferedReader reader = null;
 
     public static final String HELP = "help";
-    public static final String CLEAR_USERS = "clear";
+    public static final String CLEAR_LIST_OF_ENTITY = "clear";
     public static final String LOAD = "load";
-    public static final String PRINT_USERS = "print";
-    public static final String SHOW_STOCK = "show";
-    public static final String WRITE_ALL_USERS = "write";
-    public static final String COUNT_ENTRIES = "count";
-    public static final String SORTING_ALL_USER = "sort";
+    public static final String PRINT_ENTITY = "print";
+    public static final String SHOW_ENTITY = "show";
+    public static final String WRITE_ALL_ENTITIES = "write";
+    public static final String COUNT_ENTRIES_ENTITY = "count";
+    public static final String SORTING_ENTITY = "sort";
     public static final String FILTER_STOCK = "filter";
     public static final String EXIT = "exit";
 
 
     private static final Map<String, AppAction> actionMap = Map.of(
             HELP, new HelpAction(),
-            CLEAR_USERS, new ClearAction(),
+            CLEAR_LIST_OF_ENTITY, new ClearAction(),
             LOAD, new LoadAction(),
-            PRINT_USERS, new PrintAction(),
-            SHOW_STOCK, new ShowAction(),
-            WRITE_ALL_USERS, new WriteAction(),
-            COUNT_ENTRIES, new UsersCountAction(),
-            SORTING_ALL_USER, new UserSortingAction(),
+            PRINT_ENTITY, new PrintAction(),
+            SHOW_ENTITY, new ShowAction(),
+            WRITE_ALL_ENTITIES, new WriteAction(),
+            COUNT_ENTRIES_ENTITY, new UsersCountAction(),
+            SORTING_ENTITY, new UserSortingAction(),
             FILTER_STOCK, new RemovePartsOfStockAction()
     );
 
