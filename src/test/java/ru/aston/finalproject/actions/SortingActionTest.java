@@ -64,7 +64,7 @@ class SortingActionTest {
 
         @Test
         void shouldSortByDefaultWhenParameterIsBasic() throws AppException {
-            when(appDataMock.getUserList()).thenReturn(unsortedUsers);
+            when(appDataMock.getEntityList()).thenReturn(unsortedUsers);
             when(requestMock.containsParameter("-basic")).thenReturn(true);
             when(requestMock.containsParameter("-strange")).thenReturn(false);
 
@@ -74,7 +74,7 @@ class SortingActionTest {
 
             action.action(appDataMock, requestMock);
 
-            verify(appDataMock).setUserList(sortedByBasic);
+            verify(appDataMock).setEntityList(sortedByBasic);
         }
     }
 
@@ -84,7 +84,7 @@ class SortingActionTest {
 
         @Test
         void shouldSortByAgeWhenParameterIsStrange() throws AppException {
-            when(appDataMock.getUserList()).thenReturn(unsortedUsers);
+            when(appDataMock.getEntityList()).thenReturn(unsortedUsers);
             when(requestMock.containsParameter("-basic")).thenReturn(false);
             when(requestMock.containsParameter("-strange")).thenReturn(true);
 
@@ -94,7 +94,7 @@ class SortingActionTest {
 
             action.action(appDataMock, requestMock);
 
-            verify(appDataMock).setUserList(sortedByStrange);
+            verify(appDataMock).setEntityList(sortedByStrange);
         }
     }
 
@@ -104,7 +104,7 @@ class SortingActionTest {
 
         @Test
         void shouldThrowWhenUserListIsEmpty() {
-            when(appDataMock.getUserList()).thenReturn(null);
+            when(appDataMock.getEntityList()).thenReturn(null);
             when(requestMock.containsParameter(any())).thenReturn(true);
 
             AppException exception = assertThrows(AppException.class, () -> action.action(appDataMock, requestMock));
@@ -123,7 +123,7 @@ class SortingActionTest {
 
         @Test
         void shouldThrowWhenNoValidParameterProvided() {
-            when(appDataMock.getUserList()).thenReturn(unsortedUsers);
+            when(appDataMock.getEntityList()).thenReturn(unsortedUsers);
             when(requestMock.containsParameter("-basic")).thenReturn(false);
             when(requestMock.containsParameter("-strange")).thenReturn(false);
 
@@ -136,7 +136,7 @@ class SortingActionTest {
         void shouldCheckParametersAmount() throws AppException {
             doNothing().when(requestMock).checkParametersAmount(1);
 
-            when(appDataMock.getUserList()).thenReturn(unsortedUsers);
+            when(appDataMock.getEntityList()).thenReturn(unsortedUsers);
             when(requestMock.containsParameter("-basic")).thenReturn(true);
             when(requestMock.containsParameter("-strange")).thenReturn(false);
 
@@ -156,7 +156,7 @@ class SortingActionTest {
 
         @Test
         void shouldPassCorrectListToBasicSorter() throws AppException {
-            when(appDataMock.getUserList()).thenReturn(unsortedUsers);
+            when(appDataMock.getEntityList()).thenReturn(unsortedUsers);
             when(requestMock.containsParameter("-basic")).thenReturn(true);
             when(requestMock.containsParameter("-strange")).thenReturn(false);
 
@@ -173,7 +173,7 @@ class SortingActionTest {
 
         @Test
         void shouldPassCorrectListAndKeyExtractorToStrangeSorter() throws AppException {
-            when(appDataMock.getUserList()).thenReturn(unsortedUsers);
+            when(appDataMock.getEntityList()).thenReturn(unsortedUsers);
             when(requestMock.containsParameter("-basic")).thenReturn(false);
             when(requestMock.containsParameter("-strange")).thenReturn(true);
 

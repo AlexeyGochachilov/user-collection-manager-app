@@ -38,4 +38,5 @@ public class Message {
     public static final String STOCKS_SAVED = "Stocks saved";
     public static final String ENTITIES_CLEARED = "Entities cleared";
     public static final String ENTITIES_SORTED = "Entities sorted";
+    public static final String ENTITIES_FILTERED = "filter is completed";
 }

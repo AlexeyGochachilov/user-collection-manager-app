@@ -7,7 +7,7 @@ import ru.aston.finalproject.service.loader.FileDataLoader;
 import ru.aston.finalproject.service.loader.LoaderService;
 import ru.aston.finalproject.service.loader.UserLoaderService;
 
-public class UserAppData extends AppData<User>{
+public class UserAppData extends AppData<User> {
 
     private static final UserParser userParser = new UserParser();
     private static final FileDataLoader<User> fileDataLoader = new FileDataLoader<>(userParser);

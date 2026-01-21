@@ -18,8 +18,8 @@ public class Stock implements Comparable<Stock> {
     private final BigDecimal nowValue;
     private final BigDecimal maxValue;
     private final BigDecimal minValue;
-    private final BigDecimal PE;
-    private final BigDecimal EPS;
+    private final BigDecimal pe;
+    private final BigDecimal eps;
     private final BigDecimal epsFrom5Years;
     private final BigDecimal nowValueInPercent;
     private final BigDecimal grahamPrice;
@@ -31,8 +31,8 @@ public class Stock implements Comparable<Stock> {
         this.nowValue = builder.nowValue;
         this.maxValue = builder.maxValue;
         this.minValue = builder.minValue;
-        this.PE = builder.PE;
-        this.EPS = builder.EPS;
+        this.pe = builder.pe;
+        this.eps = builder.eps;
         this.epsFrom5Years = builder.epsFrom5Years;
         this.nowValueInPercent = nowPercent(this);
         this.grahamPrice = setGrahamPrice(this);
@@ -47,7 +47,7 @@ public class Stock implements Comparable<Stock> {
     @Override
     public String toString() {
         return name + "\n"
-                + "PE" + PE + "\n"
+                + "PE" + pe + "\n"
                 + "52 w High = " + maxValue + "\n"
                 + "--> Nov   = " + nowValue + " (" + nowValueInPercent + "%)" + "\n"
                 + "grahamPrice = " + grahamPrice + "\n"
@@ -66,8 +66,8 @@ public class Stock implements Comparable<Stock> {
         private BigDecimal nowValue;
         private BigDecimal maxValue;
         private BigDecimal minValue;
-        private BigDecimal PE;
-        private BigDecimal EPS;
+        private BigDecimal pe;
+        private BigDecimal eps;
         private BigDecimal epsFrom5Years;
         private boolean dividends;
         private boolean buyInThisPeriod;
@@ -95,13 +95,13 @@ public class Stock implements Comparable<Stock> {
             return this;
         }
 
-        public Builder setPE(String PE) {
-            this.PE = new BigDecimal(PE);
+        public Builder setPe(String pe) {
+            this.pe = new BigDecimal(pe);
             return this;
         }
 
-        public Builder setEPS(String EPS) {
-            this.EPS = new BigDecimal(EPS);
+        public Builder setEps(String eps) {
+            this.eps = new BigDecimal(eps);
             return this;
         }
 

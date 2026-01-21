@@ -15,8 +15,8 @@ public class CalculateFieldsStockTest {
                 .setNowValue("75")
                 .setMaxValue("100")
                 .setMinValue("50")
-                .setEPS("12")
-                .setPE("12")
+                .setEps("12")
+                .setPe("12")
                 .setEpsFrom5Years("138.24")
                 .build();
 
@@ -34,8 +34,8 @@ public class CalculateFieldsStockTest {
                 .setNowValue("3598")
                 .setMaxValue("4745")
                 .setMinValue("2911")
-                .setEPS("254.5")
-                .setPE("14.03")
+                .setEps("254.5")
+                .setPe("14.03")
                 .setEpsFrom5Years("199.7")
                 .build();
 

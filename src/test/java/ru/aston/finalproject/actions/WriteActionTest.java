@@ -60,7 +60,7 @@ public class WriteActionTest {
         userList.add(User.builder().setName("Ivan").setEmail("ivan@mail.ru").setAge(25).build());
         userList.add(User.builder().setName("Anna").setEmail("anna@mail.ru").setAge(30).build());
 
-        when(mockAppData.getUserList()).thenReturn(userList);
+        when(mockAppData.getEntityList()).thenReturn(userList);
         when(mockAppData.getFileWriter()).thenReturn(mockFileWriter);
         when(mockAppRequest.getStringParameter("-file")).thenReturn("output.txt");
 
@@ -77,7 +77,7 @@ public class WriteActionTest {
 
     @Test
     void givenValidParametersAndEmptyUserList_whenAction_thenPrintWarningMessageAndStillWriteToFile() throws AppException {
-        when(mockAppData.getUserList()).thenReturn(userList);
+        when(mockAppData.getEntityList()).thenReturn(userList);
         when(mockAppData.getFileWriter()).thenReturn(mockFileWriter);
         when(mockAppRequest.getStringParameter("-file")).thenReturn("output.txt");
 
@@ -94,7 +94,7 @@ public class WriteActionTest {
 
     @Test
     void givenValidParametersAndNullUserList_whenAction_thenPrintWarningMessageAndStillWriteToFile() throws AppException {
-        when(mockAppData.getUserList()).thenReturn(null);
+        when(mockAppData.getEntityList()).thenReturn(null);
         when(mockAppData.getFileWriter()).thenReturn(mockFileWriter);
         when(mockAppRequest.getStringParameter("-file")).thenReturn("output.txt");
 
@@ -120,7 +120,7 @@ public class WriteActionTest {
         assertEquals("Invalid parameters amount", exception.getMessage());
         verify(mockAppRequest).checkParametersAmount(1);
         verify(mockAppRequest, never()).getStringParameter(anyString());
-        verify(mockAppData, never()).getUserList();
+        verify(mockAppData, never()).getEntityList();
         verify(mockAppData, never()).getFileWriter();
         verify(mockFileWriter, never()).write(any(), anyString());
     }
@@ -129,7 +129,7 @@ public class WriteActionTest {
     void givenValidParametersAndFileWriterThrowsException_whenAction_thenExceptionPropagated() throws AppException {
         userList.add(User.builder().setName("Ivan").setEmail("ivan@mail.ru").setAge(25).build());
 
-        when(mockAppData.getUserList()).thenReturn(userList);
+        when(mockAppData.getEntityList()).thenReturn(userList);
         when(mockAppData.getFileWriter()).thenReturn(mockFileWriter);
         when(mockAppRequest.getStringParameter("-file")).thenReturn("output.txt");
 
@@ -153,7 +153,7 @@ public class WriteActionTest {
     void givenValidParametersAndEmptyFilePath_whenAction_thenFileWriterReceivesEmptyPath() throws AppException {
         userList.add(User.builder().setName("Ivan").setEmail("ivan@mail.ru").setAge(25).build());
 
-        when(mockAppData.getUserList()).thenReturn(userList);
+        when(mockAppData.getEntityList()).thenReturn(userList);
         when(mockAppData.getFileWriter()).thenReturn(mockFileWriter);
         when(mockAppRequest.getStringParameter("-file")).thenReturn("");
 
@@ -169,7 +169,7 @@ public class WriteActionTest {
     void givenValidParametersAndNullFilePath_whenAction_thenFileWriterReceivesNullPath() throws AppException {
         userList.add(User.builder().setName("Ivan").setEmail("ivan@mail.ru").setAge(25).build());
 
-        when(mockAppData.getUserList()).thenReturn(userList);
+        when(mockAppData.getEntityList()).thenReturn(userList);
         when(mockAppData.getFileWriter()).thenReturn(mockFileWriter);
         when(mockAppRequest.getStringParameter("-file")).thenReturn(null);
 
@@ -185,7 +185,7 @@ public class WriteActionTest {
     void givenValidParametersAndSingleUserInList_whenAction_thenWriteCalledWithSingleUser() throws AppException {
         userList.add(User.builder().setName("Ivan").setEmail("ivan@mail.ru").setAge(25).build());
 
-        when(mockAppData.getUserList()).thenReturn(userList);
+        when(mockAppData.getEntityList()).thenReturn(userList);
         when(mockAppData.getFileWriter()).thenReturn(mockFileWriter);
         when(mockAppRequest.getStringParameter("-file")).thenReturn("output.txt");
 
@@ -204,7 +204,7 @@ public class WriteActionTest {
         userList.add(User.builder().setName("Ivan").setEmail("ivan@mail.ru").setAge(25).build());
         userList.add(User.builder().setName("Anna").setEmail("anna@mail.ru").setAge(30).build());
 
-        when(mockAppData.getUserList()).thenReturn(userList);
+        when(mockAppData.getEntityList()).thenReturn(userList);
         when(mockAppData.getFileWriter()).thenReturn(mockFileWriter);
         when(mockAppRequest.getStringParameter("-file")).thenReturn("output.txt");
 
@@ -221,7 +221,7 @@ public class WriteActionTest {
     void givenValidParameters_whenAction_thenCorrectParameterNameUsed() throws AppException {
         userList.add(User.builder().setName("Ivan").setEmail("ivan@mail.ru").setAge(25).build());
 
-        when(mockAppData.getUserList()).thenReturn(userList);
+        when(mockAppData.getEntityList()).thenReturn(userList);
         when(mockAppData.getFileWriter()).thenReturn(mockFileWriter);
         when(mockAppRequest.getStringParameter("-file")).thenReturn("output.txt");
 
@@ -239,7 +239,7 @@ public class WriteActionTest {
 
         userList.add(User.builder().setName("Ivan").setEmail("ivan@mail.ru").setAge(25).build());
 
-        when(mockAppData.getUserList()).thenReturn(userList);
+        when(mockAppData.getEntityList()).thenReturn(userList);
         when(mockAppData.getFileWriter()).thenReturn(mockFileWriter);
         when(mockAppRequest.getStringParameter("-file")).thenReturn("output1.txt", "output2.txt");
 
@@ -254,7 +254,7 @@ public class WriteActionTest {
     void givenValidParametersAndFileWriterReturns_whenAction_thenSuccessMessagePrinted() throws AppException {
         userList.add(User.builder().setName("Ivan").setEmail("ivan@mail.ru").setAge(25).build());
 
-        when(mockAppData.getUserList()).thenReturn(userList);
+        when(mockAppData.getEntityList()).thenReturn(userList);
         when(mockAppData.getFileWriter()).thenReturn(mockFileWriter);
         when(mockAppRequest.getStringParameter("-file")).thenReturn("output.txt");
 

@@ -8,7 +8,7 @@ import ru.aston.finalproject.util.Message;
 
 import java.util.List;
 
-public class ShowAction<T> extends AppAction<T>{
+public class ShowAction<T> extends AppAction<T> {
     private static final Integer EXPECTED_MAX_PARAMETERS_AMOUNT = 0;
 
     @Override

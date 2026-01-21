@@ -13,7 +13,7 @@ public class CalculateFieldsStock {
     }
 
     public static BigDecimal setGrahamPrice(Stock stock) {
-        if (stock.getPE() == null || stock.getEPS() == null || stock.getEpsFrom5Years() == null) {
+        if (stock.getPe() == null || stock.getEps() == null || stock.getEpsFrom5Years() == null) {
             return null;
         }
         return calculateGrahamValueCounting(stock);
@@ -28,7 +28,7 @@ public class CalculateFieldsStock {
 
         BigDecimal conservativeG = getConservativeG(stock, one, oneFromFiveYears);
         BigDecimal bracketValue = getBracketValue(grahamConstant, two, conservativeG);
-        BigDecimal numerator = stock.getEPS().multiply(bracketValue);
+        BigDecimal numerator = stock.getEps().multiply(bracketValue);
         BigDecimal denominator = one.add(riskFreeRate);
         return (numerator).divide(denominator, 2, java.math.RoundingMode.HALF_UP);
     }
