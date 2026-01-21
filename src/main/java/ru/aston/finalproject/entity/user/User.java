@@ -7,7 +7,7 @@ import ru.aston.finalproject.entity.validator.Validate;
 
 @Getter
 @EqualsAndHashCode
-public class User implements Comparable<User> {
+public class User implements Comparable<User>{
 
     private final String name;
     private final String email;

@@ -33,10 +33,9 @@ public class Message {
     public static final String CONSOLE_INPUT_INTERRUPTED = "Console input interrupted";
     public static final String DATA_AT_INDEX_X = "data at index %d";
     public static final String USERS_LOADED = "Users loaded";
-    public static final String X_USERS_LOADED = "%d users loaded";
-    public static final String X_STOCKS_LOADED = "%d stocks loaded";
-    public static final String USERS_SAVED = "Users saved";
+    public static final String X_ENTITIES_LOADED = "%d entities loaded";
+    public static final String ENTITIES_SAVED = "Entities saved";
     public static final String STOCKS_SAVED = "Stocks saved";
-    public static final String USERS_CLEARED = "Users cleared";
-    public static final String USERS_SORTED = "User sorted";
+    public static final String ENTITIES_CLEARED = "Entities cleared";
+    public static final String ENTITIES_SORTED = "Entities sorted";
 }

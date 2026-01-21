@@ -1,5 +1,6 @@
 package ru.aston.finalproject.entity.stock;
 
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import ru.aston.finalproject.entity.validator.StockValidator;
 import ru.aston.finalproject.entity.validator.Validate;
@@ -10,6 +11,7 @@ import static ru.aston.finalproject.entity.stock.CalculateFieldsStock.nowPercent
 import static ru.aston.finalproject.entity.stock.CalculateFieldsStock.setGrahamPrice;
 
 @Getter
+@EqualsAndHashCode
 public class Stock implements Comparable<Stock> {
 
     private final String name;

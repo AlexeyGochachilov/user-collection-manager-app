@@ -5,7 +5,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentCaptor;
-import ru.aston.finalproject.environment.AppData;
+import ru.aston.finalproject.environment.appdata.AppData;
 import ru.aston.finalproject.environment.AppException;
 import ru.aston.finalproject.environment.AppRequest;
 import ru.aston.finalproject.entity.user.User;
@@ -28,7 +28,7 @@ import static org.mockito.Mockito.when;
 @SuppressWarnings("unchecked")
 class SortingActionTest {
 
-    private SortingAction action;
+    private UserSortingAction action;
     private AppData appDataMock;
     private AppRequest requestMock;
     private List<User> unsortedUsers;
@@ -37,7 +37,7 @@ class SortingActionTest {
 
     @BeforeEach
     void setUp() {
-        action = new SortingAction();
+        action = new UserSortingAction();
         appDataMock = mock(AppData.class);
         requestMock = mock(AppRequest.class);
 
