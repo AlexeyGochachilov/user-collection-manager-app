@@ -1,14 +1,21 @@
 package ru.aston.finalproject.entity.user;
 
+import ru.aston.finalproject.entity.validator.Validate;
+
 import static ru.aston.finalproject.util.ConstantFields.SPACE;
 import static ru.aston.finalproject.util.ConstantMethods.checkedStringOnEmpty;
 
 public class BuildUser {
+    private final Validate<User> validator;
+
+    public BuildUser(Validate<User> validator) {
+        this.validator = validator;
+    }
 
     public User capitalizeNameAndNormalizedEmail(String name, String email, int age) {
         String normalizedEmail = email.toLowerCase();
         String capitalizedName = capitalize(name);
-        return User.builder().setName(capitalizedName).setEmail(normalizedEmail).setAge(age).build();
+        return User.builder().setName(capitalizedName).setEmail(normalizedEmail).setAge(age).build(validator);
     }
 
     private String capitalize(String name) {

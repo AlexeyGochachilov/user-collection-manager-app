@@ -2,6 +2,7 @@ package ru.aston.finalproject.parser;
 
 import ru.aston.finalproject.entity.user.BuildUser;
 import ru.aston.finalproject.entity.user.User;
+import ru.aston.finalproject.entity.validator.Validate;
 import ru.aston.finalproject.environment.AppException;
 
 import static ru.aston.finalproject.util.ConstantMethods.checkedStringOnEmpty;
@@ -13,6 +14,11 @@ public class UserParser extends AbstractParser<User> {
     private static final String DELIMITER = " : ";
     public static final String USER_FORMAT = String.format("name%semail%sage", DELIMITER, DELIMITER);
     private static final int LENGTH_PARAMETER = 3;
+    private final Validate<User> validator;
+
+    public UserParser(Validate<User> validator) {
+        this.validator = validator;
+    }
 
     @Override
     public String parseToString(User user) {
@@ -36,7 +42,7 @@ public class UserParser extends AbstractParser<User> {
 
         checkedStringOnEmpty(data, "data in parser");
 
-        BuildUser buildConcreteEntity = new BuildUser();
+        BuildUser buildConcreteEntity = new BuildUser(validator);
         String[] dataArray = preparingForParsing(data, delimiter, LENGTH_PARAMETER);
 
         String name = dataArray[0].trim();

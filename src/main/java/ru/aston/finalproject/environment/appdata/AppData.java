@@ -41,9 +41,4 @@ public abstract class AppData<T> {
         this.fileWriter = new FileWriter<>(parser);
         this.entryCounter = new MultithreadCounter<>();
     }
-
-    protected static final BuildUser buildUser = new BuildUser();
-    protected static final UserDataFaker userDataFaker = new UserDataFaker();
-    protected static final RandomUserDataLoader randomUserDataLoader = new RandomUserDataLoader(userDataFaker, buildUser);
-
 }

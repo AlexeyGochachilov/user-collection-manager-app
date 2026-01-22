@@ -63,8 +63,7 @@ public class User implements Comparable<User> {
             return this;
         }
 
-        public User build() {
-            Validate<User> validator = new UserValidator();
+        public User build(Validate<User> validator) {
             validator.validate(name, email, age);
             return new User(this);
         }

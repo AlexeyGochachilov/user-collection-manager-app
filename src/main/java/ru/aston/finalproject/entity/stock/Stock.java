@@ -120,8 +120,7 @@ public class Stock implements Comparable<Stock> {
             return this;
         }
 
-        public Stock build() {
-            Validate<Stock> validator = new StockValidator();
+        public Stock build(Validate<Stock> validator) {
             validator.validate(name, nowValue, maxValue, minValue);
             return new Stock(this);
         }

@@ -1,6 +1,8 @@
 package ru.aston.finalproject.parser;
 
 import ru.aston.finalproject.entity.stock.Stock;
+import ru.aston.finalproject.entity.validator.StockValidator;
+import ru.aston.finalproject.entity.validator.Validate;
 import ru.aston.finalproject.environment.AppException;
 
 import java.math.BigDecimal;
@@ -21,6 +23,11 @@ public class StockParser extends AbstractParser<Stock> {
     private static final int EPS_PARAMETER = 6;
     private static final int EPS_FROM_5_YEARS_PARAMETER = 7;
     private static final int BUY_IN_THIS_PERIOD_PARAMETER = 8;
+    private final Validate<Stock> stockValidator;
+
+    public StockParser(Validate<Stock> stockValidator) {
+        this.stockValidator = stockValidator;
+    }
 
     @Override
     public String parseToString(Stock stock) {
@@ -68,6 +75,6 @@ public class StockParser extends AbstractParser<Stock> {
 
         return Stock.builder().setName(name).setNowValue(nowValue).setMaxValue(maxValue).setMinValue(minValue)
                 .setDividends(dividends).setPe(pe).setEps(eps).setEpsFrom5Years(epsFrom5Years)
-                .setBuyInThisPeriod(buyInThisPeriod).build();
+                .setBuyInThisPeriod(buyInThisPeriod).build(stockValidator);
     }
 }
