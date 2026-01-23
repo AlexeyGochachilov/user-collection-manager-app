@@ -1,7 +1,6 @@
 package ru.aston.finalproject.parser;
 
 import ru.aston.finalproject.entity.stock.Stock;
-import ru.aston.finalproject.entity.validator.StockValidator;
 import ru.aston.finalproject.entity.validator.Validate;
 import ru.aston.finalproject.environment.AppException;
 

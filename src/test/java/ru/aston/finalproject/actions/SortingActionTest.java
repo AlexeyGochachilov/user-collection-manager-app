@@ -5,6 +5,8 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentCaptor;
+import ru.aston.finalproject.entity.validator.UserValidator;
+import ru.aston.finalproject.entity.validator.Validate;
 import ru.aston.finalproject.environment.appdata.AppData;
 import ru.aston.finalproject.environment.AppException;
 import ru.aston.finalproject.environment.AppRequest;
@@ -34,27 +36,29 @@ class SortingActionTest {
     private List<User> unsortedUsers;
     private List<User> sortedByBasic;
     private List<User> sortedByStrange;
+    private Validate<User> validate;
 
     @BeforeEach
     void setUp() {
         action = new UserSortingAction();
         appDataMock = mock(AppData.class);
         requestMock = mock(AppRequest.class);
+        validate = new UserValidator();
 
         unsortedUsers = Arrays.asList(
-                User.builder().setName("Bob").setEmail("bob@example.com").setAge(30).build(),
-                User.builder().setName("Alice").setEmail("alice@example.com").setAge(25).build(),
-                User.builder().setName("Charlie").setEmail("charlie@example.com").setAge(20).build()
+                User.builder().setName("Bob").setEmail("bob@example.com").setAge(30).build(validate),
+                User.builder().setName("Alice").setEmail("alice@example.com").setAge(25).build(validate),
+                User.builder().setName("Charlie").setEmail("charlie@example.com").setAge(20).build(validate)
         );
         sortedByBasic = Arrays.asList(
-                User.builder().setName("Alice").setEmail("alice@example.com").setAge(25).build(),
-                User.builder().setName("Bob").setEmail("bob@example.com").setAge(30).build(),
-                User.builder().setName("Charlie").setEmail("charlie@example.com").setAge(20).build()
+                User.builder().setName("Alice").setEmail("alice@example.com").setAge(25).build(validate),
+                User.builder().setName("Bob").setEmail("bob@example.com").setAge(30).build(validate),
+                User.builder().setName("Charlie").setEmail("charlie@example.com").setAge(20).build(validate)
         );
         sortedByStrange = Arrays.asList(
-                User.builder().setName("Charlie").setEmail("charlie@example.com").setAge(20).build(),
-                User.builder().setName("Alice").setEmail("alice@example.com").setAge(25).build(),
-                User.builder().setName("Bob").setEmail("bob@example.com").setAge(30).build()
+                User.builder().setName("Charlie").setEmail("charlie@example.com").setAge(20).build(validate),
+                User.builder().setName("Alice").setEmail("alice@example.com").setAge(25).build(validate),
+                User.builder().setName("Bob").setEmail("bob@example.com").setAge(30).build(validate)
         );
     }
 
@@ -195,7 +199,7 @@ class SortingActionTest {
                     .setName("Test")
                     .setEmail("t@e.com")
                     .setAge(99)
-                    .build();
+                    .build(validate);
             assertEquals(99, funcCaptor.getValue().apply(testUser));
         }
     }

@@ -1,12 +1,22 @@
 package ru.aston.finalproject.entity.stock;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import ru.aston.finalproject.entity.validator.StockValidator;
+import ru.aston.finalproject.entity.validator.Validate;
 
 import java.math.BigDecimal;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class CalculateFieldsStockTest {
+
+    Validate<Stock> validate;
+
+    @BeforeEach
+    void setUp() {
+        validate = new StockValidator();
+    }
 
     @Test
     public void testCalculateNowPercent() {
@@ -18,7 +28,7 @@ public class CalculateFieldsStockTest {
                 .setEps("12")
                 .setPe("12")
                 .setEpsFrom5Years("138.24")
-                .build();
+                .build(validate);
 
         BigDecimal result = stock.getMaxValue().subtract(stock.getMinValue());
         BigDecimal nowResult = stock.getNowValue().subtract(stock.getMinValue());
@@ -37,7 +47,7 @@ public class CalculateFieldsStockTest {
                 .setEps("254.5")
                 .setPe("14.03")
                 .setEpsFrom5Years("199.7")
-                .build();
+                .build(validate);
 
         assertEquals(8748.44,stock.getGrahamPrice().doubleValue());
     }

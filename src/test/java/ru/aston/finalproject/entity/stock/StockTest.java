@@ -1,7 +1,10 @@
 package ru.aston.finalproject.entity.stock;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
+import ru.aston.finalproject.entity.validator.StockValidator;
+import ru.aston.finalproject.entity.validator.Validate;
 
 import java.math.BigDecimal;
 
@@ -10,6 +13,13 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class StockTest {
+
+    Validate<Stock> validate;
+
+    @BeforeEach
+    void setUp() {
+        validate = new StockValidator();
+    }
 
     @Nested
     class StockCreationTest {
@@ -21,7 +31,7 @@ public class StockTest {
                     .setNowValue("75")
                     .setMaxValue("100")
                     .setMinValue("50")
-                    .build();
+                    .build(validate);
 
             assertNotNull(stock);
             assertEquals("gazProm", stock.getName());
@@ -42,7 +52,7 @@ public class StockTest {
                     .setEpsFrom5Years("138.24")
                     .setDividends("true")
                     .setBuyInThisPeriod("true")
-                    .build();
+                    .build(validate);
 
             assertNotNull(stock);
             assertEquals("gazProm", stock.getName());
