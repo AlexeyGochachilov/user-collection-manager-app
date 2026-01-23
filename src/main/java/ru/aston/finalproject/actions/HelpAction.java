@@ -17,10 +17,9 @@ public class HelpAction<T> extends AppAction<T> {
                 show \t print current saved list with toString
                 clear \t clear current saved list
                 load \t load stock ore user list
-                \t\t -size=<size> -type=file \t -path=<path-to-file> \t load from file path for user
-                \t\t -size=<size> -type=file \t -read=<path-to-file> \t load from file path for stock
-                \t\t -size=<size> -type=random \t\t\t\t\t\t\t load random user list
+                \t\t -size=<size> -type=file \t -path=<path-to-file> \t load from file path
                 \t\t -size=<size> -type=console \t\t\t\t\t\t load from console input
+                \t\t -size=<size> -type=random \t\t\t\t\t\t\t load random user list
                 write \t write current list to file
                 \t\t -file=<file-path> \t\t\t write to file (uses current parser format)
                 sort \t sorting current list to file

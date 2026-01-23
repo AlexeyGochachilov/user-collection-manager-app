@@ -14,6 +14,8 @@ public class StockParser extends AbstractParser<Stock> {
 
     private static final String DELIMITER = "\\s+";
     private static final int LENGTH_PARAMETER = 9;
+    public static final String STOCK_FORMAT =
+            "name nowValue maxValue minValue dividends pe(withPE) eps(withEPS) epsFrom5years buyInThisPeriod";
     private static final int NAME_PARAMETER = 0;
     private static final int NOW_VALUE_PARAMETER = 1;
     private static final int MAX_VALUE_PARAMETER = 2;

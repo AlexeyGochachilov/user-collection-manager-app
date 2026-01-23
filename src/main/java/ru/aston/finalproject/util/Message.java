@@ -19,6 +19,7 @@ public class Message {
     public static final String THREAD_FAILED = "Non primary thread has failed in executing it's task: %s";
     public static final String FAILED_TO_WRITE_X_ITEMS_TO_FILE_X = "Failed to write %d items to file '%s'";
     public static final String CONSOLE_INPUT_FAILED = "Console input failed";
+    public static final String FILE_INPUT_FAILED = "File input failed";
     public static final String INPUT_ERROR_X = "input error: %s";
     public static final String INVALID_DATA_X = "Invalid data %s";
     public static final String INVALID_DATA = "Invalid data";
@@ -29,6 +30,7 @@ public class Message {
     public static final String ARGUMENT_MAY_NOT_BE_NULL = "%s argument may not be null.";
     public static final String AGE_SHOULD_BETWEEN_X_X_X = "age should be between %d %d: %d";
     public static final String ENTER_USERS_EXPECTED_FORMAT_S = "Enter users, expected format - \"%s\"";
+    public static final String ENTER_STOCKS_EXPECTED_FORMAT_S = "Enter stocks, expected format - \"%s\"";
     public static final String ENTER_X_TO_INTERRUPT_CONSOLE_INPUT = "Enter '%s' to interrupt console input";
     public static final String CONSOLE_INPUT_INTERRUPTED = "Console input interrupted";
     public static final String DATA_AT_INDEX_X = "data at index %d";

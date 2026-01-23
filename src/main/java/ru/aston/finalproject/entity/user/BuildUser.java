@@ -1,16 +1,14 @@
 package ru.aston.finalproject.entity.user;
 
+import lombok.AllArgsConstructor;
 import ru.aston.finalproject.entity.validator.Validate;
 
 import static ru.aston.finalproject.util.ConstantFields.SPACE;
 import static ru.aston.finalproject.util.ConstantMethods.checkedStringOnEmpty;
 
+@AllArgsConstructor
 public class BuildUser {
     private final Validate<User> validator;
-
-    public BuildUser(Validate<User> validator) {
-        this.validator = validator;
-    }
 
     public User capitalizeNameAndNormalizedEmail(String name, String email, int age) {
         String normalizedEmail = email.toLowerCase();

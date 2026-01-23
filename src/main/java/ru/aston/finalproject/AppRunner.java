@@ -23,9 +23,11 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Map;
 
+import static ru.aston.finalproject.parser.StockParser.STOCK_FORMAT;
+import static ru.aston.finalproject.parser.UserParser.USER_FORMAT;
+
 public class AppRunner {
     private static AppData<?> appData = null;
-    private static BufferedReader reader = null;
 
     public static final String HELP = "help";
     public static final String CLEAR_LIST_OF_ENTITY = "clear";
@@ -36,10 +38,8 @@ public class AppRunner {
     public static final String COUNT_ENTRIES_ENTITY = "count";
     public static final String SORTING_ENTITY = "sort";
     public static final String FILTER_STOCK = "filter";
-    public static final String EXIT = "exit";
 
-
-    private static final Map<String, AppAction> actionMap = Map.of(
+    private static final Map<String, AppAction<?>> actionMap = Map.of(
             HELP, new HelpAction(),
             CLEAR_LIST_OF_ENTITY, new ClearAction(),
             LOAD, new LoadAction(),
@@ -61,21 +61,19 @@ public class AppRunner {
 
     public static void main(String[] args) {
         try (BufferedReader inReader = new BufferedReader(new InputStreamReader(System.in))) {
-            reader = inReader;
-            runApplication();
+            runApplication(inReader);
         } catch (IOException exception) {
-            System.out.println(String.format(Message.INPUT_ERROR_X, exception.getMessage()));
-            closeResources();
+            System.out.printf((Message.INPUT_ERROR_X) + "%n", exception.getMessage());
         }
     }
 
-    private static void runApplication() throws IOException {
+    private static void runApplication(BufferedReader reader) throws IOException {
         while (true) {
             try {
                 if (appData == null) {
-                    handleEntitySelection();
+                    handleEntitySelection(reader);
                 } else {
-                    handleUserCommand();
+                    handleUserCommand(reader);
                 }
             } catch (IllegalStateException e) {
                 System.out.println(e.getMessage());
@@ -84,16 +82,12 @@ public class AppRunner {
         }
     }
 
-    private static void handleEntitySelection() throws IOException {
+    private static void handleEntitySelection(BufferedReader reader) throws IOException {
         System.out.println("\n=== Select an entity to work with ===");
         System.out.println("Available entities: " + String.join(", ", dataMap.keySet()));
         System.out.print("Enter the name of the entity (or 'exit' for exit): ");
 
-        String input = readInput().trim().toLowerCase();
-
-        if (EXIT.equalsIgnoreCase(input)) {
-            System.exit(0);
-        }
+        String input = readInput(reader).trim().toLowerCase();
 
         if (!dataMap.containsKey(input)) {
             System.out.println("Error: Unknown entity '" + input + "'");
@@ -102,12 +96,18 @@ public class AppRunner {
 
         appData = dataMap.get(input);
         System.out.println("The selected entity: " + input);
-        printAvailableCommands();
+
+        if (appData instanceof UserAppData) {
+            System.out.printf((Message.ENTER_USERS_EXPECTED_FORMAT_S) + "%n", USER_FORMAT);
+        } else if (appData instanceof StockAppData) {
+            System.out.printf((Message.ENTER_STOCKS_EXPECTED_FORMAT_S) + "%n", STOCK_FORMAT);
+        }
+
+        printHelpCommand();
     }
 
-    private static void handleUserCommand() throws IOException {
-        System.out.print("\nEnter the command (or 'help' for help, 'change' for changing the entity): ");
-        String input = readInput();
+    private static void handleUserCommand(BufferedReader reader) throws IOException {
+        String input = readInput(reader);
 
         if (StringUtils.isBlank(input)) {
             return;
@@ -118,7 +118,6 @@ public class AppRunner {
         if (appRequest.isExitRequest()) {
             System.exit(0);
         }
-
         if (appRequest.isChangeEntityRequest()) {
             appData = null;
             return;
@@ -127,14 +126,14 @@ public class AppRunner {
         String command = appRequest.getCommandName();
 
         if (!actionMap.containsKey(command)) {
-            System.out.println(String.format(Message.WRONG_REQUEST_SYNTAXES_X, command));
-            printAvailableCommands();
+            System.out.printf((Message.WRONG_REQUEST_SYNTAXES_X) + "%n", command);
+            printHelpCommand();
             return;
         }
 
         try {
-            AppAction action = actionMap.get(command);
-            action.action(appData, appRequest);
+            AppAction appAction = actionMap.get(command);
+            appAction.action(appData, appRequest);
         } catch (AppException exception) {
             System.out.println("Error: " + exception.getMessage());
         } catch (ClassCastException e) {
@@ -143,7 +142,7 @@ public class AppRunner {
         }
     }
 
-    private static String readInput() throws IOException {
+    private static String readInput(BufferedReader reader) throws IOException {
         String input = reader.readLine();
         if (input == null) {
             System.out.println("\nShut down...");
@@ -152,28 +151,7 @@ public class AppRunner {
         return input.trim();
     }
 
-    private static void printAvailableCommands() {
-        System.out.println("\nAvailable Commands:");
-        System.out.println("- help      : show help");
-        System.out.println("- load      : load data");
-        System.out.println("- print     : print data");
-        System.out.println("- show      : show data (for stocks)");
-        System.out.println("- write     : save data in file");
-        System.out.println("- count     : count needed entity");
-        System.out.println("- sort      : sort data");
-        System.out.println("- filter    : filter data (for stocks)");
-        System.out.println("- clear     : clear data");
-        System.out.println("- change    : change entity");
-        System.out.println("- exit      : exit fom program");
-    }
-
-    private static void closeResources() {
-        if (reader != null) {
-            try {
-                reader.close();
-            } catch (IOException e) {
-                System.err.println("Error when closing resources: " + e.getMessage());
-            }
-        }
+    private static void printHelpCommand() {
+        System.out.println("\nIf You don't know Commands? Write: help");
     }
 }
