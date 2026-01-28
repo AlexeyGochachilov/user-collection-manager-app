@@ -152,6 +152,6 @@ public class AppRunner {
     }
 
     private static void printHelpCommand() {
-        System.out.println("\nIf You don't know Commands? Write: help");
+        System.out.println("\nIf You don't know Commands. Write: help");
     }
 }
