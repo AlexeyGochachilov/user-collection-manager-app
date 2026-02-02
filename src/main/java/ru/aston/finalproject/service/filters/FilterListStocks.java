@@ -23,9 +23,7 @@ public class FilterListStocks implements FilterList<Stock> {
 
         if (value.length == oneArgs) {
             return filterValuesMoreO(list, value[0]);
-        }
-
-        if (value.length == twoArgs) {
+        } else if (value.length == twoArgs) {
             list = filterValuesMoreO(list, value[0]);
             return filterValuesLessO(list, value[1]);
         } else {

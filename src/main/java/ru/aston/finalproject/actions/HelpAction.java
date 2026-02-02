@@ -27,7 +27,7 @@ public class HelpAction<T> extends AppAction<T> {
                 \t\t -strange \t\t\t\t\t sorting only by even age user
                 filter \t remove stocks from list auto filters
                 \t\t -value=<value> with ground parameter
-                \t\t -first=<value> -second=<value> with both borders
+                \t\t -floor=<value> -ceiling=<value> with both borders
                 \t\t in value need write PE stock
                 count \t count entries of a given user
                 \t\t -threads=<tread count> \t thread count for multithread search
