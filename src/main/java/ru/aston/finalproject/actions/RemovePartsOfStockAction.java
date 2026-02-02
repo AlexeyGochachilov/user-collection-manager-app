@@ -6,9 +6,7 @@ import ru.aston.finalproject.environment.AppRequest;
 import ru.aston.finalproject.environment.appdata.AppData;
 import ru.aston.finalproject.util.Message;
 
-import java.math.BigDecimal;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class RemovePartsOfStockAction extends AppAction<Stock> {
     private static final Integer EXPECTED_MAX_PARAMETERS_AMOUNT = 2;
@@ -24,11 +22,11 @@ public class RemovePartsOfStockAction extends AppAction<Stock> {
 
         if (request.containsParameter(VALUE_PARAMETER)) {
             Double value = request.getDoubleParameter(VALUE_PARAMETER);
-            partOfList = appData.getFilter().filter(list, value);
+            partOfList = appData.getFilter().filters(list, value);
         } else {
             Double firstValue = request.getDoubleParameter(FIRST_VALUE_PARAMETER);
             Double secondValue = request.getDoubleParameter(SECOND_VALUE_PARAMETER);
-            partOfList = appData.getFilter().filter(list, firstValue, secondValue);
+            partOfList = appData.getFilter().filters(list, firstValue, secondValue);
         }
 
         appData.setEntityList(partOfList);

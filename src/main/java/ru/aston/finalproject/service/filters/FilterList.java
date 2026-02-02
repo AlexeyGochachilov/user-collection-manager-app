@@ -4,5 +4,5 @@ import java.util.List;
 
 public interface FilterList<T> {
 
-    public List<T> filter(List<T> list, Double... value);
+    public List<T> filters(List<T> list, Double... value);
 }

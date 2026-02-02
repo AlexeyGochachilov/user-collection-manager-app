@@ -6,7 +6,7 @@ import java.util.List;
 
 public class FilterListUsers implements FilterList<User> {
 
-    public List<User> filter(List<User> list, Double... value) {
+    public List<User> filters(List<User> list, Double... value) {
         return list;
     }
 }

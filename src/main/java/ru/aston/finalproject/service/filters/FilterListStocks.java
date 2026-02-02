@@ -12,23 +12,36 @@ import java.util.stream.Collectors;
 
 public class FilterListStocks implements FilterList<Stock> {
 
-    public List<Stock> filter(List<Stock> list, Double... value) {
+    public List<Stock> filters(List<Stock> list, Double... value) {
+
         if (Objects.isNull(list)) {
             return new CustomArrayList<>();
         }
-        if (value.length == 1) {
-            return list.stream().filter(
-                    stock -> stock.getPe().compareTo(BigDecimal.valueOf(value[0])) > 0
-            ).collect(Collectors.toList());
+
+        int oneArgs = 1;
+        int twoArgs = 2;
+
+        if (value.length == oneArgs) {
+            return filterValuesMoreO(list, value[0]);
         }
-        if (value.length == 2) {
-            return list.stream().filter(
-                    stock -> stock.getPe().compareTo(BigDecimal.valueOf(value[0])) > 0
-            ).filter(
-                    stock -> stock.getPe().compareTo(BigDecimal.valueOf(value[1])) < 0
-            ).collect(Collectors.toList());
+
+        if (value.length == twoArgs) {
+            list = filterValuesMoreO(list, value[0]);
+            return filterValuesLessO(list, value[1]);
         } else {
             throw new AppException(Message.WRONG_PARAMETERS_AMOUNT);
         }
+    }
+
+    private List<Stock> filterValuesMoreO(List<Stock> list, Double value) {
+        return list.stream()
+                .filter(stock -> stock.getPe().compareTo(BigDecimal.valueOf(value)) > 0)
+                .collect(Collectors.toList());
+    }
+
+    private List<Stock> filterValuesLessO(List<Stock> list, Double value) {
+        return list.stream()
+                .filter(stock -> stock.getPe().compareTo(BigDecimal.valueOf(value)) < 0)
+                .collect(Collectors.toList());
     }
 }
