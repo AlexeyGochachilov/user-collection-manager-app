@@ -6,6 +6,7 @@ import ru.aston.finalproject.entity.user.UserDataFaker;
 import ru.aston.finalproject.entity.validator.UserValidator;
 import ru.aston.finalproject.entity.validator.Validate;
 import ru.aston.finalproject.parser.UserParser;
+import ru.aston.finalproject.service.filters.FilterListUsers;
 import ru.aston.finalproject.service.loader.ConsoleDataLoader;
 import ru.aston.finalproject.service.loader.FileDataLoader;
 import ru.aston.finalproject.service.loader.LoaderService;
@@ -23,8 +24,9 @@ public class UserAppData extends AppData<User> {
     private static final ConsoleDataLoader<User> consoleDataLoader = new ConsoleDataLoader<>(userParser);
     private static final LoaderService<User> userLoaderService = new UserLoaderService(
             fileDataLoader, consoleDataLoader, randomUserDataLoader);
+    private static final FilterListUsers filter = new FilterListUsers();
 
     public UserAppData() {
-        super(userParser, userLoaderService, fileDataLoader);
+        super(userParser, userLoaderService, fileDataLoader, filter);
     }
 }

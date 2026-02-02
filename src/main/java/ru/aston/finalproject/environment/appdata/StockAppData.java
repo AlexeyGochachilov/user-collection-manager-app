@@ -4,6 +4,7 @@ import ru.aston.finalproject.entity.stock.Stock;
 import ru.aston.finalproject.entity.validator.StockValidator;
 import ru.aston.finalproject.entity.validator.Validate;
 import ru.aston.finalproject.parser.StockParser;
+import ru.aston.finalproject.service.filters.FilterListStocks;
 import ru.aston.finalproject.service.loader.ConsoleDataLoader;
 import ru.aston.finalproject.service.loader.FileDataLoader;
 import ru.aston.finalproject.service.loader.StockLoaderService;
@@ -15,8 +16,9 @@ public class StockAppData extends AppData<Stock> {
     private static final FileDataLoader<Stock> fileDataLoader = new FileDataLoader<>(stockParser);
     private static final ConsoleDataLoader<Stock> consoleDataLoader = new ConsoleDataLoader<>(stockParser);
     private static final StockLoaderService loaderService = new StockLoaderService(fileDataLoader, consoleDataLoader);
+    private static final FilterListStocks filter = new FilterListStocks();
 
     public StockAppData() {
-        super(stockParser, loaderService, fileDataLoader);
+        super(stockParser, loaderService, fileDataLoader, filter);
     }
 }

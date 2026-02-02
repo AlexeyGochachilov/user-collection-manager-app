@@ -19,24 +19,19 @@ public class RemovePartsOfStockAction extends AppAction<Stock> {
     @Override
     public void action(AppData<Stock> appData, AppRequest request) throws AppException {
         request.checkParametersAmount(EXPECTED_MAX_PARAMETERS_AMOUNT);
+        List<Stock> list = appData.getEntityList();
+        List<Stock> partOfList;
 
         if (request.containsParameter(VALUE_PARAMETER)) {
             Double value = request.getDoubleParameter(VALUE_PARAMETER);
-            List<Stock> partOfList = appData.getEntityList().stream().filter(
-                    stock -> stock.getPe().compareTo(new BigDecimal(value)) > 0
-            ).collect(Collectors.toList());
-            appData.setEntityList(partOfList);
+            partOfList = appData.getFilter().filter(list, value);
         } else {
             Double firstValue = request.getDoubleParameter(FIRST_VALUE_PARAMETER);
             Double secondValue = request.getDoubleParameter(SECOND_VALUE_PARAMETER);
-            List<Stock> partsOfList = appData.getEntityList().stream().filter(
-                    stock -> stock.getPe().compareTo(new BigDecimal(firstValue)) > 0
-            ).filter(
-                    stock -> stock.getPe().compareTo(new BigDecimal(secondValue)) < 0
-            ).collect(Collectors.toList());
-            appData.setEntityList(partsOfList);
+            partOfList = appData.getFilter().filter(list, firstValue, secondValue);
         }
 
+        appData.setEntityList(partOfList);
         System.out.println(Message.ENTITIES_FILTERED);
     }
 }
