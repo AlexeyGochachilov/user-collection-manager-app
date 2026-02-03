@@ -1,8 +1,8 @@
 package ru.aston.finalproject.service.filters;
 
-import java.util.List;
+import java.util.function.Predicate;
 
 public interface FilterList<T> {
 
-    public List<T> filters(List<T> list, Double... value);
+    FilterList<T> filter(Predicate<T> predicate);
 }

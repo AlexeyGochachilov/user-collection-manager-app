@@ -60,6 +60,18 @@ public class Stock implements Comparable<Stock> {
         return this.nowValueInPercent.compareTo(o.nowValueInPercent);
     }
 
+    public boolean isFloorBorder(double value) {
+        return pe.compareTo(BigDecimal.valueOf(value)) > 0;
+    }
+
+    public boolean isCeilingBorder(double value) {
+        return pe.compareTo(BigDecimal.valueOf(value)) < 0;
+    }
+
+    public boolean isThisValue(double value) {
+        return pe.compareTo(BigDecimal.valueOf(value)) == 0;
+    }
+
     public static class Builder {
 
         private String name;

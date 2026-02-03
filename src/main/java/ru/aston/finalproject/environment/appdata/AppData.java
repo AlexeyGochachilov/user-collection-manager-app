@@ -6,6 +6,7 @@ import ru.aston.finalproject.collection.CustomArrayList;
 import ru.aston.finalproject.parser.Parsing;
 import ru.aston.finalproject.service.counters.MultithreadCounter;
 import ru.aston.finalproject.service.filters.FilterList;
+import ru.aston.finalproject.service.filters.FilterListIMPL;
 import ru.aston.finalproject.service.loader.ConsoleDataLoader;
 import ru.aston.finalproject.service.loader.DataLoader;
 import ru.aston.finalproject.service.loader.LoaderService;
@@ -24,6 +25,7 @@ public abstract class AppData<T> {
     protected List<T> entityList = new CustomArrayList<>();
     protected final Sorter sorter = new MergeSorter();
     protected final StrangeSorter strangeSorter = new StrangeSorter(sorter);
+    protected final FilterListIMPL<T> filter = new FilterListIMPL<>(entityList);
 
     protected final Parsing<T> parser;
     protected final LoaderService<T> loaderService;
@@ -31,10 +33,8 @@ public abstract class AppData<T> {
     protected final DataLoader<T> consloeDataLoader;
     protected final Writer<T> fileWriter;
     protected final MultithreadCounter<T> entryCounter;
-    protected final FilterList<T> filter;
 
-    public AppData(Parsing<T> parser, LoaderService<T> loaderService,
-                   DataLoader<T> fileDataLoader, FilterList<T> filter) {
+    public AppData(Parsing<T> parser, LoaderService<T> loaderService, DataLoader<T> fileDataLoader) {
 
         this.parser = parser;
         this.loaderService = loaderService;
@@ -42,6 +42,5 @@ public abstract class AppData<T> {
         this.consloeDataLoader = new ConsoleDataLoader<>(parser);
         this.fileWriter = new FileWriter<>(parser);
         this.entryCounter = new MultithreadCounter<>();
-        this.filter = filter;
     }
 }

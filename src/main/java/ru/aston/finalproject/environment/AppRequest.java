@@ -99,6 +99,10 @@ public class AppRequest {
         }
     }
 
+    public int getSizeParameters() {
+        return parameters.size();
+    }
+
     public boolean isExitRequest() {
         return exitWords.contains(commandName);
     }

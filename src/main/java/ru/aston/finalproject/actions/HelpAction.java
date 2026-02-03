@@ -25,8 +25,10 @@ public class HelpAction<T> extends AppAction<T> {
                 sort \t sorting current list to file
                 \t\t -basic \t\t\t\t\t natural order sorting for user and stock
                 \t\t -strange \t\t\t\t\t sorting only by even age user
-                filter \t remove stocks from list auto filters
-                \t\t -value=<value> with ground parameter
+                filter \t remove stocks from list after filters
+                \t\t -floor=<value> with floor parameter
+                \t\t -ceiling=<value> with ceiling parameter
+                \t\t -value=<value> just value parameter
                 \t\t -floor=<value> -ceiling=<value> with both borders
                 \t\t in value need write PE stock
                 count \t count entries of a given user
