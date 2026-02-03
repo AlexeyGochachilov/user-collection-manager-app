@@ -5,7 +5,6 @@ import lombok.Setter;
 import ru.aston.finalproject.collection.CustomArrayList;
 import ru.aston.finalproject.parser.Parsing;
 import ru.aston.finalproject.service.counters.MultithreadCounter;
-import ru.aston.finalproject.service.filters.FilterList;
 import ru.aston.finalproject.service.filters.FilterListIMPL;
 import ru.aston.finalproject.service.loader.ConsoleDataLoader;
 import ru.aston.finalproject.service.loader.DataLoader;
