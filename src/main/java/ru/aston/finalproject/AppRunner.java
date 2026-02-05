@@ -45,7 +45,6 @@ public class AppRunner {
     }
 
     private static void handleEntitySelection(BufferedReader reader) throws IOException {
-
         startMessage();
         String input = readInput(reader).trim().toLowerCase();
 
@@ -61,16 +60,6 @@ public class AppRunner {
         } else if (appData instanceof StockAppData) {
             System.out.printf((Message.ENTER_STOCKS_EXPECTED_FORMAT_S) + "%n", STOCK_FORMAT);
         }
-    }
-
-    private static void startMessage() {
-        System.out.println("\n=== Select an entity to work with ===");
-        System.out.print("Available entities: ");
-        for (Data data : Data.values()) {
-            System.out.print(data + " ");
-        }
-        System.out.println();
-        System.out.print("Enter the name of the entity : ");
     }
 
     private static void handleUserCommand(BufferedReader reader) throws IOException {
@@ -113,6 +102,16 @@ public class AppRunner {
             System.exit(0);
         }
         return input.trim();
+    }
+
+    private static void startMessage() {
+        System.out.println("\n=== Select an entity to work with ===");
+        System.out.print("Available entities: ");
+        for (Data data : Data.values()) {
+            System.out.print(data + " ");
+        }
+        System.out.println();
+        System.out.print("Enter the name of the entity : ");
     }
 
     private static void printHelpCommand() {
