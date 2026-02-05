@@ -6,6 +6,7 @@ import ru.aston.finalproject.environment.AppRequest;
 import ru.aston.finalproject.environment.appdata.AppData;
 import ru.aston.finalproject.util.Message;
 
+import java.io.PrintWriter;
 import java.util.List;
 
 public class PrintAction<T> extends AppAction<T> {
@@ -20,8 +21,9 @@ public class PrintAction<T> extends AppAction<T> {
             System.out.println(Message.LIST_NOT_LOADED);
         }
 
+        PrintWriter writer = new PrintWriter(System.out, true);
         entityList.stream()
                 .map(appData.getParser()::parseToString)
-                .forEach(System.out::println);
+                .forEach(writer::println);
     }
 }

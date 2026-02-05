@@ -6,6 +6,7 @@ import ru.aston.finalproject.environment.AppRequest;
 import ru.aston.finalproject.environment.appdata.AppData;
 import ru.aston.finalproject.util.Message;
 
+import java.io.PrintWriter;
 import java.util.List;
 
 public class ShowAction<T> extends AppAction<T> {
@@ -18,6 +19,7 @@ public class ShowAction<T> extends AppAction<T> {
         if (ObjectUtils.isEmpty(entityList)) {
             System.out.println(Message.LIST_NOT_LOADED);
         }
-        entityList.forEach(System.out::println);
+        PrintWriter writer = new PrintWriter(System.out, true);
+        entityList.forEach(writer::println);
     }
 }
