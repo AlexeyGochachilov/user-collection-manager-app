@@ -14,6 +14,5 @@ public class HelpAction<T> extends AppAction<T> {
         for (Action action : Action.values()){
             System.out.println(action.name() + action.getInfo());
         }
-        System.out.println("change \t to change entity\n" + "exit \t to close the program");
     }
 }
