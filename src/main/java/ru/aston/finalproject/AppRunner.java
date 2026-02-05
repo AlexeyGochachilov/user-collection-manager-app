@@ -108,7 +108,7 @@ public class AppRunner {
         System.out.println("\n=== Select an entity to work with ===");
         System.out.print("Available entities: ");
         for (Data data : Data.values()) {
-            System.out.print(data + " ");
+            System.out.print(data.name() + " ");
         }
         System.out.println();
         System.out.print("Enter the name of the entity : ");
