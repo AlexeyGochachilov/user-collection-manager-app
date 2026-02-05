@@ -82,7 +82,7 @@ public class AppRunner {
         String command = appRequest.getCommandName();
 
         try {
-            AppAction appAction = Action.valueOf(input).getAppAction();
+            AppAction appAction = Action.valueOf(command).getAppAction();
             appAction.action(appData, appRequest);
         } catch (AppException exception) {
             System.out.println("Error: " + exception.getMessage());
