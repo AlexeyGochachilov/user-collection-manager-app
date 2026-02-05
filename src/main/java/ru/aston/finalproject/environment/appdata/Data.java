@@ -1,9 +1,6 @@
-package ru.aston.finalproject.enums;
+package ru.aston.finalproject.environment.appdata;
 
 import lombok.Getter;
-import ru.aston.finalproject.environment.appdata.AppData;
-import ru.aston.finalproject.environment.appdata.StockAppData;
-import ru.aston.finalproject.environment.appdata.UserAppData;
 
 public enum Data {
     user(new UserAppData()),

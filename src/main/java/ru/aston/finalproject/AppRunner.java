@@ -2,8 +2,8 @@ package ru.aston.finalproject;
 
 import org.apache.commons.lang3.StringUtils;
 import ru.aston.finalproject.actions.AppAction;
-import ru.aston.finalproject.enums.Action;
-import ru.aston.finalproject.enums.Data;
+import ru.aston.finalproject.actions.Action;
+import ru.aston.finalproject.environment.appdata.Data;
 import ru.aston.finalproject.environment.AppException;
 import ru.aston.finalproject.environment.AppRequest;
 import ru.aston.finalproject.environment.appdata.AppData;
@@ -66,8 +66,8 @@ public class AppRunner {
     private static void startMessage() {
         System.out.println("\n=== Select an entity to work with ===");
         System.out.print("Available entities: ");
-        for (Data d : Data.values()) {
-            System.out.print(d + " ");
+        for (Data data : Data.values()) {
+            System.out.print(data + " ");
         }
         System.out.println();
         System.out.print("Enter the name of the entity : ");
@@ -93,7 +93,7 @@ public class AppRunner {
         String command = appRequest.getCommandName();
 
         try {
-            AppAction appAction = Action.valueOf(input.toUpperCase()).getAppAction();
+            AppAction appAction = Action.valueOf(input).getAppAction();
             appAction.action(appData, appRequest);
         } catch (AppException exception) {
             System.out.println("Error: " + exception.getMessage());
