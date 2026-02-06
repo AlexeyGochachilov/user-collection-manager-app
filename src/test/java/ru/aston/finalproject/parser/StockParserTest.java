@@ -3,7 +3,7 @@ package ru.aston.finalproject.parser;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import ru.aston.finalproject.entity.stock.Stock;
-import ru.aston.finalproject.entity.validator.StockValidator;
+import ru.aston.finalproject.entity.validator.StockBuilderValidator;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
@@ -14,7 +14,7 @@ public class StockParserTest {
 
     @BeforeEach
     public void setup() {
-        parsing = new StockParser(new StockValidator());
+        parsing = new StockParser(new StockBuilderValidator());
     }
 
     @Test

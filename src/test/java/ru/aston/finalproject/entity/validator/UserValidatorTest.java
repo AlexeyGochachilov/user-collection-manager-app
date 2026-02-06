@@ -2,6 +2,7 @@ package ru.aston.finalproject.entity.validator;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import ru.aston.finalproject.entity.user.User;
 import ru.aston.finalproject.environment.AppException;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -9,14 +10,14 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class UserValidatorTest {
 
-    UserValidator userValidator;
+    UserBuilderValidator userValidator;
     String name;
     String email;
     int age;
 
     @BeforeEach
     void setUp() {
-        userValidator = new UserValidator();
+        userValidator = new UserBuilderValidator();
         name = "Ivan";
         email = "m@m.ru";
         age = 20;
@@ -24,34 +25,29 @@ public class UserValidatorTest {
 
     @Test
     public void givenNameAndAge_whenValidate_thenThrowsException() {
-        ClassCastException exception = assertThrows(ClassCastException.class, () -> {
-            userValidator.validate(name, age);
-        });
-        assertTrue(exception.getMessage().contains("not"));
+        User.Builder builder = User.builder().setName(name).setAge(age);
+        AppException exception = assertThrows(AppException.class, () -> userValidator.validate(builder));
+        assertTrue(exception.getMessage().contains("email"));
     }
 
     @Test
     public void givenEmailAndAge_whenValidate_thenThrowsException() {
-        AppException exception = assertThrows(AppException.class, () -> {
-            userValidator.validate(email, age);
-        });
-        assertTrue(exception.getMessage().contains("Name"));
+        User.Builder builder = User.builder().setEmail(email).setAge(age);
+        AppException exception = assertThrows(AppException.class, () -> userValidator.validate(builder));
+        assertTrue(exception.getMessage().contains("name"));
     }
 
     @Test
     public void givenOnlyName_whenValidate_thenThrowsException() {
-        ArrayIndexOutOfBoundsException exception = assertThrows(ArrayIndexOutOfBoundsException.class, () -> {
-            userValidator.validate(name);
-        });
-        assertTrue(exception.getMessage().contains("out of bounds"));
+        User.Builder builder = User.builder().setName(name);
+        AppException exception = assertThrows(AppException.class, () -> userValidator.validate(builder));
+        assertTrue(exception.getMessage().contains("cannot be empty"));
     }
 
     @Test
     public void givenNameAndEmail_whenValidate_thenThrowsException() {
-        ArrayIndexOutOfBoundsException exception = assertThrows(ArrayIndexOutOfBoundsException.class, () -> {
-            String name = "Ivan";
-            userValidator.validate(name, email);
-        });
-        assertTrue(exception.getMessage().contains("out of bounds"));
+        User.Builder builder = User.builder().setName(name).setEmail(email);
+        AppException exception = assertThrows(AppException.class, () -> userValidator.validate(builder));
+        assertTrue(exception.getMessage().contains("age should be between"));
     }
 }

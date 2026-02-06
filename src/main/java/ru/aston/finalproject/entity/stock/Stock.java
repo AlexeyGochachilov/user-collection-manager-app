@@ -2,7 +2,7 @@ package ru.aston.finalproject.entity.stock;
 
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
-import ru.aston.finalproject.entity.validator.StockValidator;
+import ru.aston.finalproject.entity.validator.StockBuilderValidator;
 import ru.aston.finalproject.entity.validator.Validate;
 
 import java.math.BigDecimal;
@@ -72,6 +72,7 @@ public class Stock implements Comparable<Stock> {
         return pe.compareTo(BigDecimal.valueOf(value)) == 0;
     }
 
+    @Getter
     public static class Builder {
 
         private String name;
@@ -132,8 +133,8 @@ public class Stock implements Comparable<Stock> {
             return this;
         }
 
-        public Stock build(Validate<Stock> validator) {
-            validator.validate(name, nowValue, maxValue, minValue);
+        public Stock build(Validate<Builder> validator) {
+            validator.validate(this);
             return new Stock(this);
         }
     }

@@ -8,7 +8,7 @@ import static ru.aston.finalproject.util.ConstantMethods.checkedStringOnEmpty;
 
 @AllArgsConstructor
 public class BuildUser {
-    private final Validate<User> validator;
+    private final Validate<User.Builder> validator;
 
     public User capitalizeNameAndNormalizedEmail(String name, String email, int age) {
         String normalizedEmail = email.toLowerCase();

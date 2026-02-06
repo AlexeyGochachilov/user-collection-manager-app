@@ -3,7 +3,7 @@ package ru.aston.finalproject.parser;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
-import ru.aston.finalproject.entity.validator.UserValidator;
+import ru.aston.finalproject.entity.validator.UserBuilderValidator;
 import ru.aston.finalproject.entity.validator.Validate;
 import ru.aston.finalproject.environment.AppException;
 import ru.aston.finalproject.entity.user.User;
@@ -18,11 +18,11 @@ import static ru.aston.finalproject.util.ConstantFields.MIN_AGE;
 public class UserParserTest {
 
     private Parsing<User> userParser;
-    private Validate<User> validate;
+    private Validate<User.Builder> validate;
 
     @BeforeEach
     void setUp() {
-        validate = new UserValidator();
+        validate = new UserBuilderValidator();
         userParser = new UserParser(validate);
     }
 

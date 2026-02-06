@@ -8,7 +8,7 @@ import org.junit.jupiter.api.io.TempDir;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-import ru.aston.finalproject.entity.validator.UserValidator;
+import ru.aston.finalproject.entity.validator.UserBuilderValidator;
 import ru.aston.finalproject.environment.AppException;
 import ru.aston.finalproject.environment.AppRequest;
 import ru.aston.finalproject.entity.user.User;
@@ -47,7 +47,7 @@ class FileDataLoaderTest {
                 .setAge(3)
                 .setEmail("test@mail.ru")
                 .setName("Name")
-                .build(new UserValidator());
+                .build(new UserBuilderValidator());
         testFilePath = tempDir.resolve("test.txt");
         validConsoleInputStream = Stream.generate(() -> "Name : test@mail.ru : 3");
     }

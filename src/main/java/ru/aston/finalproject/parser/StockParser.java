@@ -1,6 +1,7 @@
 package ru.aston.finalproject.parser;
 
 import ru.aston.finalproject.entity.stock.Stock;
+import ru.aston.finalproject.entity.validator.StockBuilderValidator;
 import ru.aston.finalproject.entity.validator.Validate;
 import ru.aston.finalproject.environment.AppException;
 
@@ -24,9 +25,9 @@ public class StockParser extends AbstractParser<Stock> {
     private static final int EPS_PARAMETER = 6;
     private static final int EPS_FROM_5_YEARS_PARAMETER = 7;
     private static final int BUY_IN_THIS_PERIOD_PARAMETER = 8;
-    private final Validate<Stock> stockValidator;
+    private final Validate<Stock.Builder> stockValidator;
 
-    public StockParser(Validate<Stock> stockValidator) {
+    public StockParser(Validate<Stock.Builder> stockValidator) {
         this.stockValidator = stockValidator;
     }
 

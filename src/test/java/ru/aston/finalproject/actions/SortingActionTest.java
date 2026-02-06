@@ -5,7 +5,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentCaptor;
-import ru.aston.finalproject.entity.validator.UserValidator;
+import ru.aston.finalproject.entity.validator.UserBuilderValidator;
 import ru.aston.finalproject.entity.validator.Validate;
 import ru.aston.finalproject.environment.appdata.AppData;
 import ru.aston.finalproject.environment.AppException;
@@ -36,14 +36,14 @@ class SortingActionTest {
     private List<User> unsortedUsers;
     private List<User> sortedByBasic;
     private List<User> sortedByStrange;
-    private Validate<User> validate;
+    private Validate<User.Builder> validate;
 
     @BeforeEach
     void setUp() {
         action = new UserSortingAction();
         appDataMock = mock(AppData.class);
         requestMock = mock(AppRequest.class);
-        validate = new UserValidator();
+        validate = new UserBuilderValidator();
 
         unsortedUsers = Arrays.asList(
                 User.builder().setName("Bob").setEmail("bob@example.com").setAge(30).build(validate),

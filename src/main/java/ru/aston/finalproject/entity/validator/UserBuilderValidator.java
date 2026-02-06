@@ -9,7 +9,7 @@ import static ru.aston.finalproject.util.ConstantMethods.checkedStringOnEmpty;
 import static ru.aston.finalproject.util.Message.AGE_SHOULD_BETWEEN_X_X_X;
 import static ru.aston.finalproject.util.Message.X_IS_NOT_A_VALID_X;
 
-public class UserValidator implements Validate<User> {
+public class UserBuilderValidator implements Validate<User.Builder> {
 
     private static final String EMAIL_FORM = "^[\\w-\\.]+@[\\w-]+(\\.[\\w-]+)*\\.[a-z]{2,}$";
     private static final String DIGITS_REGS = "\\d+";
@@ -17,10 +17,11 @@ public class UserValidator implements Validate<User> {
     private static final String EMAIL = "email";
 
     @Override
-    public void validate(Object... obj) throws AppException {
-        checkedName((String) obj[0]);
-        checkedEmail((String) obj[1]);
-        checkedAge((int) obj[2]);
+    public void validate(User.Builder builder) throws AppException {
+        checkedFieldsNotNull(builder);
+        checkedName(builder.getName());
+        checkedEmail(builder.getEmail());
+        checkedAge(builder.getAge());
     }
 
     private void checkedName(String name) {

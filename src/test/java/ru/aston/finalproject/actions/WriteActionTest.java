@@ -5,13 +5,13 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import ru.aston.finalproject.entity.validator.UserValidator;
-import ru.aston.finalproject.entity.validator.Validate;
-import ru.aston.finalproject.environment.appdata.AppData;
-import ru.aston.finalproject.environment.AppException;
-import ru.aston.finalproject.environment.AppRequest;
 import ru.aston.finalproject.collection.CustomArrayList;
 import ru.aston.finalproject.entity.user.User;
+import ru.aston.finalproject.entity.validator.UserBuilderValidator;
+import ru.aston.finalproject.entity.validator.Validate;
+import ru.aston.finalproject.environment.AppException;
+import ru.aston.finalproject.environment.AppRequest;
+import ru.aston.finalproject.environment.appdata.AppData;
 import ru.aston.finalproject.service.writer.FileWriter;
 import ru.aston.finalproject.util.Message;
 
@@ -37,7 +37,7 @@ public class WriteActionTest {
     private ByteArrayOutputStream outputStream;
     private PrintStream originalOut;
     private AutoCloseable mockitoCloseable;
-    private Validate<User> validate;
+    private Validate<User.Builder> validate;
 
     @Mock
     private AppData mockAppData;
@@ -51,10 +51,10 @@ public class WriteActionTest {
     @BeforeEach
     void setUp() {
         mockitoCloseable = MockitoAnnotations.openMocks(this);
-        writeAction = new WriteAction();
+        writeAction = new WriteAction<>();
         userList = new CustomArrayList<>();
         outputStream = new ByteArrayOutputStream();
-        validate = new UserValidator();
+        validate = new UserBuilderValidator();
         originalOut = System.out;
         System.setOut(new PrintStream(outputStream));
     }

@@ -3,6 +3,7 @@ package ru.aston.finalproject.parser;
 import lombok.AllArgsConstructor;
 import ru.aston.finalproject.entity.user.BuildUser;
 import ru.aston.finalproject.entity.user.User;
+import ru.aston.finalproject.entity.validator.UserBuilderValidator;
 import ru.aston.finalproject.entity.validator.Validate;
 import ru.aston.finalproject.environment.AppException;
 
@@ -16,7 +17,7 @@ public class UserParser extends AbstractParser<User> {
     private static final String DELIMITER = " : ";
     public static final String USER_FORMAT = String.format("name%semail%sage", DELIMITER, DELIMITER);
     private static final int LENGTH_PARAMETER = 3;
-    private final Validate<User> validator;
+    private final Validate<User.Builder> validator;
 
     @Override
     public String parseToString(User user) {

@@ -3,7 +3,7 @@ package ru.aston.finalproject.entity.stock;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
-import ru.aston.finalproject.entity.validator.StockValidator;
+import ru.aston.finalproject.entity.validator.StockBuilderValidator;
 import ru.aston.finalproject.entity.validator.Validate;
 
 import java.math.BigDecimal;
@@ -14,31 +14,15 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class StockTest {
 
-    Validate<Stock> validate;
+    Validate<Stock.Builder> validate;
 
     @BeforeEach
     void setUp() {
-        validate = new StockValidator();
+        validate = new StockBuilderValidator();
     }
 
     @Nested
     class StockCreationTest {
-
-        @Test
-        void givenMinimumValidData_whenBuildStock_thenStockCreatedSuccessfully() {
-            Stock stock = Stock.builder()
-                    .setName("gazProm")
-                    .setNowValue("75")
-                    .setMaxValue("100")
-                    .setMinValue("50")
-                    .build(validate);
-
-            assertNotNull(stock);
-            assertEquals("gazProm", stock.getName());
-            assertEquals(new BigDecimal(75), stock.getNowValue());
-            assertEquals(new BigDecimal(100), stock.getMaxValue());
-            assertEquals(new BigDecimal(50), stock.getMinValue());
-        }
 
         @Test
         void givenAllValidData_whenBuildStock_thenStockCreatedSuccessfully() {

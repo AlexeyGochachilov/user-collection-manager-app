@@ -5,29 +5,23 @@ import ru.aston.finalproject.environment.AppException;
 
 import java.math.BigDecimal;
 
-import static ru.aston.finalproject.util.ConstantMethods.checkedStringOnEmpty;
 import static ru.aston.finalproject.util.Message.INVALID_DATA;
 
-public class StockValidator implements Validate<Stock> {
+public class StockBuilderValidator implements Validate<Stock.Builder> {
 
     private BigDecimal nowValue;
     private BigDecimal maxValue;
     private BigDecimal minValue;
 
     @Override
-    public void validate(Object... obj) throws AppException {
-
-        nowValue = (BigDecimal) obj[1];
-        maxValue = (BigDecimal) obj[2];
-        minValue = (BigDecimal) obj[3];
-        checkedName((String) obj[0]);
-        checkedNowValue(nowValue);
-        checkedMaxValue(maxValue);
-        checkedMinValue(minValue);
-    }
-
-    private void checkedName(String name) {
-        checkedStringOnEmpty(name, "Name of Stock");
+    public void validate(Stock.Builder builder) throws AppException {
+        checkedFieldsNotNull(builder);
+        nowValue = builder.getNowValue();
+        maxValue = builder.getMaxValue();
+        minValue = builder.getMinValue();
+        checkedNowValue(builder.getNowValue());
+        checkedMaxValue(builder.getMaxValue());
+        checkedMinValue(builder.getMinValue());
     }
 
     private void checkedNowValue(BigDecimal value) {

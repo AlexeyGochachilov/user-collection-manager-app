@@ -3,7 +3,7 @@ package ru.aston.finalproject.environment.appdata;
 import ru.aston.finalproject.entity.user.BuildUser;
 import ru.aston.finalproject.entity.user.User;
 import ru.aston.finalproject.entity.user.UserDataFaker;
-import ru.aston.finalproject.entity.validator.UserValidator;
+import ru.aston.finalproject.entity.validator.UserBuilderValidator;
 import ru.aston.finalproject.entity.validator.Validate;
 import ru.aston.finalproject.parser.UserParser;
 import ru.aston.finalproject.service.loader.ConsoleDataLoader;
@@ -14,7 +14,7 @@ import ru.aston.finalproject.service.loader.UserLoaderService;
 
 public class UserAppData extends AppData<User> {
 
-    private static final Validate<User> userValidator = new UserValidator();
+    private static final Validate<User.Builder> userValidator = new UserBuilderValidator();
     private static final BuildUser buildUser = new BuildUser(userValidator);
     private static final UserDataFaker userDataFaker = new UserDataFaker();
     private static final RandomUserDataLoader randomUserDataLoader = new RandomUserDataLoader(userDataFaker, buildUser);

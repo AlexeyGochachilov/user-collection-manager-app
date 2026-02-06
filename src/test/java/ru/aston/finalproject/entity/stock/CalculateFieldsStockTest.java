@@ -2,7 +2,7 @@ package ru.aston.finalproject.entity.stock;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import ru.aston.finalproject.entity.validator.StockValidator;
+import ru.aston.finalproject.entity.validator.StockBuilderValidator;
 import ru.aston.finalproject.entity.validator.Validate;
 
 import java.math.BigDecimal;
@@ -11,11 +11,11 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class CalculateFieldsStockTest {
 
-    Validate<Stock> validate;
+    Validate<Stock.Builder> validate;
 
     @BeforeEach
     void setUp() {
-        validate = new StockValidator();
+        validate = new StockBuilderValidator();
     }
 
     @Test
