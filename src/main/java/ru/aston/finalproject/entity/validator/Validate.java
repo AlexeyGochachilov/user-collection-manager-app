@@ -19,7 +19,7 @@ public interface Validate<T> {
                     throw new AppException(String.format(Message.X_CANNOT_BE_EMPTY, field.getName()));
                 }
             } catch (IllegalAccessException e) {
-                throw new RuntimeException(e);
+                throw new AppException(e.getMessage());
             }
         }
     }
